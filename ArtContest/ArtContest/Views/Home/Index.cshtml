@@ -1,0 +1,23 @@
+﻿
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Index</title>
+</head>
+<body>
+    <div> 
+
+        <h1>Welcome to CTEF 2016 Art Contest</h1>
+        @using (Html.BeginForm("Index", "Home", FormMethod.Post))
+        {
+            <span>User Name:</span><br />
+            <span>Password:</span><br />
+            <input type="submit" value="Login" /><br />
+            @Html.ActionLink("Don't have an account?", "Index", "UserSignUp", null, new { @class = "actionLink" });
+        }
+    </div>
+</body>
+</html>
