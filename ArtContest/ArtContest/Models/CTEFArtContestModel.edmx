@@ -10,7 +10,7 @@
             <PropertyRef Name="Id" />
           </Key>
           <Property Name="Id" Type="int" Nullable="false" />
-          <Property Name="StudentId" Type="int" Nullable="false" />
+          <Property Name="UserId" Type="int" Nullable="false" />
           <Property Name="PicturePath" Type="varchar" MaxLength="100" Nullable="false" />
           <Property Name="Private" Type="nvarchar" MaxLength="20" Nullable="false" />
           <Property Name="Title" Type="nvarchar" MaxLength="100" Nullable="false" />
@@ -51,6 +51,16 @@
           <Property Name="StudentSignature" Type="nvarchar" MaxLength="200" />
           <Property Name="ParentSignature" Type="nvarchar" MaxLength="200" />
         </EntityType>
+        <EntityType Name="sysdiagrams">
+          <Key>
+            <PropertyRef Name="diagram_id" />
+          </Key>
+          <Property Name="name" Type="nvarchar" MaxLength="128" Nullable="false" />
+          <Property Name="principal_id" Type="int" Nullable="false" />
+          <Property Name="diagram_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="version" Type="int" />
+          <Property Name="definition" Type="varbinary(max)" />
+        </EntityType>
         <EntityType Name="User">
           <Key>
             <PropertyRef Name="Id" />
@@ -78,11 +88,11 @@
               <PropertyRef Name="Id" />
             </Principal>
             <Dependent Role="Picture">
-              <PropertyRef Name="StudentId" />
+              <PropertyRef Name="UserId" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK_PictureRate_Picture1">
+        <Association Name="FK_PictureRate_Picture">
           <End Role="Picture" Type="Self.Picture" Multiplicity="1" />
           <End Role="PictureRate" Type="Self.PictureRate" Multiplicity="*" />
           <ReferentialConstraint>
@@ -134,13 +144,14 @@
           <EntitySet Name="Picture" EntityType="Self.Picture" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="PictureRate" EntityType="Self.PictureRate" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Student" EntityType="Self.Student" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="User" EntityType="Self.User" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="UserType" EntityType="Self.UserType" Schema="dbo" store:Type="Tables" />
           <AssociationSet Name="FK_Picture_Student" Association="Self.FK_Picture_Student">
             <End Role="Student" EntitySet="Student" />
             <End Role="Picture" EntitySet="Picture" />
           </AssociationSet>
-          <AssociationSet Name="FK_PictureRate_Picture1" Association="Self.FK_PictureRate_Picture1">
+          <AssociationSet Name="FK_PictureRate_Picture" Association="Self.FK_PictureRate_Picture">
             <End Role="Picture" EntitySet="Picture" />
             <End Role="PictureRate" EntitySet="PictureRate" />
           </AssociationSet>
@@ -167,14 +178,14 @@
             <PropertyRef Name="Id" />
           </Key>
           <Property Name="Id" Type="Int32" Nullable="false" />
-          <Property Name="StudentId" Type="Int32" Nullable="false" />
+          <Property Name="UserId" Type="Int32" Nullable="false" />
           <Property Name="PicturePath" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
           <Property Name="Private" Type="String" MaxLength="20" FixedLength="false" Unicode="true" Nullable="false" />
           <Property Name="Title" Type="String" MaxLength="100" FixedLength="false" Unicode="true" Nullable="false" />
           <Property Name="Description" Type="String" MaxLength="2000" FixedLength="false" Unicode="true" Nullable="false" />
           <Property Name="UploadDate" Type="DateTime" Nullable="false" Precision="0" />
           <NavigationProperty Name="Student" Relationship="Self.FK_Picture_Student" FromRole="Picture" ToRole="Student" />
-          <NavigationProperty Name="PictureRates" Relationship="Self.FK_PictureRate_Picture1" FromRole="Picture" ToRole="PictureRate" />
+          <NavigationProperty Name="PictureRates" Relationship="Self.FK_PictureRate_Picture" FromRole="Picture" ToRole="PictureRate" />
         </EntityType>
         <EntityType Name="PictureRate">
           <Key>
@@ -184,7 +195,7 @@
           <Property Name="PictureId" Type="Int32" Nullable="false" />
           <Property Name="JudgeId" Type="Int32" Nullable="false" />
           <Property Name="Rate" Type="Double" Nullable="false" />
-          <NavigationProperty Name="Picture" Relationship="Self.FK_PictureRate_Picture1" FromRole="PictureRate" ToRole="Picture" />
+          <NavigationProperty Name="Picture" Relationship="Self.FK_PictureRate_Picture" FromRole="PictureRate" ToRole="Picture" />
           <NavigationProperty Name="User" Relationship="Self.FK_PictureRate_User" FromRole="PictureRate" ToRole="User" />
         </EntityType>
         <EntityType Name="Student">
@@ -213,6 +224,16 @@
           <Property Name="ParentSignature" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
           <NavigationProperty Name="Pictures" Relationship="Self.FK_Picture_Student" FromRole="Student" ToRole="Picture" />
           <NavigationProperty Name="User" Relationship="Self.FK_Student_User" FromRole="Student" ToRole="User" />
+        </EntityType>
+        <EntityType Name="sysdiagram">
+          <Key>
+            <PropertyRef Name="diagram_id" />
+          </Key>
+          <Property Name="name" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="principal_id" Type="Int32" Nullable="false" />
+          <Property Name="diagram_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="version" Type="Int32" />
+          <Property Name="definition" Type="Binary" MaxLength="Max" FixedLength="false" />
         </EntityType>
         <EntityType Name="User">
           <Key>
@@ -245,11 +266,11 @@
               <PropertyRef Name="Id" />
             </Principal>
             <Dependent Role="Picture">
-              <PropertyRef Name="StudentId" />
+              <PropertyRef Name="UserId" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK_PictureRate_Picture1">
+        <Association Name="FK_PictureRate_Picture">
           <End Role="Picture" Type="Self.Picture" Multiplicity="1" />
           <End Role="PictureRate" Type="Self.PictureRate" Multiplicity="*" />
           <ReferentialConstraint>
@@ -301,13 +322,14 @@
           <EntitySet Name="Pictures" EntityType="Self.Picture" />
           <EntitySet Name="PictureRates" EntityType="Self.PictureRate" />
           <EntitySet Name="Students" EntityType="Self.Student" />
+          <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagram" />
           <EntitySet Name="Users" EntityType="Self.User" />
           <EntitySet Name="UserTypes" EntityType="Self.UserType" />
           <AssociationSet Name="FK_Picture_Student" Association="Self.FK_Picture_Student">
             <End Role="Student" EntitySet="Students" />
             <End Role="Picture" EntitySet="Pictures" />
           </AssociationSet>
-          <AssociationSet Name="FK_PictureRate_Picture1" Association="Self.FK_PictureRate_Picture1">
+          <AssociationSet Name="FK_PictureRate_Picture" Association="Self.FK_PictureRate_Picture">
             <End Role="Picture" EntitySet="Pictures" />
             <End Role="PictureRate" EntitySet="PictureRates" />
           </AssociationSet>
@@ -334,7 +356,7 @@
             <EntityTypeMapping TypeName="CTEFArtContestModel.Picture">
               <MappingFragment StoreEntitySet="Picture">
                 <ScalarProperty Name="Id" ColumnName="Id" />
-                <ScalarProperty Name="StudentId" ColumnName="StudentId" />
+                <ScalarProperty Name="UserId" ColumnName="UserId" />
                 <ScalarProperty Name="PicturePath" ColumnName="PicturePath" />
                 <ScalarProperty Name="Private" ColumnName="Private" />
                 <ScalarProperty Name="Title" ColumnName="Title" />
@@ -375,6 +397,17 @@
                 <ScalarProperty Name="TeacherLastName" ColumnName="TeacherLastName" />
                 <ScalarProperty Name="StudentSignature" ColumnName="StudentSignature" />
                 <ScalarProperty Name="ParentSignature" ColumnName="ParentSignature" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="sysdiagrams">
+            <EntityTypeMapping TypeName="CTEFArtContestModel.sysdiagram">
+              <MappingFragment StoreEntitySet="sysdiagrams">
+                <ScalarProperty Name="name" ColumnName="name" />
+                <ScalarProperty Name="principal_id" ColumnName="principal_id" />
+                <ScalarProperty Name="diagram_id" ColumnName="diagram_id" />
+                <ScalarProperty Name="version" ColumnName="version" />
+                <ScalarProperty Name="definition" ColumnName="definition" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>

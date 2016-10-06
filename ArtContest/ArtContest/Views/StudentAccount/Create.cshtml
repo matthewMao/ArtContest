@@ -1,0 +1,31 @@
+﻿@model ArtContest.Models.CreateWorkModel
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Create</title>
+    <script src="~/CommonJS.js"></script>
+</head>
+<body>
+    <h1>Upload Your Work</h1>
+    @using (Html.BeginForm("Create", "PersonalAccount", FormMethod.Post, new { enctype = "multipart/form-data" }))
+    {
+        <span>Tile</span>
+        @Html.TextBoxFor(m => m.pic.Title, null, new { id = "input" })<br />
+        <span>Description</span>
+        @Html.TextBoxFor(m => m.pic.Description, null, new { id = "input" })<br />
+        <span>UploadDate</span>
+        @Html.TextBoxFor(m => m.pic.UploadDate, null, new { id = "input" })<br />
+        <span>Public</span>
+        <span>Yes</span> @Html.RadioButtonFor(m => m.pic.Private, "Yes")
+        <span>No</span> @Html.RadioButtonFor(m => m.pic.Private, "No")<br style="line-height:300%" />
+
+        <span>Work</span>
+        <input type="file" name="uploadingFile" /><br />
+        <input type="submit" value="upload" />
+    }
+    @Html.ActionLink("Go back", "index", null, null, new { @class = "actionLink" })
+</body>
+</html>

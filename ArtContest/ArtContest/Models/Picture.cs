@@ -21,7 +21,7 @@ namespace ArtContest.Models
         }
     
         public int Id { get; set; }
-        public int StudentId { get; set; }
+        public int UserId { get; set; }
         public string PicturePath { get; set; }
         public string Private { get; set; }
         public string Title { get; set; }

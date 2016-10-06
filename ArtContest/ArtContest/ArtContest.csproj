@@ -205,11 +205,15 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="App_Start\RouteConfig.cs" />
+    <Compile Include="Controllers\AdminAccountController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Controllers\JudgeAccountController.cs" />
+    <Compile Include="Controllers\StudentAccountController.cs" />
     <Compile Include="Controllers\UserSignUpController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="Models\CreateWorkModel.cs" />
     <Compile Include="Models\CTEFArtContestModel.Context.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -225,6 +229,7 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>CTEFArtContestModel.edmx</DependentUpon>
     </Compile>
+    <Compile Include="Models\LoginModel.cs" />
     <Compile Include="Models\Picture.cs">
       <DependentUpon>CTEFArtContestModel.tt</DependentUpon>
     </Compile>
@@ -232,6 +237,9 @@
       <DependentUpon>CTEFArtContestModel.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\Student.cs">
+      <DependentUpon>CTEFArtContestModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\sysdiagram.cs">
       <DependentUpon>CTEFArtContestModel.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\User.cs">
@@ -257,6 +265,12 @@
     <Content Include="Views\Home\Index.cshtml" />
     <Content Include="Scripts\jquery-3.1.1.slim.min.map" />
     <Content Include="Scripts\jquery-3.1.1.min.map" />
+    <Content Include="Views\StudentAccount\Index.cshtml" />
+    <Content Include="Views\AdminAccount\Index.cshtml" />
+    <Content Include="Views\JudgeAccount\Index.cshtml" />
+    <Content Include="Views\StudentAccount\Create.cshtml" />
+    <Content Include="Views\StudentAccount\Detail.cshtml" />
+    <Content Include="Views\StudentAccount\Edit.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

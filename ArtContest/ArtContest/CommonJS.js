@@ -12,3 +12,12 @@ function activateButton(element) {
     }
 }
 
+function isEmpty() {
+    if (document.getElementById("input").value == "") {
+        alert('Cannot be empty!');
+        return false;
+    } else {
+        return true;
+    }
+}
+
