@@ -100,6 +100,7 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Content Include="AdminIndex.js" />
     <Content Include="Global.asax" />
     <Content Include="Models\CTEFArtContestModel.Context.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
@@ -122,6 +123,7 @@
   <ItemGroup>
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="Controllers\AdminController.cs" />
+    <Compile Include="Controllers\JudgeController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -172,6 +174,7 @@
     <Content Include="Views\Admin\Details.cshtml" />
     <Content Include="Views\Admin\ViewJudge.cshtml" />
     <Content Include="Views\Admin\CreateJudge.cshtml" />
+    <Content Include="Views\Judge\Index.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

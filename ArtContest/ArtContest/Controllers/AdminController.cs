@@ -14,7 +14,7 @@ namespace ArtContest.Controllers
         public ActionResult Index()
         {
             CTEFArtContestEntities dbc = new CTEFArtContestEntities();
-            List<Picture> pics = dbc.Pictures.Include("Student").Where(p=>p.Private.Equals("yes")).ToList();
+            List<Picture> pics = dbc.Pictures.Include("Student").ToList();
             return View(pics);
         }
         public ActionResult ViewJudge() {

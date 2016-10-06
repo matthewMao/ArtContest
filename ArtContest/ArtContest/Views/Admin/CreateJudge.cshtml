@@ -24,6 +24,7 @@
     Model.UserType.Select(c => new SelectListItem() { Text = c.Name,Value = c.Id.ToString() }))<br />
             <input type="submit" value="Create this Judge" />
         }
+        @Html.ActionLink("Cancel and Return","Index","Admin")
     </div>
 </body>
 </html>
