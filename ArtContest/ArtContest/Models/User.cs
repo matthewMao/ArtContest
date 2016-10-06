@@ -26,7 +26,7 @@ namespace ArtContest.Models
         public string UserFirstName { get; set; }
         public string UserMiddleName { get; set; }
         public string UserLastName { get; set; }
-        public int UserTypeId { get; set; }
+        public Nullable<int> UserTypeId { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<PictureRate> PictureRates { get; set; }

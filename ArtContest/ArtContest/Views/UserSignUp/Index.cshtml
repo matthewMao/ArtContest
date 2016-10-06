@@ -1,0 +1,129 @@
+﻿@using ArtContest.Models
+@model UserSignUpViewModel
+
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Index</title>
+    <script src="~/CommonJS.js"></script>
+    <script src="~/Scripts/jquery-3.1.1.js"></script>
+    <script src="~/Scripts/jquery.validate.js"></script>
+    <script src="~/Scripts/jquery.validate.unobtrusive.js"></script>
+</head>
+<body onload="disableSubmit()">
+    <div> 
+        <h1>CTEF 2016 ArtContest</h1>
+        @using (Html.BeginForm("UserSignUp", "UserSignUp", FormMethod.Post, new { enctype = "multipart/form-data" }))
+        {
+            
+
+                    <span>User Name</span><br />
+                    @Html.TextBoxFor(m=>m.UserName)
+                    @Html.ValidationMessageFor(m => m.UserName)<br />
+
+                    <span>Password</span><br />
+                    @Html.PasswordFor(m=>m.Password)
+                    @Html.ValidationMessageFor(m => m.Password)<br />
+
+                    <span>Confirm Password</span><br />
+                    @Html.PasswordFor(m => m.ConfirmPassword)
+                    @Html.ValidationMessageFor(m => m.ConfirmPassword)<br />
+
+                    <span>First Name</span><br />
+                    @Html.TextBoxFor(m=>m.UserFirstName)
+                    @Html.ValidationMessageFor(m => m.UserFirstName)<br />
+
+                    <span>Middle Name</span><br />
+                    @Html.TextBoxFor(m => m.UserMiddleName)<br />
+
+                    <span>Last Name</span><br />
+                    @Html.TextBoxFor(m => m.UserLastName)
+                    @Html.ValidationMessageFor(m => m.UserLastName)<br />
+
+                    @*<span>Gender</span>
+                    <span>Male</span>
+                    @Html.RadioButtonFor(m => m.Student.Gender, "Male")
+                    <span>Female</span>
+                    @Html.RadioButtonFor(m => m.Student.Gender, "Female")<br style="line-height:300%" />
+
+                    <span>Age</span><br />
+                    @Html.TextBoxFor(m => m.Student.Age)<br />
+
+                    <span>Student's school name</span><br />
+                    @Html.TextBoxFor(m => m.Student.School)<br />*@
+
+                    @*<span>Grade</span><br />
+                    @Html.TextBoxFor(m => m.Student.Grade)<br />*@
+
+                    @*<span>Grade</span><br />
+                    @Html.DropDownListFor(m => m.Student.Grade, new SelectList(new List<string> { "Preschool", "Grade 1", "Grade 2",
+                    "Grade 3", "Grade 4", "Grade 5", "Grade 6", "Grade 7", "Grade 8", "Grade 9", "Grade 10", "Grade 11","Grade 12"}), "select")<br />
+
+                    <span>Parent/Guardian First Name</span><br />
+                    @Html.TextBoxFor(m=>m.Student.ParentFirstName)<br />
+
+                    <span>Parent/Guardian Middle Name</span><br />
+                    @Html.TextBoxFor(m => m.Student.ParentMiddleName)<br />
+
+                    <span>Parent/Guardian Last Name</span><br />
+                    @Html.TextBoxFor(m => m.Student.ParentLastName)<br />
+                    
+                    <span>Parent/Guardian email</span><br />
+                    @Html.TextBoxFor(m => m.Student.ParentEmail)<br />
+
+                    <span>Parent/Guardian Contact Phone Number</span><br />
+                    @Html.TextBoxFor(m => m.Student.ParentPhoneNumber)<br />
+
+                    <span>Street</span><br />
+                    @Html.TextBoxFor(m => m.Student.Street)<br />
+
+                    <span>City</span><br />
+                    @Html.TextBoxFor(m => m.Student.City)<br />
+
+                    <span>State</span><br />
+                    @Html.TextBoxFor(m => m.Student.State)<br />
+
+                    <span>Zip Code</span><br />
+                    @Html.TextBoxFor(m => m.Student.Zip)<br />
+
+                    <span>Art Teacher's Title (if applicable)</span><br />
+                    @Html.DropDownListFor(m => m.Student.TeacherTitle, new SelectList(new List<string> {"Mrs.","Ms.","Mr."}), "select")<br />
+
+                    <span>Teacher First Name</span><br />
+                    @Html.TextBoxFor(m => m.Student.TeacherFirstName)<br />
+
+                    <span>Teacher Middle Name</span><br />
+                    @Html.TextBoxFor(m => m.Student.TeacherMiddleName)<br />
+
+                    <span>Teacher Last Name</span><br />
+                    @Html.TextBoxFor(m => m.Student.TeacherLastName)<br />*@
+
+                        <p style="margin-bottom:0">
+                            I grant to CTEF anirrevocable, unlimited license to display, copy, sell, sublicense, publish, andcreate and sell derivative works from, my work submitted for the CTEF
+                            ArtContest. CTEF is not responsible for lost or damaged works. Entries will not bereturned. I affirm that this is my own original work. I understand that thesubmission of
+                            my entry into the CTEF Art Contest constitutes acceptance of theabove condition, in addition to my agreement of the rules and guidelines statedin 2016 CTEF Art Contest Submission
+                            Rules and Guidelines. CTEF reserves thefinal right to make any changes.
+                        </p>
+                        <p style="font-weight:900;margin-top:0;line-height:95%">
+                            **Important: All finalists must submittheir original upon requests. We may use the originals as proof of authenticityand for CTEF-authorized events**
+                            <span style="margin-left:72%">I agree</span><input type="checkbox" name="agreement" id="terms" onchange="activateButton(this)">
+                        </p>
+
+                        @*<span>Student's signature (Name typed below in authenticate all the information provided in the form)</span><br />
+                        @Html.TextBoxFor(m => m.Student.StudentSignature)<br />
+
+                        <span>Parent's signature(Name typed below in authenticate all the information provided in the form)</span><br />
+                        @Html.TextBoxFor(m => m.Student.ParentSignature)<br />*@
+
+                        <input type="submit" value="submit" id="submit"><br />
+                        <span>          </span><br />
+                        <span>          </span><br />
+                        <span>          </span><br />
+                        <span>          </span><br />
+                        }
+</div>
+</body>
+</html>
