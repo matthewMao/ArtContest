@@ -1,0 +1,53 @@
+﻿@using ArtContest.Models
+@model Picture
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Details</title>
+</head>
+
+<body>
+    <img src="~/@Model.PicturePath" />
+    <table border="1">
+        <tr>
+            <th>Title</th>
+            <th>Picture Description</th>
+            <th>Student Firstname</th>
+            <th>Student Lastname</th>
+            <th>Age</th>
+            <th>School</th>
+            <th>Stree</th>
+            <th>City</th>
+            <th>State</th>
+            <th>Zip Code</th>
+            <th>Teacher FirstName</th>
+            <th>Teacher LastName</th>
+            <th>Parent FirstName</th>
+            <th>Parent LastName</th>
+            <th>Parent Email</th>
+            <th>Uploaded Date</th>
+        </tr>
+        <tr>
+            <th>@Model.Title</th>
+            <th>@Model.Description</th>
+            <th>@Model.Student.User.UserFirstName</th>
+            <th>@Model.Student.User.UserLastName</th>
+            <th>@Model.Student.Age</th>
+            <th>@Model.Student.School</th>
+            <th>@Model.Student.Street</th>
+            <th>@Model.Student.City</th>
+            <th>@Model.Student.State</th>
+            <th>@Model.Student.Zip</th>
+            <th>@Model.Student.TeacherFirstName</th>
+            <th>@Model.Student.TeacherLastName</th>
+            <th>@Model.Student.ParentFirstName</th>
+            <th>@Model.Student.ParentLastName</th>
+            <th>@Model.Student.ParentEmail</th>
+            <th>@Model.UploadDate</th>
+        </tr>
+    </table>
+    @Html.ActionLink("Back","Index","Admin")
+</body>
+</html>

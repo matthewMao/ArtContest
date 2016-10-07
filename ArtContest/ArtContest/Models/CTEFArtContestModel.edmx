@@ -4,7 +4,7 @@
   <edmx:Runtime>
     <!-- SSDL content -->
     <edmx:StorageModels>
-      <Schema Namespace="CTEFArtContestModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+    <Schema Namespace="CTEFArtContestModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
         <EntityType Name="Picture">
           <Key>
             <PropertyRef Name="Id" />
@@ -32,12 +32,12 @@
           </Key>
           <Property Name="Id" Type="int" Nullable="false" />
           <Property Name="Gender" Type="nvarchar" MaxLength="10" />
-          <Property Name="Age" Type="int" />
-          <Property Name="School" Type="nvarchar" MaxLength="200" />
-          <Property Name="Grade" Type="varchar" MaxLength="100" />
-          <Property Name="ParentLastName" Type="nvarchar" MaxLength="50" />
+          <Property Name="Age" Type="int" Nullable="false" />
+          <Property Name="School" Type="nvarchar" MaxLength="200" Nullable="false" />
+          <Property Name="Grade" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="ParentLastName" Type="nvarchar" MaxLength="50" Nullable="false" />
           <Property Name="ParentMiddleName" Type="nvarchar" MaxLength="50" />
-          <Property Name="ParentFirstName" Type="nvarchar" MaxLength="50" />
+          <Property Name="ParentFirstName" Type="nvarchar" MaxLength="50" Nullable="false" />
           <Property Name="ParentEmail" Type="varchar" MaxLength="100" />
           <Property Name="ParentPhoneNumber" Type="varchar" MaxLength="30" />
           <Property Name="Street" Type="nvarchar" MaxLength="200" />
@@ -45,9 +45,9 @@
           <Property Name="State" Type="varchar" MaxLength="50" />
           <Property Name="Zip" Type="varchar" MaxLength="50" />
           <Property Name="TeacherTitle" Type="nvarchar" MaxLength="50" />
-          <Property Name="TeacherFirstName" Type="nvarchar" MaxLength="50" />
+          <Property Name="TeacherFirstName" Type="nvarchar" MaxLength="50" Nullable="false" />
           <Property Name="TeacherMiddleName" Type="nvarchar" MaxLength="50" />
-          <Property Name="TeacherLastName" Type="nvarchar" MaxLength="50" />
+          <Property Name="TeacherLastName" Type="nvarchar" MaxLength="50" Nullable="false" />
           <Property Name="StudentSignature" Type="nvarchar" MaxLength="200" />
           <Property Name="ParentSignature" Type="nvarchar" MaxLength="200" />
         </EntityType>
@@ -68,16 +68,16 @@
           <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="UserName" Type="varchar" MaxLength="50" Nullable="false" />
           <Property Name="Password" Type="varchar" MaxLength="50" Nullable="false" />
-          <Property Name="UserFirstName" Type="nvarchar" MaxLength="50" />
+          <Property Name="UserFirstName" Type="nvarchar" MaxLength="50" Nullable="false" />
           <Property Name="UserMiddleName" Type="nvarchar" MaxLength="50" />
-          <Property Name="UserLastName" Type="nvarchar" MaxLength="50" />
-          <Property Name="UserTypeId" Type="int" />
+          <Property Name="UserLastName" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="UserTypeId" Type="int" Nullable="false" />
         </EntityType>
         <EntityType Name="UserType">
           <Key>
             <PropertyRef Name="Id" />
           </Key>
-          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Id" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
           <Property Name="Name" Type="nvarchar" MaxLength="50" Nullable="false" />
         </EntityType>
         <Association Name="FK_Picture_Student">
@@ -129,7 +129,7 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_User_UserType">
-          <End Role="UserType" Type="Self.UserType" Multiplicity="0..1" />
+          <End Role="UserType" Type="Self.UserType" Multiplicity="1" />
           <End Role="User" Type="Self.User" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="UserType">
@@ -168,8 +168,7 @@
             <End Role="User" EntitySet="User" />
           </AssociationSet>
         </EntityContainer>
-      </Schema>
-    </edmx:StorageModels>
+      </Schema></edmx:StorageModels>
     <!-- CSDL content -->
     <edmx:ConceptualModels>
       <Schema Namespace="CTEFArtContestModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
@@ -204,12 +203,12 @@
           </Key>
           <Property Name="Id" Type="Int32" Nullable="false" />
           <Property Name="Gender" Type="String" MaxLength="10" FixedLength="false" Unicode="true" />
-          <Property Name="Age" Type="Int32" />
-          <Property Name="School" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
-          <Property Name="Grade" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
-          <Property Name="ParentLastName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Age" Type="Int32" Nullable="false" />
+          <Property Name="School" Type="String" MaxLength="200" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Grade" Type="String" Nullable="false" MaxLength="50" Unicode="true" FixedLength="false" />
+          <Property Name="ParentLastName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
           <Property Name="ParentMiddleName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
-          <Property Name="ParentFirstName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="ParentFirstName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
           <Property Name="ParentEmail" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
           <Property Name="ParentPhoneNumber" Type="String" MaxLength="30" FixedLength="false" Unicode="false" />
           <Property Name="Street" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
@@ -217,9 +216,9 @@
           <Property Name="State" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
           <Property Name="Zip" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
           <Property Name="TeacherTitle" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
-          <Property Name="TeacherFirstName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="TeacherFirstName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
           <Property Name="TeacherMiddleName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
-          <Property Name="TeacherLastName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="TeacherLastName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
           <Property Name="StudentSignature" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
           <Property Name="ParentSignature" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
           <NavigationProperty Name="Pictures" Relationship="Self.FK_Picture_Student" FromRole="Student" ToRole="Picture" />
@@ -242,10 +241,10 @@
           <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="UserName" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
           <Property Name="Password" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
-          <Property Name="UserFirstName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="UserFirstName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
           <Property Name="UserMiddleName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
-          <Property Name="UserLastName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
-          <Property Name="UserTypeId" Type="Int32" />
+          <Property Name="UserLastName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="UserTypeId" Type="Int32" Nullable="false" />
           <NavigationProperty Name="PictureRates" Relationship="Self.FK_PictureRate_User" FromRole="User" ToRole="PictureRate" />
           <NavigationProperty Name="Student" Relationship="Self.FK_Student_User" FromRole="User" ToRole="Student" />
           <NavigationProperty Name="UserType" Relationship="Self.FK_User_UserType" FromRole="User" ToRole="UserType" />
@@ -307,7 +306,7 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_User_UserType">
-          <End Role="UserType" Type="Self.UserType" Multiplicity="0..1" />
+          <End Role="UserType" Type="Self.UserType" Multiplicity="1" />
           <End Role="User" Type="Self.User" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="UserType">

@@ -1,0 +1,30 @@
+﻿@using ArtContest.Models
+@model List<User>
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>ViewJudge</title>
+</head>
+<body>
+    <table border="1">
+        <tr>
+            <th>JudgeID</th>
+            <th>JudgeFirstName</th>
+            <th>JudgeLastName</th>
+            <th>Remove Judge</th>
+        </tr>
+    @foreach(var u in Model) {
+        <tr>
+        <td>@u.Id</td> 
+        <td>@u.UserFirstName</td> 
+        <td>@u.UserLastName</td>
+        <td>@Html.ActionLink("RemoveJudge","RemoveJudge",new {id=u.Id })</td>
+        </tr>
+    }
+    </table>
+    @Html.ActionLink("Add a new Judge","CreateJudge","Admin")
+    @Html.ActionLink("Return","Index","Admin");
+</body>
+</html>

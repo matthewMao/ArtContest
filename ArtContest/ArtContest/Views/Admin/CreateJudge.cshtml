@@ -1,0 +1,30 @@
+﻿@model ArtContest.Models.CreateJudgeModel
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>CreateJudge</title>
+</head>
+<body>
+    <div> 
+        @using(Html.BeginForm("CreateJudge","Admin",FormMethod.Post,new { enctype = "multipart/form-data" })) {
+            <span>UserName:</span>
+            @Html.TextBoxFor(j=>j.User.UserName)<br />
+            <span>PassWord:</span>
+            @Html.TextBoxFor(j=>j.User.Password)<br />
+            <span>User Firstname</span>
+            @Html.TextBoxFor(j=>j.User.UserFirstName)<br />
+            <span>User Middle Name</span>
+            @Html.TextBoxFor(j=>j.User.UserMiddleName)<br />
+            <span>User Lastname</span>
+            @Html.TextBoxFor(j=>j.User.UserLastName)<br />
+            <span>User Type</span>
+            @Html.DropDownListFor(j=>j.User.UserTypeId,
+    Model.UserType.Select(c => new SelectListItem() { Text = c.Name,Value = c.Id.ToString() }))<br />
+            <input type="submit" value="Create this Judge" />
+        }
+        @Html.ActionLink("Cancel and Return","Index","Admin")
+    </div>
+</body>
+</html>
