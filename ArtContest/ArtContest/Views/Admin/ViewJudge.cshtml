@@ -10,21 +10,25 @@
 <body>
     <table border="1">
         <tr>
-            <th>JudgeID</th>
-            <th>JudgeFirstName</th>
-            <th>JudgeLastName</th>
+            <th>Judge ID</th>
+            <th>Judge Username</th>
+            <th>Judge FirstName</th>
+            <th>Judge LastName</th>
+            <th>Judge's Picture</th>
             <th>Remove Judge</th>
         </tr>
-    @foreach(var u in Model) {
-        <tr>
-        <td>@u.Id</td> 
-        <td>@u.UserFirstName</td> 
-        <td>@u.UserLastName</td>
-        <td>@Html.ActionLink("RemoveJudge","RemoveJudge",new {id=u.Id })</td>
-        </tr>
-    }
+        @foreach(var u in Model) {
+            <tr>
+                <td>@u.Id</td>
+                <td>@u.UserFirstName</td>
+                <td>@u.UserLastName</td>
+                <td>@Html.ActionLink("Check Picture","CheckPic",new { id=u.Id})</td>
+                <td>@Html.ActionLink("RemoveJudge","RemoveJudge",new { id = u.Id })</td>
+            </tr>
+        }
     </table>
     @Html.ActionLink("Add a new Judge","CreateJudge","Admin")
-    @Html.ActionLink("Return","Index","Admin");
+    @Html.ActionLink("Assign Art to Judge For Grading","DividePic","Admin")
+    @Html.ActionLink("Return","Index","Admin")
 </body>
 </html>

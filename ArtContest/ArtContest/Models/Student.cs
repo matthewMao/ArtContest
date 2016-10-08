@@ -22,7 +22,7 @@ namespace ArtContest.Models
     
         public int Id { get; set; }
         public string Gender { get; set; }
-        public Nullable<int> Age { get; set; }
+        public int Age { get; set; }
         public string School { get; set; }
         public string Grade { get; set; }
         public string ParentLastName { get; set; }

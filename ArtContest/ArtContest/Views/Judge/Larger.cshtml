@@ -1,0 +1,19 @@
+﻿@model ArtContest.Models.ScoreViewModel
+<!DOCTYPE html>
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <script src="~/JudgeLarger.js"></script>
+    <title>Larger</title>
+</head>
+<body>
+    <img src="~/@Model.Picture.PicturePath" />
+    @using(Html.BeginForm("Score","Judge",FormMethod.Post)) {
+        <label>Picture ID</label><input type="text" name="picid" value=@Model.PictureRate.PictureId readonly /><br />
+        <label>Judge ID</label><input type="text" name="judgeid" value=@Model.PictureRate.JudgeId readonly /><br />
+        <span>Enter Score Between 0~100</span>
+        @Html.TextBox("score")
+        <input id="larger" type="submit" onclick="disableScore" value="Add" />
+    }
+</body>
+</html>

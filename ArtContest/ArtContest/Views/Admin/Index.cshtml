@@ -71,10 +71,10 @@
         @Html.ActionLink("View Judge","ViewJudge","Admin")<br />
         @Html.ActionLink("View All","Index","Admin")
     </div>
+    <div>Result:@Model.Count()</div>
     <div>
         <button onclick="donwloadAll()"> Download All </button>
     </div>
-    
     <div>
         <table border="1" id="allImages">
             <tr>
@@ -90,7 +90,7 @@
                 <tr>
                     <td class="id">@p.Id</td>
                     <td class="title">@p.Title</td>
-                    <td><img src="~/@p.PicturePath" /></td>
+                    <td><img width="500" height="300" src="~/@p.PicturePath" /></td>
                     <td class="firstname">@p.Student.User.UserFirstName</td>
                     <td class="lastname">@p.Student.User.UserLastName</td>
                     <td class="grade">@p.Student.Grade</td>

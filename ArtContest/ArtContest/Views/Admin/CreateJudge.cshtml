@@ -21,7 +21,7 @@
             @Html.TextBoxFor(j=>j.User.UserLastName)<br />
             <span>User Type</span>
             @Html.DropDownListFor(j=>j.User.UserTypeId,
-    Model.UserType.Select(c => new SelectListItem() { Text = c.Name,Value = c.Id.ToString() }))<br />
+    Model.UserType.Select(c => new SelectListItem() { Text ="Judge",Value = "2" }))<br />
             <input type="submit" value="Create this Judge" />
         }
         @Html.ActionLink("Cancel and Return","Index","Admin")

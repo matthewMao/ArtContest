@@ -102,6 +102,7 @@
   <ItemGroup>
     <Content Include="AdminIndex.js" />
     <Content Include="Global.asax" />
+    <Content Include="JudgeLarger.js" />
     <Content Include="Models\CTEFArtContestModel.Context.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
       <DependentUpon>CTEFArtContestModel.edmx</DependentUpon>
@@ -112,10 +113,25 @@
       <DependentUpon>CTEFArtContestModel.edmx</DependentUpon>
       <LastGenOutput>CTEFArtContestModel.cs</LastGenOutput>
     </Content>
-    <Content Include="Resources\Images\riven0.jpg">
+    <Content Include="Resource\Images\allriven.jpg">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
-    <Content Include="Resources\Images\riven1.jpg">
+    <Content Include="Resource\Images\coolriven.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Resource\Images\crazyriven.jpg">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Resource\Images\iceriven.jpg">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Resource\Images\pinkriven.jpg">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Resource\Images\riven0.jpg">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Resource\Images\riven1.jpg">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
     <Content Include="Web.config" />
@@ -127,6 +143,7 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="Models\CheckPicViewModel.cs" />
     <Compile Include="Models\CreateJudgeModel.cs" />
     <Compile Include="Models\CTEFArtContestModel.Context.cs">
       <AutoGen>True</AutoGen>
@@ -149,6 +166,7 @@
     <Compile Include="Models\PictureRate.cs">
       <DependentUpon>CTEFArtContestModel.tt</DependentUpon>
     </Compile>
+    <Compile Include="Models\ScoreViewModel.cs" />
     <Compile Include="Models\Student.cs">
       <DependentUpon>CTEFArtContestModel.tt</DependentUpon>
     </Compile>
@@ -175,6 +193,9 @@
     <Content Include="Views\Admin\ViewJudge.cshtml" />
     <Content Include="Views\Admin\CreateJudge.cshtml" />
     <Content Include="Views\Judge\Index.cshtml" />
+    <Content Include="Views\Judge\Larger.cshtml" />
+    <Content Include="Views\Admin\DividePic.cshtml" />
+    <Content Include="Views\Admin\CheckPic.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

@@ -12,7 +12,7 @@
           <Property Name="Id" Type="int" Nullable="false" />
           <Property Name="StudentId" Type="int" Nullable="false" />
           <Property Name="PicturePath" Type="varchar" MaxLength="100" Nullable="false" />
-          <Property Name="Private" Type="nvarchar" MaxLength="20" Nullable="false" />
+          <Property Name="Public" Type="nvarchar" MaxLength="20" Nullable="false" />
           <Property Name="Title" Type="nvarchar" MaxLength="100" Nullable="false" />
           <Property Name="Description" Type="nvarchar" MaxLength="2000" Nullable="false" />
           <Property Name="UploadDate" Type="date" Nullable="false" />
@@ -168,12 +168,12 @@
           <Property Name="Id" Type="Int32" Nullable="false" />
           <Property Name="StudentId" Type="Int32" Nullable="false" />
           <Property Name="PicturePath" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
-          <Property Name="Private" Type="String" MaxLength="20" FixedLength="false" Unicode="true" Nullable="false" />
           <Property Name="Title" Type="String" MaxLength="100" FixedLength="false" Unicode="true" Nullable="false" />
           <Property Name="Description" Type="String" MaxLength="2000" FixedLength="false" Unicode="true" Nullable="false" />
           <Property Name="UploadDate" Type="DateTime" Nullable="false" Precision="0" />
           <NavigationProperty Name="Student" Relationship="Self.FK_Picture_Student" FromRole="Picture" ToRole="Student" />
           <NavigationProperty Name="PictureRates" Relationship="Self.FK_PictureRate_Picture1" FromRole="Picture" ToRole="PictureRate" />
+          <Property Name="Public" Type="String" Nullable="false" MaxLength="20" FixedLength="false" Unicode="true" />
         </EntityType>
         <EntityType Name="PictureRate">
           <Key>
@@ -332,10 +332,10 @@
           <EntitySetMapping Name="Pictures">
             <EntityTypeMapping TypeName="CTEFArtContestModel.Picture">
               <MappingFragment StoreEntitySet="Picture">
+                <ScalarProperty Name="Public" ColumnName="Public" />
                 <ScalarProperty Name="Id" ColumnName="Id" />
                 <ScalarProperty Name="StudentId" ColumnName="StudentId" />
                 <ScalarProperty Name="PicturePath" ColumnName="PicturePath" />
-                <ScalarProperty Name="Private" ColumnName="Private" />
                 <ScalarProperty Name="Title" ColumnName="Title" />
                 <ScalarProperty Name="Description" ColumnName="Description" />
                 <ScalarProperty Name="UploadDate" ColumnName="UploadDate" />
