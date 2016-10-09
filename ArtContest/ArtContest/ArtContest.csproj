@@ -216,6 +216,7 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="Models\CheckPicViewModel.cs" />
     <Compile Include="Models\CreateJudgeModel.cs" />
     <Compile Include="Models\CreateWorkModel.cs" />
     <Compile Include="Models\CTEFArtContestModel.Context.cs">
@@ -242,6 +243,7 @@
     <Compile Include="Models\PictureRate.cs">
       <DependentUpon>CTEFArtContestModel.tt</DependentUpon>
     </Compile>
+    <Compile Include="Models\ScoreViewModel.cs" />
     <Compile Include="Models\Student.cs">
       <DependentUpon>CTEFArtContestModel.tt</DependentUpon>
     </Compile>

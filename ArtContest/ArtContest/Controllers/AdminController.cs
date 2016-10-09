@@ -46,7 +46,7 @@ namespace ArtContest.Controllers
             List<Student> stus=dbc.Students.Where(s => s.Grade == grade).ToList();
             int amount = stus.Count();
             foreach(var s in stus) {
-               Picture pic= dbc.Pictures.Where(p => p.StudentId == s.Id&&p.Public.Equals("yes")).SingleOrDefault();
+               Picture pic= dbc.Pictures.Where(p => p.UserId == s.Id&&p.Public.Equals("Yes")).SingleOrDefault();
                 PictureRate pr = new PictureRate();
                 pr.PictureId = pic.Id;
                 pr.JudgeId = judgeId;
