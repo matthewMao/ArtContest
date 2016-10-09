@@ -12,7 +12,7 @@ namespace ArtContest.Models
     {
         [Required(ErrorMessage = "Please enter your username")]
         [StringLength(20, MinimumLength = 4, ErrorMessage = "Must be at least 4 characters long.")]
-        [Remote("CheckForDuplication", "UserSignUp")]
+        [Remote("CheckForDuplication", "UserSignUp",ErrorMessage = "Username is already exist.")]
         public string UserName { get; set; }
 
         
@@ -21,13 +21,14 @@ namespace ArtContest.Models
         public string Password { get; set; }
 
         [Required(ErrorMessage = "Please enter your password again")]
-        [System.ComponentModel.DataAnnotations.Compare("Password", ErrorMessage = "The password and confirmation do not match.")]
+        [System.ComponentModel.DataAnnotations.Compare("Password", ErrorMessage = "The password do not match.")]
         public string ConfirmPassword { get; set; }
 
         [Required(ErrorMessage = "Please enter your first name")]
         [RegularExpression(@"^[a-zA-Z]+$", ErrorMessage = "Use letters only please")]
         public string UserFirstName { get; set; }
 
+        [RegularExpression(@"^[a-zA-Z]+$", ErrorMessage = "Use letters only please")]
         public string UserMiddleName { get; set; }
 
         [Required(ErrorMessage = "Please enter your last name")]
@@ -47,21 +48,22 @@ namespace ArtContest.Models
         [Required(ErrorMessage = "Please select your grade")]
         public string Grade { get; set; }
 
-        [Required(ErrorMessage = "Please enter your parent's first name")]
+        [Required(ErrorMessage = "Please enter parent's first name")]
         [RegularExpression(@"^[a-zA-Z]+$", ErrorMessage = "Use letters only please")]
         public string ParentFirstName { get; set; }
 
+        [RegularExpression(@"^[a-zA-Z]+$", ErrorMessage = "Use letters only please")]
         public string ParentMiddleName { get; set; }
 
-        [Required(ErrorMessage = "Please enter your parent's last name")]
+        [Required(ErrorMessage = "Please enter parent's last name")]
         [RegularExpression(@"^[a-zA-Z]+$", ErrorMessage = "Use letters only please")]
         public string ParentLastName { get; set; }
 
-        [Required(ErrorMessage = "Please enter your parent's E-mail address")]
+        [Required(ErrorMessage = "Please enter parent's E-mail address")]
         [EmailAddress(ErrorMessage = "Please enter a valid e-mail adress")]
         public string ParentEmail { get; set; }
 
-        [Required(ErrorMessage = "Please enter your parent's phone number")]
+        [Required(ErrorMessage = "Please enter parent's phone number")]
         [RegularExpression(@"^[0-9]{10}$", ErrorMessage = "Please enter a valid phone number")]
         public string ParentPhoneNumber { get; set; }
 
@@ -80,13 +82,14 @@ namespace ArtContest.Models
         
         public string TeacherTitle { get; set; }
 
-        [Required(ErrorMessage = "Please enter your teacher's first name")]
+        [Required(ErrorMessage = "Please enter teacher's first name")]
         [RegularExpression(@"^[a-zA-Z]+$", ErrorMessage = "Use letters only please")]
         public string TeacherFirstName { get; set; }
-        
+
+        [RegularExpression(@"^[a-zA-Z]+$", ErrorMessage = "Use letters only please")]
         public string TeacherMiddleName { get; set; }
 
-        [Required(ErrorMessage = "Please enter your teacher's last name")]
+        [Required(ErrorMessage = "Please enter teacher's last name")]
         [RegularExpression(@"^[a-zA-Z]+$", ErrorMessage = "Use letters only please")]
         public string TeacherLastName { get; set; }
 

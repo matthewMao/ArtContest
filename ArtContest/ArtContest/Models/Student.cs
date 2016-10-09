@@ -22,7 +22,7 @@ namespace ArtContest.Models
     
         public int Id { get; set; }
         public string Gender { get; set; }
-        public Nullable<int> Age { get; set; }
+        public int Age { get; set; }
         public string School { get; set; }
         public string Grade { get; set; }
         public string ParentLastName { get; set; }
@@ -41,8 +41,8 @@ namespace ArtContest.Models
         public string StudentSignature { get; set; }
         public string ParentSignature { get; set; }
     
+        public virtual User User { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Picture> Pictures { get; set; }
-        public virtual User User { get; set; }
     }
 }

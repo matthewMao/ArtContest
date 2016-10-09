@@ -58,6 +58,7 @@ namespace ArtContest.Controllers
             student.StudentSignature = newUser.StudentSignature;
             student.ParentSignature = newUser.ParentSignature;
             dbc.Users.Add(user);
+            student.Id = user.Id;
             dbc.Students.Add(student);
             dbc.SaveChanges();
             return RedirectToAction("Index", "Home");

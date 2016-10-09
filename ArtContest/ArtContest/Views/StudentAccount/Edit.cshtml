@@ -1,4 +1,4 @@
-﻿
+﻿@model ArtContest.Models.EditPictureViewModel
 
 <!DOCTYPE html>
 
@@ -6,9 +6,26 @@
 <head>
     <meta name="viewport" content="width=device-width" />
     <title>Edit</title>
+    <link href="~/Common.css" rel="stylesheet" />
 </head>
 <body>
-    <div> 
-    </div>
+    <h1>Edit Your Work</h1>
+    @using (Html.BeginForm("Edit", "StudentAccount", FormMethod.Post))
+    {
+        @Html.HiddenFor(m => m.pic.UserId)
+        @Html.HiddenFor(m => m.pic.Id)
+        @Html.HiddenFor(m => m.pic.PicturePath)
+        @Html.HiddenFor(m => m.pic.UploadDate)
+        <span>Title</span>
+        @Html.TextBoxFor(m => m.pic.Title)<br />
+        <span>Description</span>
+        @Html.TextBoxFor(m => m.pic.Description)<br />
+        <span>Public</span>
+        <span>Yes</span> @Html.RadioButtonFor(m => m.pic.Public, "Yes")
+        <span>No</span> @Html.RadioButtonFor(m => m.pic.Public, "No") <br style="line-height:200%" />
+        <input type="submit" value="Update" />
+    }
+    @Html.ActionLink("Go back", "Index", null, null, new { @class = "actionLink" })<br />
+
 </body>
 </html>

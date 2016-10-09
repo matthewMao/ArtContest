@@ -1,0 +1,66 @@
+﻿@model ArtContest.Models.EditStudentInfoViewModel
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>EditStudentInfo</title>
+    <link href="~/Common.css" rel="stylesheet" />
+</head>
+<body>
+    <h1>Edit Your Information</h1>
+    @using (Html.BeginForm("EditStudentInfo", "StudentAccount", FormMethod.Post))
+    {
+        @Html.HiddenFor(m => m.User.Id)
+        @Html.HiddenFor(m => m.Student.Id)
+        @Html.HiddenFor(m => m.User.UserName)
+        @Html.HiddenFor(m => m.User.Password)
+        @Html.HiddenFor(m => m.User.UserType)
+        @Html.HiddenFor(m => m.Student.StudentSignature)
+        @Html.HiddenFor(m => m.Student.ParentSignature)
+
+        <span>First Name</span>
+        @Html.TextBoxFor(m => m.User.UserFirstName)<br />
+
+        <span>Middle Name</span>
+        @Html.TextBoxFor(m => m.User.UserMiddleName)<br />
+
+        <span>Last Name</span>
+        @Html.TextBoxFor(m => m.User.UserLastName)<br />
+
+        <span>First Name</span>
+        @Html.TextBoxFor(m => m.User.UserFirstName)<br />
+
+        <span>Age</span>
+        @Html.TextBoxFor(m => m.Student.Age)<br />
+
+        <span>Gender</span>
+        <span>Male</span> @Html.RadioButtonFor(m => m.Student.Gender, "Male")
+        <span>Female</span> @Html.RadioButtonFor(m => m.Student.Gender, "Female") <br style="line-height:200%" />
+
+        <span>Age</span>
+        @Html.TextBoxFor(m => m.Student.Age)<br />
+
+        <span>School</span>
+        @Html.TextBoxFor(m => m.Student.School)<br />
+
+        <span>Grade</span>
+        @Html.TextBoxFor(m => m.Student.Grade)<br />
+
+        <span>Parent First Name</span>
+        @Html.TextBoxFor(m => m.Student.ParentFirstName)<br />
+
+        <span>Parent Middle Name</span>
+        @Html.TextBoxFor(m => m.Student.ParentMiddleName)<br />
+
+        <span>Parent Last Name</span>
+        @Html.TextBoxFor(m => m.Student.ParentLastName)<br />
+
+
+
+        <input type="submit" value="Update" />
+    }
+    @Html.ActionLink("Go back", "Index", null, null, new { @class = "actionLink" })<br />
+</body>
+</html>

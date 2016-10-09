@@ -4,12 +4,13 @@ using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 using ArtContest.Models;
+
 namespace ArtContest.Controllers
 {
-    [Authorize(Roles = "Judge")]
+    //[Authorize(Roles = "Judge")]
     public class JudgeController : Controller
     {
-        // GET: Judge
+        // GET: JudgeAccount
         public ActionResult Index()
         {
             CTEFArtContestEntities dbc = new CTEFArtContestEntities();

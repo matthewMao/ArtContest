@@ -18,7 +18,7 @@ namespace ArtContest.Models
         public int JudgeId { get; set; }
         public double Rate { get; set; }
     
-        public virtual Picture Picture { get; set; }
         public virtual User User { get; set; }
+        public virtual Picture Picture { get; set; }
     }
 }

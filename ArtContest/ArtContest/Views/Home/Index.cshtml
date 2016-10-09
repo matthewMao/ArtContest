@@ -7,6 +7,7 @@
 <head>
     <meta name="viewport" content="width=device-width" />
     <title>Index</title>
+    <link href="~/Common.css" rel="stylesheet" />
 </head>
 <body>
     <div> 
@@ -18,7 +19,8 @@
             <span>Password:</span><br />
             @Html.PasswordFor(m => m.password)<br />
             <input type="submit" value="Login" /><br />
-            @Html.ActionLink("Don't have an account?", "Index", "UserSignUp", null, new { @class = "actionLink" });
+            @Html.ActionLink("Don't have an account?", "Index", "UserSignUp", null, new { @class = "actionLink" })<br />
+            @*@Html.ActionLink("Forget your password?", "PasswordFindBack", "Home", null, new { @class = "actionLink" })*@
         }
     </div>
 </body>

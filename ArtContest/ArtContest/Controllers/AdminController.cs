@@ -5,6 +5,8 @@ using System.Web;
 using System.Web.Mvc;
 using ArtContest.Models;
 using System.IO;
+
+
 namespace ArtContest.Controllers
 {
     public class AdminController : Controller
@@ -52,17 +54,17 @@ namespace ArtContest.Controllers
         }
         public ActionResult SearchBySchool(string school) {
             CTEFArtContestEntities dbc = new CTEFArtContestEntities();
-            List<Picture> pics = dbc.Pictures.Include("Student").Where(p => p.Student.School.Equals(school) && p.Private.Equals("yes")).ToList();
+            List<Picture> pics = dbc.Pictures.Include("Student").Where(p => p.Student.School.Equals(school) && p.Public.Equals("yes")).ToList();
             return View("Index",pics);
         }
         public ActionResult SearchByGrade(string grade) {
             CTEFArtContestEntities dbc = new CTEFArtContestEntities();
-            List<Picture> pics = dbc.Pictures.Include("Student").Where(p => p.Student.Grade.Equals(grade) && p.Private.Equals("yes")).ToList();
+            List<Picture> pics = dbc.Pictures.Include("Student").Where(p => p.Student.Grade.Equals(grade) && p.Public.Equals("yes")).ToList();
             return View("Index",pics);
         }
         public ActionResult SearchBySchoolThenByGrade(string school, string grade) {
             CTEFArtContestEntities dbc = new CTEFArtContestEntities();
-            List<Picture> pics = dbc.Pictures.Include("Student").Where(p => p.Student.School.Equals(school) && p.Student.Grade.Equals(grade) && p.Private.Equals("yes")).ToList();
+            List<Picture> pics = dbc.Pictures.Include("Student").Where(p => p.Student.School.Equals(school) && p.Student.Grade.Equals(grade) && p.Public.Equals("yes")).ToList();
             return View("Index",pics);
         }
     }

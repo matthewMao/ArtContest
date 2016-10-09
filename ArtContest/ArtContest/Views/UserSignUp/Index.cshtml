@@ -12,6 +12,7 @@
     <script src="~/Scripts/jquery-3.1.1.js"></script>
     <script src="~/Scripts/jquery.validate.js"></script>
     <script src="~/Scripts/jquery.validate.unobtrusive.js"></script>
+    <link href="~/Common.css" rel="stylesheet" />
 </head>
 <body onload="disableSubmit()">
     <div>
@@ -60,7 +61,7 @@
                     
                     <span>Grade</span><br />
                     @Html.DropDownListFor(u => u.Grade, new SelectList(new List<string> { "Preschool", "Grade 1", "Grade 2",
-                    "Grade 3", "Grade 4", "Grade 5", "Grade 6", "Grade 7", "Grade 8", "Grade 9", "Grade 10", "Grade 11","Grade 12"}), "select")
+                    "Grade 3", "Grade 4", "Grade 5", "Grade 6", "Grade 7", "Grade 8", "Grade 9", "Grade 10", "Grade 11","Grade 12"}), "select", new { @class = "dropDown" })
                     @Html.ValidationMessageFor(u => u.Grade)<br />
 
                     <span>Parent/Guardian First Name</span><br />
@@ -78,7 +79,7 @@
                     @Html.TextBoxFor(u => u.ParentEmail)
                     @Html.ValidationMessageFor(u => u.ParentEmail)<br />
 
-                    <span>Parent/Guardian Contact Phone Number</span><br />
+                    <span>Parent/Guardian Contact Phone Number (Digits only)</span><br />
                     @Html.TextBoxFor(u => u.ParentPhoneNumber)
                     @Html.ValidationMessageFor(u => u.ParentPhoneNumber)<br />
 
@@ -120,7 +121,7 @@
                         </p>
                         <p style="font-weight:900;margin-top:0;line-height:95%">
                             **Important: All finalists must submittheir original upon requests. We may use the originals as proof of authenticityand for CTEF-authorized events**
-                            <span style="margin-left:72%">I agree</span><input type="checkbox" name="agreement" id="terms" onchange="activateButton(this)">
+                            <span style="margin-left:80%">I agree</span><input type="checkbox" name="agreement" id="terms" onchange="activateButton(this)">
                         </p>
 
                         <span>Student's signature (Name typed below in authenticate all the information provided in the form)</span><br />

@@ -129,6 +129,7 @@
     <Content Include="bin\System.Web.Webpages.Razor.dll" />
     <Content Include="bin\System.Web.Webpages.Razor.xml" />
     <Content Include="bin\System.Web.Webpages.xml" />
+    <Content Include="Common.css" />
     <Content Include="CommonJS.js" />
     <Content Include="Content\themes\base\accordion.css" />
     <Content Include="Content\themes\base\all.css" />
@@ -190,6 +191,8 @@
       <DependentUpon>CTEFArtContestModel.edmx</DependentUpon>
       <LastGenOutput>CTEFArtContestModel.cs</LastGenOutput>
     </Content>
+    <Content Include="Resource\Images\riven0.jpg" />
+    <Content Include="Resource\Images\riven1.jpg" />
     <Content Include="Scripts\jquery-3.1.1.js" />
     <Content Include="Scripts\jquery-3.1.1.min.js" />
     <Content Include="Scripts\jquery-3.1.1.slim.js" />
@@ -205,14 +208,15 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="App_Start\RouteConfig.cs" />
-    <Compile Include="Controllers\AdminAccountController.cs" />
+    <Compile Include="Controllers\AdminController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
-    <Compile Include="Controllers\JudgeAccountController.cs" />
+    <Compile Include="Controllers\JudgeController.cs" />
     <Compile Include="Controllers\StudentAccountController.cs" />
     <Compile Include="Controllers\UserSignUpController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="Models\CreateJudgeModel.cs" />
     <Compile Include="Models\CreateWorkModel.cs" />
     <Compile Include="Models\CTEFArtContestModel.Context.cs">
       <AutoGen>True</AutoGen>
@@ -229,6 +233,8 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>CTEFArtContestModel.edmx</DependentUpon>
     </Compile>
+    <Compile Include="Models\EditPictureViewModel.cs" />
+    <Compile Include="Models\EditStudentInfoViewModel.cs" />
     <Compile Include="Models\LoginModel.cs" />
     <Compile Include="Models\Picture.cs">
       <DependentUpon>CTEFArtContestModel.tt</DependentUpon>
@@ -239,9 +245,6 @@
     <Compile Include="Models\Student.cs">
       <DependentUpon>CTEFArtContestModel.tt</DependentUpon>
     </Compile>
-    <Compile Include="Models\sysdiagram.cs">
-      <DependentUpon>CTEFArtContestModel.tt</DependentUpon>
-    </Compile>
     <Compile Include="Models\User.cs">
       <DependentUpon>CTEFArtContestModel.tt</DependentUpon>
     </Compile>
@@ -249,6 +252,7 @@
     <Compile Include="Models\UserType.cs">
       <DependentUpon>CTEFArtContestModel.tt</DependentUpon>
     </Compile>
+    <Compile Include="Models\VerifyUserEmail.cs" />
     <Compile Include="obj\Debug\TemporaryGeneratedFile_036C0B5B-1481-4323-8D20-8F5ADCB23D92.cs" />
     <Compile Include="obj\Debug\TemporaryGeneratedFile_5937a670-0e60-4077-877b-f7221da3dda1.cs" />
     <Compile Include="obj\Debug\TemporaryGeneratedFile_E7A71F73-0F8D-4B9B-B56E-8E70B10BC5D3.cs" />
@@ -266,11 +270,17 @@
     <Content Include="Scripts\jquery-3.1.1.slim.min.map" />
     <Content Include="Scripts\jquery-3.1.1.min.map" />
     <Content Include="Views\StudentAccount\Index.cshtml" />
-    <Content Include="Views\AdminAccount\Index.cshtml" />
-    <Content Include="Views\JudgeAccount\Index.cshtml" />
-    <Content Include="Views\StudentAccount\Create.cshtml" />
+    <Content Include="Views\Judge\Index.cshtml" />
     <Content Include="Views\StudentAccount\Detail.cshtml" />
     <Content Include="Views\StudentAccount\Edit.cshtml" />
+    <Content Include="Views\Admin\CreateJudge.cshtml" />
+    <Content Include="Views\Admin\Details.cshtml" />
+    <Content Include="Views\Admin\Index.cshtml" />
+    <Content Include="Views\Admin\ViewJudge.cshtml" />
+    <Content Include="Views\StudentAccount\Create.cshtml" />
+    <Content Include="Views\StudentAccount\EditStudentInfo.cshtml" />
+    <Content Include="Views\Home\PasswordFindBack.cshtml" />
+    <Content Include="Views\Home\ResetPassword.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
