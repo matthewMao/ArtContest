@@ -1,0 +1,1 @@
+﻿document.getElementById("larger").disabled = true;

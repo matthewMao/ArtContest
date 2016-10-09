@@ -1,0 +1,29 @@
+﻿@model ArtContest.Models.CheckPicViewModel
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>CheckPic</title>
+</head>
+<body>
+    <table border="1">
+        <tr>
+            <th>JudgeID</th>
+            <th>Judge Username</th>
+            <th>Judge Mission:</th>
+        </tr>
+        <tr>
+            <td>@Model.User.Id</td>
+            <td>@Model.User.UserName</td>            
+            @foreach(var pr in Model.PictureRates) {
+                <td>
+                    @pr.Picture.Title
+                </td>
+            }              
+        </tr>
+    </table>
+    @Html.ActionLink("Assign Mission Wrong, Delete","DeleteMission",new {id=Model.User.Id})
+    @Html.ActionLink("All Look Good,Return","ViewJudge","Admin")
+</body>
+</html>

@@ -11,13 +11,60 @@ namespace ArtContest.Controllers
 {
     public class AdminController : Controller
     {
-        // GET: Admin
         //[Authorize(Roles ="Admin")]
         public ActionResult Index()
         {
             CTEFArtContestEntities dbc = new CTEFArtContestEntities();
-            List<Picture> pics = dbc.Pictures.Include("Student").ToList();
+            
+            List<Picture> pics= dbc.Pictures.Include("Student").Where(p => p.Public.Equals("yes")).ToList();
             return View(pics);
+        }
+        public ActionResult DeleteMission(int id) {
+            CTEFArtContestEntities dbc = new CTEFArtContestEntities();
+            List<PictureRate> pics= dbc.PictureRates.Where(p => p.JudgeId == id).ToList();
+            if(pics.Count() > 0) { dbc.PictureRates.RemoveRange(pics); dbc.SaveChanges();
+                return RedirectToAction("ViewJudge");
+            }
+            return RedirectToAction("ViewJudge");
+        }
+        [HttpGet]
+        public ActionResult DividePic() {
+            CTEFArtContestEntities dbc = new CTEFArtContestEntities();
+            List<User> judge = dbc.Users.Where(u=>u.UserTypeId==2).ToList();
+            return View(judge);
+        }
+        public ActionResult CheckPic(int id) {
+            CTEFArtContestEntities dbc = new CTEFArtContestEntities();
+            CheckPicViewModel vm = new CheckPicViewModel();
+            vm.User= dbc.Users.SingleOrDefault(u => u.Id == id);
+            vm.PictureRates = dbc.PictureRates.Where(p => p.JudgeId == id).ToList();
+            return View(vm);
+        }
+        [HttpPost]
+        public ActionResult DividePic(int judgeId,string grade) {
+            CTEFArtContestEntities dbc = new CTEFArtContestEntities();
+            List<Student> stus=dbc.Students.Where(s => s.Grade == grade).ToList();
+            int amount = stus.Count();
+            foreach(var s in stus) {
+               Picture pic= dbc.Pictures.Where(p => p.StudentId == s.Id&&p.Public.Equals("yes")).SingleOrDefault();
+                PictureRate pr = new PictureRate();
+                pr.PictureId = pic.Id;
+                pr.JudgeId = judgeId;
+                pr.Rate = 0;
+                if(!dbc.PictureRates.Any(r => r.JudgeId == judgeId && r.PictureId == pr.PictureId)) { 
+                dbc.PictureRates.Add(pr);
+                dbc.SaveChanges();
+                    amount--;
+                }else {
+                    ModelState.AddModelError("You have Assign These Pictures to This Judge","You have Assign These Pictures to This Judge");
+                }
+                
+                if(amount == 0) {
+                    return RedirectToAction("Index","Admin");
+                }  
+            }
+            
+            return RedirectToAction("Index","Admin");          
         }
         public ActionResult ViewJudge() {
             CTEFArtContestEntities dbc = new CTEFArtContestEntities();

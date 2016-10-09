@@ -1,5 +1,5 @@
-﻿
-
+﻿@using ArtContest.Models
+@model List<Picture>
 <!DOCTYPE html>
 
 <html>
@@ -8,7 +8,25 @@
     <title>Index</title>
 </head>
 <body>
-    <div> 
+ <div>
+   <table border="1">
+       <tr>
+          <th>ID</th>
+          <th>Title</th>
+          <th>Art</th>
+          <th>Description</th>
+          <th>View Larger Picture And Score</th>
+       </tr>
+           @foreach(var p in Model) {
+       <tr>
+           <td>@p.Id</td>
+           <td>@p.Title</td>
+           <td><img src="~/@p.PicturePath" width="500" height="300" /></td>
+           <td>@p.Description</td>
+           <td>@Html.ActionLink("View Bigger Picture and Score","Larger",new { id = p.Id })</td>
+      </tr>
+            }
+        </table>
     </div>
 </body>
 </html>
