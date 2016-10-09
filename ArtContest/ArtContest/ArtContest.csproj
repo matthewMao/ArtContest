@@ -177,6 +177,7 @@
       <Generator>EntityModelCodeGenerator</Generator>
       <LastGenOutput>CTEFArtContestModel.Designer.cs</LastGenOutput>
     </EntityDeploy>
+    <Content Include="JudgeLarger.js" />
     <Content Include="Models\CTEFArtContestModel.edmx.diagram">
       <DependentUpon>CTEFArtContestModel.edmx</DependentUpon>
     </Content>
@@ -283,6 +284,9 @@
     <Content Include="Views\StudentAccount\EditStudentInfo.cshtml" />
     <Content Include="Views\Home\PasswordFindBack.cshtml" />
     <Content Include="Views\Home\ResetPassword.cshtml" />
+    <Content Include="Views\Admin\DividePic.cshtml" />
+    <Content Include="Views\Admin\CheckPic.cshtml" />
+    <Content Include="Views\Judge\Larger.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
