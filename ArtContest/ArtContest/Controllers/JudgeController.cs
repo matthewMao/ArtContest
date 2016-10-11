@@ -13,8 +13,18 @@ namespace ArtContest.Controllers
         // GET: JudgeAccount
         public ActionResult Index()
         {
+            var userid = (int)Session["userid"];
             CTEFArtContestEntities dbc = new CTEFArtContestEntities();
-            List<Picture> pics = dbc.Pictures.Include("Student").Where(p=>p.Public.Equals("yes")).ToList();
+            var prs = dbc.PictureRates.Where(p => p.JudgeId == userid).ToList();
+            List<Picture> pics = new List<Picture>();
+            foreach (var pid in prs)
+            {
+                var pic = dbc.Pictures.SingleOrDefault(p => p.Id == pid.PictureId);
+                if (pic != null)
+                {
+                    pics.Add(pic);
+                }
+            }
             return View(pics);
         }
         public ActionResult Larger(int id) {
