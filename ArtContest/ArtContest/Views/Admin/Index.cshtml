@@ -86,8 +86,20 @@
                 <th>Student LastName</th>
                 <th>Student Grade</th>
                 <th>Details</th>
+                <th>Score</th>
             </tr>
             @foreach(var p in Model) {
+                
+                    int count = 0;
+                    double result = 0;
+                    foreach(var item in p.PictureRates) {
+                        if(item.PictureId == p.Id) {
+                            count++;
+                            result += item.Rate;
+                        }
+                    }
+                    result /= count;
+                
                 <tr>
                     <td class="id">@p.Id</td>
                     <td class="title">@p.Title</td>
@@ -96,6 +108,7 @@
                     <td class="lastname">@p.Student.User.UserLastName</td>
                     <td class="grade">@p.Student.Grade</td>
                     <td>@Html.ActionLink("Details","Details",new { id = p.Id })</td>
+                    <td>@result</td>
                 </tr>
             }
         </table>
