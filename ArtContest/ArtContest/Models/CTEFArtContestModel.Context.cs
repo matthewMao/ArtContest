@@ -25,10 +25,10 @@ namespace ArtContest.Models
             throw new UnintentionalCodeFirstException();
         }
     
-        public virtual DbSet<Picture> Pictures { get; set; }
         public virtual DbSet<PictureRate> PictureRates { get; set; }
         public virtual DbSet<Student> Students { get; set; }
         public virtual DbSet<User> Users { get; set; }
         public virtual DbSet<UserType> UserTypes { get; set; }
+        public virtual DbSet<Picture> Pictures { get; set; }
     }
 }

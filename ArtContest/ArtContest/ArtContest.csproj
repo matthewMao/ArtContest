@@ -67,10 +67,6 @@
     <Reference Include="System.Core" />
     <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="System.Web.Extensions" />
-    <Reference Include="System.Web.Mvc, Version=5.2.3.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
-      <HintPath>..\packages\Microsoft.AspNet.Mvc.5.2.3\lib\net45\System.Web.Mvc.dll</HintPath>
-      <Private>True</Private>
-    </Reference>
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Drawing" />
     <Reference Include="System.Web" />
@@ -98,11 +94,94 @@
     <Reference Include="Microsoft.Web.Infrastructure">
       <HintPath>..\packages\Microsoft.Web.Infrastructure.1.0.0.0\lib\net40\Microsoft.Web.Infrastructure.dll</HintPath>
     </Reference>
+    <Reference Include="System.Web.Mvc">
+      <HintPath>..\packages\Microsoft.AspNet.Mvc.5.2.3\lib\net45\System.Web.Mvc.dll</HintPath>
+    </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Content Include="AdminIndex.js" />
+    <Content Include="bin\ArtContest.dll" />
+    <Content Include="bin\ArtContest.pdb" />
+    <Content Include="bin\EntityFramework.dll" />
+    <Content Include="bin\EntityFramework.SqlServer.dll" />
+    <Content Include="bin\EntityFramework.SqlServer.xml" />
+    <Content Include="bin\EntityFramework.xml" />
+    <Content Include="bin\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.dll" />
+    <Content Include="bin\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.xml" />
+    <Content Include="bin\Microsoft.Web.Infrastructure.dll" />
+    <Content Include="bin\roslyn\csc.exe" />
+    <Content Include="bin\roslyn\Microsoft.Build.Tasks.CodeAnalysis.dll" />
+    <Content Include="bin\roslyn\Microsoft.CodeAnalysis.CSharp.dll" />
+    <Content Include="bin\roslyn\Microsoft.CodeAnalysis.dll" />
+    <Content Include="bin\roslyn\Microsoft.CodeAnalysis.VisualBasic.dll" />
+    <Content Include="bin\roslyn\System.Collections.Immutable.dll" />
+    <Content Include="bin\roslyn\System.Reflection.Metadata.dll" />
+    <Content Include="bin\roslyn\vbc.exe" />
+    <Content Include="bin\roslyn\VBCSCompiler.exe" />
+    <Content Include="bin\System.Web.Helpers.dll" />
+    <Content Include="bin\System.Web.Helpers.xml" />
+    <Content Include="bin\System.Web.Mvc.dll" />
+    <Content Include="bin\System.Web.Mvc.xml" />
+    <Content Include="bin\System.Web.Razor.dll" />
+    <Content Include="bin\System.Web.Razor.xml" />
+    <Content Include="bin\System.Web.Webpages.Deployment.dll" />
+    <Content Include="bin\System.Web.Webpages.Deployment.xml" />
+    <Content Include="bin\System.Web.Webpages.dll" />
+    <Content Include="bin\System.Web.Webpages.Razor.dll" />
+    <Content Include="bin\System.Web.Webpages.Razor.xml" />
+    <Content Include="bin\System.Web.Webpages.xml" />
+    <Content Include="Common.css" />
+    <Content Include="CommonJS.js" />
+    <Content Include="Content\themes\base\accordion.css" />
+    <Content Include="Content\themes\base\all.css" />
+    <Content Include="Content\themes\base\autocomplete.css" />
+    <Content Include="Content\themes\base\base.css" />
+    <Content Include="Content\themes\base\button.css" />
+    <Content Include="Content\themes\base\core.css" />
+    <Content Include="Content\themes\base\datepicker.css" />
+    <Content Include="Content\themes\base\dialog.css" />
+    <Content Include="Content\themes\base\draggable.css" />
+    <Content Include="Content\themes\base\images\ui-bg_flat_0_aaaaaa_40x100.png" />
+    <Content Include="Content\themes\base\images\ui-bg_flat_75_ffffff_40x100.png" />
+    <Content Include="Content\themes\base\images\ui-bg_glass_55_fbf9ee_1x400.png" />
+    <Content Include="Content\themes\base\images\ui-bg_glass_65_ffffff_1x400.png" />
+    <Content Include="Content\themes\base\images\ui-bg_glass_75_dadada_1x400.png" />
+    <Content Include="Content\themes\base\images\ui-bg_glass_75_e6e6e6_1x400.png" />
+    <Content Include="Content\themes\base\images\ui-bg_glass_95_fef1ec_1x400.png" />
+    <Content Include="Content\themes\base\images\ui-bg_highlight-soft_75_cccccc_1x100.png" />
+    <Content Include="Content\themes\base\images\ui-icons_222222_256x240.png" />
+    <Content Include="Content\themes\base\images\ui-icons_2e83ff_256x240.png" />
+    <Content Include="Content\themes\base\images\ui-icons_444444_256x240.png" />
+    <Content Include="Content\themes\base\images\ui-icons_454545_256x240.png" />
+    <Content Include="Content\themes\base\images\ui-icons_555555_256x240.png" />
+    <Content Include="Content\themes\base\images\ui-icons_777620_256x240.png" />
+    <Content Include="Content\themes\base\images\ui-icons_777777_256x240.png" />
+    <Content Include="Content\themes\base\images\ui-icons_888888_256x240.png" />
+    <Content Include="Content\themes\base\images\ui-icons_cc0000_256x240.png" />
+    <Content Include="Content\themes\base\images\ui-icons_cd0a0a_256x240.png" />
+    <Content Include="Content\themes\base\images\ui-icons_ffffff_256x240.png" />
+    <Content Include="Content\themes\base\jquery-ui.css" />
+    <Content Include="Content\themes\base\jquery-ui.min.css" />
+    <Content Include="Content\themes\base\menu.css" />
+    <Content Include="Content\themes\base\progressbar.css" />
+    <Content Include="Content\themes\base\resizable.css" />
+    <Content Include="Content\themes\base\selectable.css" />
+    <Content Include="Content\themes\base\selectmenu.css" />
+    <Content Include="Content\themes\base\slider.css" />
+    <Content Include="Content\themes\base\sortable.css" />
+    <Content Include="Content\themes\base\spinner.css" />
+    <Content Include="Content\themes\base\tabs.css" />
+    <Content Include="Content\themes\base\theme.css" />
+    <Content Include="Content\themes\base\tooltip.css" />
     <Content Include="Global.asax" />
+    <EntityDeploy Include="Models\CTEFArtContestModel.edmx">
+      <Generator>EntityModelCodeGenerator</Generator>
+      <LastGenOutput>CTEFArtContestModel.Designer.cs</LastGenOutput>
+    </EntityDeploy>
     <Content Include="JudgeLarger.js" />
+    <Content Include="Models\CTEFArtContestModel.edmx.diagram">
+      <DependentUpon>CTEFArtContestModel.edmx</DependentUpon>
+    </Content>
+    <None Include="Scripts\jquery-3.1.1.intellisense.js" />
     <Content Include="Models\CTEFArtContestModel.Context.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
       <DependentUpon>CTEFArtContestModel.edmx</DependentUpon>
@@ -113,38 +192,34 @@
       <DependentUpon>CTEFArtContestModel.edmx</DependentUpon>
       <LastGenOutput>CTEFArtContestModel.cs</LastGenOutput>
     </Content>
-    <Content Include="Resource\Images\allriven.jpg">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
-    <Content Include="Resource\Images\coolriven.png">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
-    <Content Include="Resource\Images\crazyriven.jpg">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
-    <Content Include="Resource\Images\iceriven.jpg">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
-    <Content Include="Resource\Images\pinkriven.jpg">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
-    <Content Include="Resource\Images\riven0.jpg">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
-    <Content Include="Resource\Images\riven1.jpg">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
+    <Content Include="Resource\Images\riven0.jpg" />
+    <Content Include="Resource\Images\riven1.jpg" />
+    <Content Include="Scripts\jquery-3.1.1.js" />
+    <Content Include="Scripts\jquery-3.1.1.min.js" />
+    <Content Include="Scripts\jquery-3.1.1.slim.js" />
+    <Content Include="Scripts\jquery-3.1.1.slim.min.js" />
+    <None Include="Scripts\jquery.validate-vsdoc.js" />
+    <Content Include="Scripts\jquery-ui-1.12.1.js" />
+    <Content Include="Scripts\jquery-ui-1.12.1.min.js" />
+    <Content Include="Scripts\jquery.validate.js" />
+    <Content Include="Scripts\jquery.validate.min.js" />
+    <Content Include="Scripts\jquery.validate.unobtrusive.js" />
+    <Content Include="Scripts\jquery.validate.unobtrusive.min.js" />
     <Content Include="Web.config" />
   </ItemGroup>
   <ItemGroup>
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="Controllers\AdminController.cs" />
+    <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\JudgeController.cs" />
+    <Compile Include="Controllers\StudentAccountController.cs" />
+    <Compile Include="Controllers\UserSignUpController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="Models\CheckPicViewModel.cs" />
     <Compile Include="Models\CreateJudgeModel.cs" />
+    <Compile Include="Models\CreateWorkModel.cs" />
     <Compile Include="Models\CTEFArtContestModel.Context.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -160,6 +235,9 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>CTEFArtContestModel.edmx</DependentUpon>
     </Compile>
+    <Compile Include="Models\EditPictureViewModel.cs" />
+    <Compile Include="Models\EditStudentInfoViewModel.cs" />
+    <Compile Include="Models\LoginModel.cs" />
     <Compile Include="Models\Picture.cs">
       <DependentUpon>CTEFArtContestModel.tt</DependentUpon>
     </Compile>
@@ -173,29 +251,42 @@
     <Compile Include="Models\User.cs">
       <DependentUpon>CTEFArtContestModel.tt</DependentUpon>
     </Compile>
+    <Compile Include="Models\UserSignUpViewModel.cs" />
     <Compile Include="Models\UserType.cs">
       <DependentUpon>CTEFArtContestModel.tt</DependentUpon>
     </Compile>
+    <Compile Include="Models\VerifyUserEmail.cs" />
+    <Compile Include="obj\Debug\TemporaryGeneratedFile_036C0B5B-1481-4323-8D20-8F5ADCB23D92.cs" />
+    <Compile Include="obj\Debug\TemporaryGeneratedFile_5937a670-0e60-4077-877b-f7221da3dda1.cs" />
+    <Compile Include="obj\Debug\TemporaryGeneratedFile_E7A71F73-0F8D-4B9B-B56E-8E70B10BC5D3.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Views\web.config" />
     <Content Include="packages.config" />
-    <EntityDeploy Include="Models\CTEFArtContestModel.edmx">
-      <Generator>EntityModelCodeGenerator</Generator>
-      <LastGenOutput>CTEFArtContestModel.Designer.cs</LastGenOutput>
-    </EntityDeploy>
-    <Content Include="Models\CTEFArtContestModel.edmx.diagram">
-      <DependentUpon>CTEFArtContestModel.edmx</DependentUpon>
-    </Content>
-    <Content Include="Views\Admin\Index.cshtml" />
-    <Content Include="Views\Admin\Details.cshtml" />
-    <Content Include="Views\Admin\ViewJudge.cshtml" />
-    <Content Include="Views\Admin\CreateJudge.cshtml" />
+    <Content Include="Views\UserSignUp\Index.cshtml" />
+    <Content Include="bin\ArtContest.dll.config" />
+    <Content Include="bin\roslyn\Microsoft.CSharp.Core.targets" />
+    <Content Include="bin\roslyn\Microsoft.VisualBasic.Core.targets" />
+    <Content Include="bin\roslyn\VBCSCompiler.exe.config" />
+    <Content Include="Views\Home\Index.cshtml" />
+    <Content Include="Scripts\jquery-3.1.1.slim.min.map" />
+    <Content Include="Scripts\jquery-3.1.1.min.map" />
+    <Content Include="Views\StudentAccount\Index.cshtml" />
     <Content Include="Views\Judge\Index.cshtml" />
-    <Content Include="Views\Judge\Larger.cshtml" />
+    <Content Include="Views\StudentAccount\Detail.cshtml" />
+    <Content Include="Views\StudentAccount\Edit.cshtml" />
+    <Content Include="Views\Admin\CreateJudge.cshtml" />
+    <Content Include="Views\Admin\Details.cshtml" />
+    <Content Include="Views\Admin\Index.cshtml" />
+    <Content Include="Views\Admin\ViewJudge.cshtml" />
+    <Content Include="Views\StudentAccount\Create.cshtml" />
+    <Content Include="Views\StudentAccount\EditStudentInfo.cshtml" />
+    <Content Include="Views\Home\PasswordFindBack.cshtml" />
+    <Content Include="Views\Home\ResetPassword.cshtml" />
     <Content Include="Views\Admin\DividePic.cshtml" />
     <Content Include="Views\Admin\CheckPic.cshtml" />
+    <Content Include="Views\Judge\Larger.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

@@ -21,12 +21,12 @@ namespace ArtContest.Models
         }
     
         public int Id { get; set; }
-        public int StudentId { get; set; }
+        public int UserId { get; set; }
         public string PicturePath { get; set; }
+        public string Public { get; set; }
         public string Title { get; set; }
         public string Description { get; set; }
-        public System.DateTime UploadDate { get; set; }
-        public string Public { get; set; }
+        public string UploadDate { get; set; }
     
         public virtual Student Student { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]

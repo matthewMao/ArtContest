@@ -12,94 +12,106 @@
     <script src="~/Scripts/jquery-3.1.1.js"></script>
     <script src="~/Scripts/jquery.validate.js"></script>
     <script src="~/Scripts/jquery.validate.unobtrusive.js"></script>
+    <link href="~/Common.css" rel="stylesheet" />
 </head>
 <body onload="disableSubmit()">
-    <div> 
+    <div>
         <h1>CTEF 2016 ArtContest</h1>
         @using (Html.BeginForm("UserSignUp", "UserSignUp", FormMethod.Post, new { enctype = "multipart/form-data" }))
         {
-            
 
-                    <span>User Name</span><br />
-                    @Html.TextBoxFor(m=>m.UserName)
+            <span>User Name</span><br />
+                    @Html.TextBoxFor(u => u.UserName)
                     @Html.ValidationMessageFor(m => m.UserName)<br />
 
                     <span>Password</span><br />
-                    @Html.PasswordFor(m=>m.Password)
-                    @Html.ValidationMessageFor(m => m.Password)<br />
+                    @Html.PasswordFor(m => m.Password)
+                    @Html.ValidationMessageFor(u => u.Password)<br />
 
                     <span>Confirm Password</span><br />
-                    @Html.PasswordFor(m => m.ConfirmPassword)
-                    @Html.ValidationMessageFor(m => m.ConfirmPassword)<br />
+                    @Html.PasswordFor(u => u.ConfirmPassword)
+                    @Html.ValidationMessageFor(u => u.ConfirmPassword)<br />
 
                     <span>First Name</span><br />
-                    @Html.TextBoxFor(m=>m.UserFirstName)
-                    @Html.ValidationMessageFor(m => m.UserFirstName)<br />
+                    @Html.TextBoxFor(m => m.UserFirstName)
+                    @Html.ValidationMessageFor(u => u.UserFirstName)<br />
 
-                    <span>Middle Name</span><br />
-                    @Html.TextBoxFor(m => m.UserMiddleName)<br />
+                    <span>Middle Name (Optional)</span><br />
+                    @Html.TextBoxFor(u => u.UserMiddleName)<br />
 
                     <span>Last Name</span><br />
-                    @Html.TextBoxFor(m => m.UserLastName)
-                    @Html.ValidationMessageFor(m => m.UserLastName)<br />
+                    @Html.TextBoxFor(u => u.UserLastName)
+                    @Html.ValidationMessageFor(u => u.UserLastName)<br />
 
-                    @*<span>Gender</span>
+                    <span>Gender</span>
                     <span>Male</span>
-                    @Html.RadioButtonFor(m => m.Student.Gender, "Male")
+                    @Html.RadioButtonFor(u => u.Gender, "Male")
                     <span>Female</span>
-                    @Html.RadioButtonFor(m => m.Student.Gender, "Female")<br style="line-height:300%" />
+                    @Html.RadioButtonFor(u => u.Gender, "Female")
+                    @Html.ValidationMessageFor(u => u.Gender)
+                    <br style="line-height:300%" />
 
                     <span>Age</span><br />
-                    @Html.TextBoxFor(m => m.Student.Age)<br />
+                    @Html.TextBoxFor(u => u.Age)
+                    @Html.ValidationMessageFor(u => u.Age)<br />
 
                     <span>Student's school name</span><br />
-                    @Html.TextBoxFor(m => m.Student.School)<br />*@
-
-                    @*<span>Grade</span><br />
-                    @Html.TextBoxFor(m => m.Student.Grade)<br />*@
-
-                    @*<span>Grade</span><br />
-                    @Html.DropDownListFor(m => m.Student.Grade, new SelectList(new List<string> { "Preschool", "Grade 1", "Grade 2",
-                    "Grade 3", "Grade 4", "Grade 5", "Grade 6", "Grade 7", "Grade 8", "Grade 9", "Grade 10", "Grade 11","Grade 12"}), "select")<br />
+                    @Html.TextBoxFor(u => u.School)
+                    @Html.ValidationMessageFor(u => u.School)<br />
+                    
+                    <span>Grade</span><br />
+                    @Html.DropDownListFor(u => u.Grade, new SelectList(new List<string> { "Preschool", "Grade 1", "Grade 2",
+                    "Grade 3", "Grade 4", "Grade 5", "Grade 6", "Grade 7", "Grade 8", "Grade 9", "Grade 10", "Grade 11","Grade 12"}), "select", new { @class = "dropDown" })
+                    @Html.ValidationMessageFor(u => u.Grade)<br />
 
                     <span>Parent/Guardian First Name</span><br />
-                    @Html.TextBoxFor(m=>m.Student.ParentFirstName)<br />
+                    @Html.TextBoxFor(u => u.ParentFirstName)
+                    @Html.ValidationMessageFor(u => u.ParentFirstName)<br />
 
-                    <span>Parent/Guardian Middle Name</span><br />
-                    @Html.TextBoxFor(m => m.Student.ParentMiddleName)<br />
+                    <span>Parent/Guardian Middle Name (Optional)</span><br />
+                    @Html.TextBoxFor(u => u.ParentMiddleName)<br />
 
                     <span>Parent/Guardian Last Name</span><br />
-                    @Html.TextBoxFor(m => m.Student.ParentLastName)<br />
+                    @Html.TextBoxFor(u => u.ParentLastName)
+                    @Html.ValidationMessageFor(u => u.ParentLastName)<br />
                     
                     <span>Parent/Guardian email</span><br />
-                    @Html.TextBoxFor(m => m.Student.ParentEmail)<br />
+                    @Html.TextBoxFor(u => u.ParentEmail)
+                    @Html.ValidationMessageFor(u => u.ParentEmail)<br />
 
-                    <span>Parent/Guardian Contact Phone Number</span><br />
-                    @Html.TextBoxFor(m => m.Student.ParentPhoneNumber)<br />
+                    <span>Parent/Guardian Contact Phone Number (Digits only)</span><br />
+                    @Html.TextBoxFor(u => u.ParentPhoneNumber)
+                    @Html.ValidationMessageFor(u => u.ParentPhoneNumber)<br />
 
                     <span>Street</span><br />
-                    @Html.TextBoxFor(m => m.Student.Street)<br />
+                    @Html.TextBoxFor(u => u.Street)
+                    @Html.ValidationMessageFor(u => u.Street)<br />
 
                     <span>City</span><br />
-                    @Html.TextBoxFor(m => m.Student.City)<br />
+                    @Html.TextBoxFor(u => u.City)
+                    @Html.ValidationMessageFor(u => u.City)<br />
 
                     <span>State</span><br />
-                    @Html.TextBoxFor(m => m.Student.State)<br />
+                    @Html.TextBoxFor(u => u.State)
+                    @Html.ValidationMessageFor(u => u.State)<br />
 
                     <span>Zip Code</span><br />
-                    @Html.TextBoxFor(m => m.Student.Zip)<br />
+                    @Html.TextBoxFor(u => u.Zip)
+                    @Html.ValidationMessageFor(u => u.Zip)<br />
 
                     <span>Art Teacher's Title (if applicable)</span><br />
-                    @Html.DropDownListFor(m => m.Student.TeacherTitle, new SelectList(new List<string> {"Mrs.","Ms.","Mr."}), "select")<br />
+                    @Html.DropDownListFor(u => u.TeacherTitle, new SelectList(new List<string> {"Mrs.","Ms.","Mr."}), "select")<br />
 
                     <span>Teacher First Name</span><br />
-                    @Html.TextBoxFor(m => m.Student.TeacherFirstName)<br />
+                    @Html.TextBoxFor(u => u.TeacherFirstName)
+                    @Html.ValidationMessageFor(u => u.TeacherFirstName)<br />
 
                     <span>Teacher Middle Name</span><br />
-                    @Html.TextBoxFor(m => m.Student.TeacherMiddleName)<br />
+                    @Html.TextBoxFor(u => u.TeacherMiddleName)<br />
 
                     <span>Teacher Last Name</span><br />
-                    @Html.TextBoxFor(m => m.Student.TeacherLastName)<br />*@
+                    @Html.TextBoxFor(u => u.TeacherLastName)
+                    @Html.ValidationMessageFor(u => u.TeacherLastName)<br />
 
                         <p style="margin-bottom:0">
                             I grant to CTEF anirrevocable, unlimited license to display, copy, sell, sublicense, publish, andcreate and sell derivative works from, my work submitted for the CTEF
@@ -109,14 +121,16 @@
                         </p>
                         <p style="font-weight:900;margin-top:0;line-height:95%">
                             **Important: All finalists must submittheir original upon requests. We may use the originals as proof of authenticityand for CTEF-authorized events**
-                            <span style="margin-left:72%">I agree</span><input type="checkbox" name="agreement" id="terms" onchange="activateButton(this)">
+                            <span style="margin-left:80%">I agree</span><input type="checkbox" name="agreement" id="terms" onchange="activateButton(this)">
                         </p>
 
-                        @*<span>Student's signature (Name typed below in authenticate all the information provided in the form)</span><br />
-                        @Html.TextBoxFor(m => m.Student.StudentSignature)<br />
+                        <span>Student's signature (Name typed below in authenticate all the information provided in the form)</span><br />
+                        @Html.TextBoxFor(u => u.StudentSignature)
+                        @Html.ValidationMessageFor(u => u.StudentSignature)<br />
 
                         <span>Parent's signature(Name typed below in authenticate all the information provided in the form)</span><br />
-                        @Html.TextBoxFor(m => m.Student.ParentSignature)<br />*@
+                        @Html.TextBoxFor(u => u.ParentSignature)
+                        @Html.ValidationMessageFor(u => u.ParentSignature)<br />
 
                         <input type="submit" value="submit" id="submit"><br />
                         <span>          </span><br />

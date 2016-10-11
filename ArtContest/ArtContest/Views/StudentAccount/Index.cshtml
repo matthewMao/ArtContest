@@ -1,0 +1,42 @@
+﻿@using ArtContest.Models
+@model List<Picture>
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Index</title>
+    <link href="~/Common.css" rel="stylesheet" />
+</head>
+<body>
+    <h1>Your Works</h1>
+    <ul>
+        <li>@Html.ActionLink("Uplopad New Work", "Create")</li>
+        <li style="float:right">@Html.ActionLink("Log Out", "Index", "Home")</li>
+    </ul>
+    <table border="1">
+        <tr>
+            <th>Title</th>
+            <th>Work</th>
+            <th>Public</th>
+            <th>Detail</th>
+            <th>Edit</th>
+            <th>Delete</th>
+        </tr>
+        @foreach (var p in Model)
+        {
+            <tr>
+                <td>@p.Title</td>
+                <td>
+                    <img src="@p.PicturePath" />
+                </td>
+                <td>@p.Public</td>
+                <td><button onclick="window.location.href='StudentAccount/ShowDetail/@p.Id'">Detail</button></td>
+                <td><button onclick="window.location.href='StudentAccount/Edit/@p.Id'">Edit</button></td>
+                <td><button onclick="window.location.href='StudentAccount/Delete/@p.Id'">Delete</button></td>
+            </tr>
+        }
+    </table><br />
+</body>
+</html>

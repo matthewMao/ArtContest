@@ -28,16 +28,38 @@ namespace ArtContest.Controllers
 
         [HttpPost]
         //public ActionResult UserSignUp(User user, Student student)
-        public ActionResult UserSignUp(UserSignUpViewModel suser)
+        public ActionResult UserSignUp(UserSignUpViewModel newUser)
         {
             User user = new User();
+            Student student = new Student();
             user.UserTypeId = 3;
-            user.UserName = suser.UserName;
-            user.Password = suser.Password;
-            user.UserFirstName = suser.UserFirstName;
-            user.UserLastName = suser.UserLastName;
-            user.UserMiddleName = suser.UserMiddleName;
+            user.UserName = newUser.UserName;
+            user.Password = newUser.Password;
+            user.UserFirstName = newUser.UserFirstName;
+            user.UserLastName = newUser.UserLastName;
+            user.UserMiddleName = newUser.UserMiddleName;
+            student.Gender = newUser.Gender;
+            student.Age = newUser.Age;
+            student.School = newUser.School;
+            student.Grade = newUser.Grade;
+            student.ParentFirstName = newUser.ParentFirstName;
+            student.ParentMiddleName = newUser.ParentMiddleName;
+            student.ParentLastName = newUser.ParentLastName;
+            student.ParentEmail = newUser.ParentEmail;
+            student.ParentPhoneNumber = newUser.ParentPhoneNumber;
+            student.Street = newUser.Street;
+            student.City = newUser.City;
+            student.State = newUser.State;
+            student.Zip = newUser.Zip;
+            student.TeacherTitle = newUser.TeacherTitle;
+            student.TeacherFirstName = newUser.TeacherFirstName;
+            student.TeacherMiddleName = newUser.TeacherMiddleName;
+            student.TeacherLastName = newUser.TeacherLastName;
+            student.StudentSignature = newUser.StudentSignature;
+            student.ParentSignature = newUser.ParentSignature;
             dbc.Users.Add(user);
+            student.Id = user.Id;
+            dbc.Students.Add(student);
             dbc.SaveChanges();
             return RedirectToAction("Index", "Home");
         }

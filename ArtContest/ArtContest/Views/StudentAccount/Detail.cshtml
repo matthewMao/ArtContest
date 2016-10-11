@@ -1,0 +1,33 @@
+﻿@model ArtContest.Models.Picture
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Detail</title>
+    <link href="~/Common.css" rel="stylesheet" />
+</head>
+<body>
+    <h1>Details of @Model.Title</h1>
+    <table border="1">
+        <tr>
+            <td>@Html.DisplayNameFor(model => model.Title)</td>
+            <td>@Html.DisplayFor(model => model.Title)</td>
+        </tr>
+        <tr>
+            <td>@Html.DisplayNameFor(model => model.UploadDate)</td>
+            <td>@Html.DisplayFor(model => model.UploadDate)</td>
+        </tr>
+        <tr>
+            <td>@Html.DisplayNameFor(model => model.Description)</td>
+            <td>@Html.DisplayFor(model => model.Description)</td>
+        </tr>
+        <tr>
+            <td>@Html.DisplayNameFor(model => model.Public)</td>
+            <td>@Html.DisplayFor(model => model.Public)</td>
+        </tr>
+    </table><br />
+    @Html.ActionLink("Go back", "Index", null, null, new { @class = "actionLink" })
+</body>
+</html>
