@@ -17,7 +17,6 @@ namespace ArtContest.Controllers
         {
             var userid = (int)Session["userid"];
             List<Picture> allPic = dbc.Pictures.Where(p => p.UserId == userid).OrderBy(p=>p.Title).ThenBy(p => p.UploadDate).ToList();
-            
             return View(allPic);
         }
 
@@ -32,6 +31,10 @@ namespace ArtContest.Controllers
         public ActionResult Create(CreateWorkModel newPicture, HttpPostedFileBase uploadingFile)
         {
             Picture pic = new Picture();
+            if (newPicture.Title==null||newPicture.Public==null||newPicture.Description==null||uploadingFile==null)
+            {
+                return View();
+            }
             var picIdList = dbc.Pictures.Select(p => p.Id).ToList();
             Random random = new Random();
             int randomNumber = random.Next(1, 1000);
