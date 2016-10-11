@@ -20,6 +20,7 @@
         @foreach(var u in Model) {
             <tr>
                 <td>@u.Id</td>
+                <td>@u.UserName</td>
                 <td>@u.UserFirstName</td>
                 <td>@u.UserLastName</td>
                 <td>@Html.ActionLink("Check Picture","CheckPic",new { id=u.Id})</td>
