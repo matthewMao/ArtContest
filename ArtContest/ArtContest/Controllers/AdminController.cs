@@ -87,8 +87,10 @@ namespace ArtContest.Controllers
         public ActionResult RemoveJudge(int id) {
             CTEFArtContestEntities dbc = new CTEFArtContestEntities();
             var target = dbc.Users.SingleOrDefault(j => j.Id == id);
+            List<PictureRate> prlist = dbc.PictureRates.Where(pr => pr.JudgeId == id).ToList();
             if(target != null) {
                 dbc.Users.Remove(target);
+                dbc.PictureRates.RemoveRange(prlist);
                 dbc.SaveChanges();
             }
             return RedirectToAction("ViewJudge","Admin");
