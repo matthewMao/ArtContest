@@ -235,6 +235,7 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>CTEFArtContestModel.edmx</DependentUpon>
     </Compile>
+    <Compile Include="Models\DisplayScoreViewModel.cs" />
     <Compile Include="Models\EditPictureViewModel.cs" />
     <Compile Include="Models\EditStudentInfoViewModel.cs" />
     <Compile Include="Models\LoginModel.cs" />

@@ -16,6 +16,7 @@
           <th>Description</th>
           <th>View Larger Picture And Score</th>
            <link href="~/Common.css" rel="stylesheet" />
+          <th>Score</th>
        </tr>
            @foreach(var p in Model) {
        <tr>
@@ -23,8 +24,14 @@
            <td><img src="~/@p.PicturePath" width="500" height="300" /></td>
            <td>@p.Description</td>
            <td>@Html.ActionLink("View Bigger Picture and Score","Larger",new { id = p.Id })</td>
+           @foreach(var score in p.PictureRates) {
+               if(score.PictureId == p.Id && score.JudgeId == (int)Session["userid"]) {
+                   <td>@score.Rate</td>
+               }
+           }
+           }
       </tr>
-            }
+           }
         </table>
     </div>
 </body>
