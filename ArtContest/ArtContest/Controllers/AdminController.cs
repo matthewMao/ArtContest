@@ -38,6 +38,17 @@ namespace ArtContest.Controllers
             CheckPicViewModel vm = new CheckPicViewModel();
             vm.User= dbc.Users.SingleOrDefault(u => u.Id == id);
             vm.PictureRates = dbc.PictureRates.Where(p => p.JudgeId == id).ToList();
+            vm.Grades = new HashSet<string>();
+            //vm.Grades = dbc.Students.Where(s=>s.Grade = )
+            var pics = new HashSet<Picture>();
+            foreach (var item in vm.PictureRates)
+            {
+                pics.Add(dbc.Pictures.Where(p=>p.Id==item.PictureId).SingleOrDefault());
+            }
+            foreach (var item in pics)
+            {
+                vm.Grades.Add(dbc.Students.SingleOrDefault(s=>s.Id==item.UserId).Grade);
+            }
             return View(vm);
         }
         [HttpPost]
@@ -74,12 +85,17 @@ namespace ArtContest.Controllers
         public ActionResult CreateJudge() {
             CTEFArtContestEntities dbc = new CTEFArtContestEntities();
             CreateJudgeModel vm = new CreateJudgeModel();
-            vm.UserType = dbc.UserTypes.ToList();
+            //vm.UserType = dbc.UserTypes.ToList();
             return View(vm);
         }
         [HttpPost]
         public ActionResult CreateJudge(User user) {
             CTEFArtContestEntities dbc = new CTEFArtContestEntities();
+            if (user.UserName == null || user.Password == null || user.UserFirstName == null || user.UserLastName == null)
+            {
+                return View();
+            }
+            user.UserTypeId = 2;
             dbc.Users.Add(user);
             dbc.SaveChanges();
             return RedirectToAction("ViewJudge","Admin");

@@ -5,6 +5,7 @@
 <head>
     <meta name="viewport" content="width=device-width" />
     <title>CheckPic</title>
+    <link href="~/Common.css" rel="stylesheet" />
 </head>
 <body>
     <table border="1">
@@ -15,15 +16,18 @@
         </tr>
         <tr>
             <td>@Model.User.Id</td>
-            <td>@Model.User.UserName</td>            
-            @foreach(var pr in Model.PictureRates) {
-                <td>
-                    @pr.Picture.Title
-                </td>
-            }              
+            <td>@Model.User.UserName</td>
+            <td>
+                @foreach (var pr in Model.Grades)
+                {
+
+                    @pr<br />
+
+                }
+            </td>
         </tr>
     </table>
-    @Html.ActionLink("Assign Mission Wrong, Delete","DeleteMission",new {id=Model.User.Id})
-    @Html.ActionLink("All Look Good,Return","ViewJudge","Admin")
+    @Html.ActionLink("Assign Mission Wrong, Delete", "DeleteMission", new { id = Model.User.Id })
+    @Html.ActionLink("All Look Good,Return", "ViewJudge", "Admin")
 </body>
 </html>

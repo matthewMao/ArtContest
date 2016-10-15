@@ -10,7 +10,6 @@
     <link href="~/Common.css" rel="stylesheet" />
 </head>
 <body>
-    <div> 
         <h1>Welcome to CTEF 2016 Art Contest</h1>
         @using (Html.BeginForm("Index", "Home", FormMethod.Post))
         {
@@ -21,6 +20,5 @@
             <input type="submit" value="Login" /><br />
             @Html.ActionLink("Don't have an account?", "Index", "UserSignUp", null, new { @class = "actionLink" })<br />
         }
-    </div>
 </body>
 </html>

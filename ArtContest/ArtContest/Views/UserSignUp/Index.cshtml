@@ -38,6 +38,7 @@
 
                     <span>Middle Name (Optional)</span><br />
                     @Html.TextBoxFor(u => u.UserMiddleName)<br />
+                    @Html.ValidationMessageFor(u => u.UserMiddleName)<br />
 
                     <span>Last Name</span><br />
                     @Html.TextBoxFor(u => u.UserLastName)
@@ -70,6 +71,7 @@
 
                     <span>Parent/Guardian Middle Name (Optional)</span><br />
                     @Html.TextBoxFor(u => u.ParentMiddleName)<br />
+                    @Html.ValidationMessageFor(u => u.ParentMiddleName)<br />
 
                     <span>Parent/Guardian Last Name</span><br />
                     @Html.TextBoxFor(u => u.ParentLastName)
@@ -108,6 +110,7 @@
 
                     <span>Teacher Middle Name</span><br />
                     @Html.TextBoxFor(u => u.TeacherMiddleName)<br />
+                    @Html.ValidationMessageFor(u => u.TeacherMiddleName)<br />
 
                     <span>Teacher Last Name</span><br />
                     @Html.TextBoxFor(u => u.TeacherLastName)

@@ -6,22 +6,31 @@
 <head>
     <meta name="viewport" content="width=device-width" />
     <title>Index</title>
+    <link href="~/Common.css" rel="stylesheet" />
 </head>
 <body>
  <div>
    <table border="1">
        <tr>
           <th>Title</th>
+          <th>Score</th>
           <th>Art</th>
-          <th>Description</th>
           <th>View Larger Picture And Score</th>
-           <link href="~/Common.css" rel="stylesheet" />
        </tr>
-           @foreach(var p in Model) {
+           @foreach (var p in Model)
+           {
+               double result = 0;
+               foreach (var item in p.PictureRates)
+               {
+                   if (item.PictureId == p.Id && item.JudgeId== (int)Session["userid"])
+                   {
+                       result = item.Rate;
+                   }
+               }
        <tr>
            <td>@p.Title</td>
+           <td>@result</td>
            <td><img src="~/@p.PicturePath" width="500" height="300" /></td>
-           <td>@p.Description</td>
            <td>@Html.ActionLink("View Bigger Picture and Score","Larger",new { id = p.Id })</td>
       </tr>
             }

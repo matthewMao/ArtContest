@@ -20,9 +20,10 @@
             @Html.TextBoxFor(j=>j.User.UserMiddleName)<br />
             <span>User Lastname</span>
             @Html.TextBoxFor(j=>j.User.UserLastName)<br />
-            <span>User Type</span>
+            @*<span>User Type</span>
             @Html.DropDownListFor(j=>j.User.UserTypeId,
-    Model.UserType.Select(c => new SelectListItem() { Text ="Judge",Value = "2" }))<br />
+    Model.UserType.Select(c => new SelectListItem() { Text ="Judge",Value = "2" }))<br />*@
+            @Html.HiddenFor(j=>j.User.UserTypeId)
             <input type="submit" value="Create this Judge" />
         }
         @Html.ActionLink("Cancel and Return","Index","Admin")
