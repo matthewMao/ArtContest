@@ -7,6 +7,7 @@ using ArtContest.Models;
 using System.IO;
 
 
+
 namespace ArtContest.Controllers
 {
     public class AdminController : Controller
@@ -56,9 +57,12 @@ namespace ArtContest.Controllers
             foreach(var grade in Grade) {
                 CTEFArtContestEntities dbc = new CTEFArtContestEntities();
                 List<Student> stus = dbc.Students.Where(s => s.Grade == grade).ToList();
-                int amount = stus.Count();
                 foreach(var s in stus) {
                     Picture pic = dbc.Pictures.Where(p => p.UserId == s.Id && p.Public.Equals("Yes")).SingleOrDefault();
+                    if(pic == null) {
+                        TempData["notice"] = "One or more grades have empty pictures, System won't assign the empty picture";
+                        return RedirectToAction("DividePic");
+                    }
                     PictureRate pr = new PictureRate();
                     pr.PictureId = pic.Id;
                     pr.JudgeId = judgeId;
@@ -66,15 +70,12 @@ namespace ArtContest.Controllers
                     if(!dbc.PictureRates.Any(r => r.JudgeId == judgeId && r.PictureId == pr.PictureId)) {
                         dbc.PictureRates.Add(pr);
                         dbc.SaveChanges();
-                        amount--;
                     } else {
                         ModelState.AddModelError("You have Assign These Pictures to This Judge","You have Assign These Pictures to This Judge");
                     }
                 }
-
-                
             }
-                  return RedirectToAction("Index","Admin");
+                  return RedirectToAction("ViewJudge","Admin");
         }
         public ActionResult ViewJudge() {
             CTEFArtContestEntities dbc = new CTEFArtContestEntities();
