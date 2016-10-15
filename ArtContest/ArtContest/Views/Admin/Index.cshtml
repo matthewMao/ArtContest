@@ -10,8 +10,13 @@
     <link href="~/Common.css" rel="stylesheet" />
 </head>
 <body>
-    <div>
-        <fieldset>
+        <h1>All Works</h1>
+        <ul>
+            <li>@Html.ActionLink("View Judge", "ViewJudge", "Admin")</li>
+            <li>@Html.ActionLink("View All", "Index", "Admin")</li>
+            
+        </ul>
+        <fieldset style="width:68.5%">
             <legend>Search By School</legend>
             @using(Html.BeginForm("SearchBySchool","Admin",FormMethod.Post)) {
                 <span>School Name:</span>
@@ -19,7 +24,7 @@
                 <input value="Search" type="submit" />
             }
         </fieldset>
-        <fieldset>
+        <fieldset style="width:68.5%">
             <legend>Search By Grade</legend>
             @using(Html.BeginForm("SearchByGrade","Admin",FormMethod.Post)) {
                 <span>Grade:</span>
@@ -42,7 +47,7 @@
                 <input value="Search" type="submit" />
             }
         </fieldset>
-        <fieldset>
+        <fieldset style="width:68.5%">
             <legend>Search By School Then By Grade</legend>
             @using(Html.BeginForm("SearchBySchoolThenByGrade","Admin",FormMethod.Post)) {
                 <span>School</span>
@@ -67,16 +72,12 @@
                 <input value="Search" type="submit" />
             }
         </fieldset>
-    </div>
-    <div>
-        @Html.ActionLink("View Judge","ViewJudge","Admin")<br />
-        @Html.ActionLink("View All","Index","Admin")
-    </div>
-    <div>Result:@Model.Count()</div>
-    <div>
-        <button onclick="donwloadAll()"> Download All </button>
-    </div>
-    <div>
+        <div id="SearchResult">
+        <span style="font-size:20px; margin-left:auto">Result:@Model.Count()</span>
+        <span style="margin-left:58%"><button id="DownLoadBtn" onclick="donwloadAll()" style="margin-left:15%"> Download All </button></span><br />
+        </div>
+        
+    
         <table border="1" id="allImages">
             <tr>
                 <th>ID</th>
@@ -112,6 +113,5 @@
                 </tr>
             }
         </table>
-    </div>
 </body>
 </html>

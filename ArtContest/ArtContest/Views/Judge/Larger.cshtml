@@ -5,16 +5,24 @@
     <meta name="viewport" content="width=device-width" />
     <script src="~/JudgeLarger.js"></script>
     <link href="~/Common.css" rel="stylesheet" />
+    <script src="~/Scripts/jquery-3.1.1.js"></script>
+    <script src="~/Scripts/jquery.validate.js"></script>
+    <script src="~/Scripts/jquery.validate.unobtrusive.js"></script>
     <title>Larger</title>
 </head>
 <body>
-    <img src="~/@Model.Picture.PicturePath" />
+    <img style="width:70%; margin-left:15%" src="~/@Model.Picture.PicturePath" />
     @using(Html.BeginForm("Score","Judge",FormMethod.Post)) {
-        <label>Picture ID</label><input type="text" name="picid" value=@Model.PictureRate.PictureId readonly /><br />
-        <label>Judge ID</label><input type="text" name="judgeid" value=@Model.PictureRate.JudgeId readonly /><br />
-        <span>Enter Score Between 0~100</span>
-        @Html.TextBox("score")
-        <input id="larger" type="submit" onclick="disableScore" value="Add" />
+        @Html.HiddenFor(m=>m.PictureRate.JudgeId)
+        @Html.HiddenFor(m => m.PictureRate.PictureId)
+            <h2>@Html.DisplayFor(p => p.Picture.Title)</h2>
+            <p>@Html.DisplayFor(p => p.Picture.Description)</p>
+            <span>Score: @Html.DisplayFor(r=>r.PictureRate.Rate)</span><br />
+        <span>Enter New Score Between 0~100</span>
+        @Html.TextBoxFor(m => m.Score);
+        @Html.ValidationMessageFor(m=>m.Score)<br />
+        <input type="submit" value="Update" />
     }
 </body>
 </html>
+

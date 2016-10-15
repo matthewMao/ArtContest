@@ -109,6 +109,7 @@ namespace ArtContest.Controllers
                 return View();
             }
             dbc.Entry(pic).State = System.Data.Entity.EntityState.Modified;
+            
             if (pic.Public == "Yes")
             {
                 foreach (var picture in dbc.Pictures)

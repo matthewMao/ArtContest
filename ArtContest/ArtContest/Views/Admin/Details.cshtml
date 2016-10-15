@@ -10,7 +10,11 @@
 </head>
 
 <body>
-    <img src="~/@Model.PicturePath" />
+    <h1>Picture Details</h1>
+    <ul>
+        <li style="float:right">@Html.ActionLink("Back", "Index", "Admin")</li>
+    </ul>
+    <img style="width:70%; margin-left:15%" src="~/@Model.PicturePath" />
     <table border="1">
         <tr>
             <th>Title</th>
@@ -31,24 +35,24 @@
             <th>Uploaded Date</th>
         </tr>
         <tr>
-            <th>@Model.Title</th>
-            <th>@Model.Description</th>
-            <th>@Model.Student.User.UserFirstName</th>
-            <th>@Model.Student.User.UserLastName</th>
-            <th>@Model.Student.Age</th>
-            <th>@Model.Student.School</th>
-            <th>@Model.Student.Street</th>
-            <th>@Model.Student.City</th>
-            <th>@Model.Student.State</th>
-            <th>@Model.Student.Zip</th>
-            <th>@Model.Student.TeacherFirstName</th>
-            <th>@Model.Student.TeacherLastName</th>
-            <th>@Model.Student.ParentFirstName</th>
-            <th>@Model.Student.ParentLastName</th>
-            <th>@Model.Student.ParentEmail</th>
-            <th>@Model.UploadDate</th>
+            <td>@Model.Title</td>
+            <td>@Model.Description</td>
+            <td>@Model.Student.User.UserFirstName</td>
+            <td>@Model.Student.User.UserLastName</td>
+            <td>@Model.Student.Age</td>
+            <td>@Model.Student.School</td>
+            <td>@Model.Student.Street</td>
+            <td>@Model.Student.City</td>
+            <td>@Model.Student.State</td>
+            <td>@Model.Student.Zip</td>
+            <td>@Model.Student.TeacherFirstName</td>
+            <td>@Model.Student.TeacherLastName</td>
+            <td>@Model.Student.ParentFirstName</td>
+            <td>@Model.Student.ParentLastName</td>
+            <td>@Model.Student.ParentEmail</td>
+            <td>@Model.UploadDate</td>
         </tr>
     </table>
-    @Html.ActionLink("Back","Index","Admin")
+    
 </body>
 </html>

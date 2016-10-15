@@ -27,20 +27,22 @@ namespace ArtContest.Controllers
             }
             return View(pics);
         }
+
         public ActionResult Larger(int id) {
+            var userid = (int)Session["userid"];
             CTEFArtContestEntities dbc = new CTEFArtContestEntities();
             ScoreViewModel vm = new ScoreViewModel();
-            vm.PictureRate = dbc.PictureRates.SingleOrDefault(p => p.PictureId == id);
+            vm.PictureRate = dbc.PictureRates.SingleOrDefault(p => p.PictureId == id && p.JudgeId == userid);
             vm.Picture = dbc.Pictures.SingleOrDefault(p => p.Id == id);
             return View(vm);
         }
-        public ActionResult Score(int picid, int judgeid, int score) {
+        
+
+        [HttpPost]
+        public ActionResult Score(ScoreViewModel sc) {
             CTEFArtContestEntities dbc = new CTEFArtContestEntities();
-            PictureRate pr = new PictureRate();
-            pr.JudgeId = judgeid;
-            pr.PictureId = picid;
-            pr.Rate = score;
-            dbc.Entry(pr).State=System.Data.Entity.EntityState.Modified;
+            sc.PictureRate.Rate = sc.Score;
+            dbc.Entry(sc.PictureRate).State=System.Data.Entity.EntityState.Modified;
             dbc.SaveChanges();
             return RedirectToAction("Index","Judge");
         }

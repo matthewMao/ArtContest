@@ -9,6 +9,12 @@
     <link href="~/Common.css" rel="stylesheet" />
 </head>
 <body>
+    <h1>Judge Management</h1>
+    <ul>
+        <li>@Html.ActionLink("Add a new Judge", "CreateJudge", "Admin")</li>
+        <li>@Html.ActionLink("Assign Art to Judge For Grading", "DividePic", "Admin")</li>
+        <li style="float:right">@Html.ActionLink("Return", "Index", "Admin")</li>
+    </ul>
     <table border="1">
         <tr>
             <th>Judge ID</th>
@@ -29,8 +35,8 @@
             </tr>
         }
     </table>
-    @Html.ActionLink("Add a new Judge","CreateJudge","Admin")
-    @Html.ActionLink("Assign Art to Judge For Grading","DividePic","Admin")
-    @Html.ActionLink("Return","Index","Admin")
+    
+    
+    
 </body>
 </html>
