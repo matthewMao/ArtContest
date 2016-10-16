@@ -61,7 +61,7 @@ namespace ArtContest.Controllers
                     Picture pic = dbc.Pictures.Where(p => p.UserId == s.Id && p.Public.Equals("Yes")).SingleOrDefault();
                     if(pic == null) {
                         TempData["notice"] = "One or more grades have empty pictures, System won't assign the empty picture";
-                        return RedirectToAction("DividePic");
+                        continue;
                     }
                     PictureRate pr = new PictureRate();
                     pr.PictureId = pic.Id;
