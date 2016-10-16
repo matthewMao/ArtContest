@@ -54,6 +54,10 @@ namespace ArtContest.Controllers
         }
         [HttpPost]
         public ActionResult DividePic(int judgeId,string[] Grade) {
+            if(Grade == null) 
+                { TempData["notice"] = "Please Don't leave the grade blank";
+                return RedirectToAction("DividePic");
+            }
             foreach(var grade in Grade) {
                 CTEFArtContestEntities dbc = new CTEFArtContestEntities();
                 List<Student> stus = dbc.Students.Where(s => s.Grade == grade).ToList();
