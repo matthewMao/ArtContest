@@ -15,10 +15,11 @@ namespace ArtContest.Controllers
         //[Authorize(Roles ="Admin")]
         public ActionResult Index()
         {
-            if (Session["userid"]==null) return RedirectToAction("Index", "Home");
+            CTEFArtContestEntities dbc = new CTEFArtContestEntities();
+            if (Session["userid"]==null || !dbc.Users.Where(u => u.UserTypeId == 1).Select(u => u.Id).ToList().Contains((int)Session["userid"])) return RedirectToAction("Index", "Home");
             var userid = (int)Session["userid"];
             
-            CTEFArtContestEntities dbc = new CTEFArtContestEntities();
+            
             List<Picture> pics= dbc.Pictures.Include("Student").Where(p => p.Public.Equals("Yes")).ToList();
             return View(pics);
         }

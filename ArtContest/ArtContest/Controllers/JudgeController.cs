@@ -13,9 +13,9 @@ namespace ArtContest.Controllers
         // GET: JudgeAccount
         public ActionResult Index()
         {
-            if(Session["userid"]==null) return RedirectToAction("Index", "Home");
-            var userid = (int)Session["userid"];
             CTEFArtContestEntities dbc = new CTEFArtContestEntities();
+            if (Session["userid"]==null||!dbc.Users.Where(u=>u.UserTypeId==2).Select(u=>u.Id).ToList().Contains((int)Session["userid"])) return RedirectToAction("Index", "Home");
+            var userid = (int)Session["userid"];
             var prs = dbc.PictureRates.Where(p => p.JudgeId == userid).ToList();
             List<Picture> pics = new List<Picture>();
             foreach (var pid in prs)

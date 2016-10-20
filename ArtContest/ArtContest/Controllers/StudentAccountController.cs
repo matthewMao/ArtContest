@@ -15,7 +15,7 @@ namespace ArtContest.Controllers
         // GET: StudentAccount
         public ActionResult Index()
         {
-            if (Session["userid"] == null) return RedirectToAction("Index", "Home");
+            if (Session["userid"] == null || !dbc.Users.Where(u => u.UserTypeId == 3).Select(u => u.Id).ToList().Contains((int)Session["userid"])) return RedirectToAction("Index", "Home");
             var userid = (int)Session["userid"];
             List<Picture> allPic = dbc.Pictures.Where(p => p.UserId == userid).OrderBy(p=>p.Title).ThenBy(p => p.UploadDate).ToList();
             return View(allPic);
