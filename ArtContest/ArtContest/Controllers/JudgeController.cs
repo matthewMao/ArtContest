@@ -13,6 +13,7 @@ namespace ArtContest.Controllers
         // GET: JudgeAccount
         public ActionResult Index()
         {
+            if(Session["userid"]==null) return RedirectToAction("Index", "Home");
             var userid = (int)Session["userid"];
             CTEFArtContestEntities dbc = new CTEFArtContestEntities();
             var prs = dbc.PictureRates.Where(p => p.JudgeId == userid).ToList();
