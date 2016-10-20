@@ -15,8 +15,8 @@ namespace ArtContest.Controllers
         //[Authorize(Roles ="Admin")]
         public ActionResult Index()
         {
+            var userid = (int)Session["userid"];
             CTEFArtContestEntities dbc = new CTEFArtContestEntities();
-            
             List<Picture> pics= dbc.Pictures.Include("Student").Where(p => p.Public.Equals("Yes")).ToList();
             return View(pics);
         }
