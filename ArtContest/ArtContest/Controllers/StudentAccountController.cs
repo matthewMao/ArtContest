@@ -79,8 +79,13 @@ namespace ArtContest.Controllers
         public ActionResult Delete(int id)
         {
             var target = dbc.Pictures.SingleOrDefault(p => p.Id == id);
+            List<PictureRate> allRates = dbc.PictureRates.Where(p => p.PictureId == id).ToList();
             if (target != null)
             {
+                foreach (var picRate in allRates)
+                {
+                    dbc.PictureRates.Remove(picRate);
+                }
                 dbc.Pictures.Remove(target);
                 dbc.SaveChanges();
             }
