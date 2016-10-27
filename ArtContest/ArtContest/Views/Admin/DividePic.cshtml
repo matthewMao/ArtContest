@@ -34,6 +34,7 @@
     @if(TempData["notice"] != null) {
         <p>@TempData["notice"]</p>
     }
+    @Html.ActionLink("Count Pictures","CountPic","Admin")
     @Html.ActionLink("Back to View Judge","ViewJudge","Admin")
 </body>
 </html>

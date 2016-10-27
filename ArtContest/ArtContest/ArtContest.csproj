@@ -288,6 +288,8 @@
     <Content Include="Views\Admin\DividePic.cshtml" />
     <Content Include="Views\Admin\CheckPic.cshtml" />
     <Content Include="Views\Judge\Larger.cshtml" />
+    <Content Include="Views\Admin\CountPic.cshtml" />
+    <Content Include="Views\Admin\ChangeP.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
