@@ -1,0 +1,90 @@
+﻿@using ArtContest.Models
+@model List<Picture>
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>CountPic</title>
+</head>
+<body>
+    <div>
+        <table border="1">
+            <tr>
+                <th>Preschool</th>
+                <th>Grade 1</th>
+                <th>Grade 2</th>
+                <th>Grade 3</th>
+                <th>Grade 4</th>
+                <th>Grade 5</th>
+                <th>Grade 6</th>
+                <th>Grade 7</th>
+                <th>Grade 8</th>
+                <th>Grade 9</th>
+                <th>Grade 10</th>
+                <th>Grade 11</th>
+                <th>Grade 12</th>
+            </tr>
+            <tr>
+                @{int pre = 0;
+                    int g1 = 0;
+                    int g2 = 0;
+                    int g3 = 0;
+                    int g4 = 0;
+                    int g5 = 0;
+                    int g6 = 0;
+                    int g7 = 0;
+                    int g8 = 0;
+                    int g9 = 0;
+                    int g10 = 0;
+                    int g11 = 0;
+                    int g12 = 0;
+                    foreach(var p in Model) {
+                        if(p.Student.Grade.Equals("Preschool")) {
+                            pre++;
+                        } else if(p.Student.Grade.Equals("Grade 1")) {
+                            g1++;
+                        } else if(p.Student.Grade.Equals("Grade 2")) {
+                            g2++;
+                        } else if(p.Student.Grade.Equals("Grade 3")) {
+                            g3++;
+                        } else if(p.Student.Grade.Equals("Grade 4")) {
+                            g4++;
+                        } else if(p.Student.Grade.Equals("Grade 5")) {
+                            g5++;
+                        } else if(p.Student.Grade.Equals("Grade 6")) {
+                            g6++;
+                        } else if(p.Student.Grade.Equals("Grade 7")) {
+                            g7++;
+                        } else if(p.Student.Grade.Equals("Grade 8")) {
+                            g8++;
+                        } else if(p.Student.Grade.Equals("Grade 9")) {
+                            g9++;
+                        } else if(p.Student.Grade.Equals("Grade 10")) {
+                            g10++;
+                        } else if(p.Student.Grade.Equals("Grade 11")) {
+                            g11++;
+                        } else if(p.Student.Grade.Equals("Grade 12")) {
+                            g12++;
+                        }
+                    }
+                    <td>@pre</td>
+                    <td>@g1</td>
+                    <td>@g2</td>
+                    <td>@g3</td>
+                    <td>@g4</td>
+                    <td>@g5</td>
+                    <td>@g6</td>
+                    <td>@g7</td>
+                    <td>@g8</td>
+                    <td>@g9</td>
+                    <td>@g10</td>
+                    <td>@g11</td>
+                    <td>@g12</td>
+                }
+            </tr>
+        </table> 
+        @Html.ActionLink("Back to Divide Pictures","DividePic","Admin")
+    </div>
+</body>
+</html>

@@ -9,32 +9,37 @@
     <link href="~/Common.css" rel="stylesheet" />
 </head>
 <body>
- <div>
-   <table border="1">
-       <tr>
-          <th>Title</th>
-          <th>Score</th>
-          <th>Art</th>
-          <th>View Larger Picture And Score</th>
-       </tr>
-           @foreach (var p in Model)
-           {
-               double result = 0;
-               foreach (var item in p.PictureRates)
-               {
-                   if (item.PictureId == p.Id && item.JudgeId== (int)Session["userid"])
-                   {
-                       result = item.Rate;
-                   }
-               }
-       <tr>
-           <td>@p.Title</td>
-           <td>@result</td>
-           <td><img src="~/@p.PicturePath" width="500" height="300" /></td>
-           <td>@Html.ActionLink("View Bigger Picture and Score","Larger",new { id = p.Id })</td>
-      </tr>
-            }
+    <div>       
+        <table border="1">
+            <h1>Count Total: @Model.Count()</h1>
+            <tr>
+                <th>Title</th>
+                <th>Score</th>
+                <th>Art</th>
+                <th>View Larger Picture And Score</th>
+            </tr>
+            @foreach(var p in Model) {
+                double result = 0;
+                foreach(var item in p.PictureRates) {
+                    if(item.PictureId == p.Id && item.JudgeId == (int)Session["userid"]) {
+                        result = item.Rate;
+                    }
+                }
+                <tr>
+                    <td>@p.Title</td>
+                    @{ 
+                        if(result == 0) {
+                        <td bgcolor="red" id="score">@result</td>
+                        } else {
+                        <td id="score">@result</td>
+                    }
+                    <td><img src="~/@p.PicturePath" width="500" height="300" /></td>
+                    <td>@Html.ActionLink("View Bigger Picture and Score","Larger",new { id = p.Id })</td>
+                        }
+                 </tr>                           
+                        }
         </table>
+        
     </div>
 </body>
 </html>

@@ -8,25 +8,23 @@ using System.IO;
 
 
 
-namespace ArtContest.Controllers
-{
-    public class AdminController : Controller
-    {
+namespace ArtContest.Controllers {
+    public class AdminController:Controller {
         //[Authorize(Roles ="Admin")]
-        public ActionResult Index()
-        {
+        public ActionResult Index() {
             CTEFArtContestEntities dbc = new CTEFArtContestEntities();
-            if (Session["userid"]==null || !dbc.Users.Where(u => u.UserTypeId == 1).Select(u => u.Id).ToList().Contains((int)Session["userid"])) return RedirectToAction("Index", "Home");
+            if(Session["userid"] == null || !dbc.Users.Where(u => u.UserTypeId == 1).Select(u => u.Id).ToList().Contains((int)Session["userid"])) return RedirectToAction("Index","Home");
             var userid = (int)Session["userid"];
-            
-            
-            List<Picture> pics= dbc.Pictures.Include("Student").Where(p => p.Public.Equals("Yes")).ToList();
+
+
+            List<Picture> pics = dbc.Pictures.Include("Student").Where(p => p.Public.Equals("Yes")).ToList();
             return View(pics);
         }
         public ActionResult DeleteMission(int id) {
             CTEFArtContestEntities dbc = new CTEFArtContestEntities();
-            List<PictureRate> pics= dbc.PictureRates.Where(p => p.JudgeId == id).ToList();
-            if(pics.Count() > 0) { dbc.PictureRates.RemoveRange(pics); dbc.SaveChanges();
+            List<PictureRate> pics = dbc.PictureRates.Where(p => p.JudgeId == id).ToList();
+            if(pics.Count() > 0) {
+                dbc.PictureRates.RemoveRange(pics); dbc.SaveChanges();
                 return RedirectToAction("ViewJudge");
             }
             return RedirectToAction("ViewJudge");
@@ -34,31 +32,29 @@ namespace ArtContest.Controllers
         [HttpGet]
         public ActionResult DividePic() {
             CTEFArtContestEntities dbc = new CTEFArtContestEntities();
-            List<User> judge = dbc.Users.Where(u=>u.UserTypeId==2).ToList();
+            List<User> judge = dbc.Users.Where(u => u.UserTypeId == 2).ToList();
             return View(judge);
         }
         public ActionResult CheckPic(int id) {
             CTEFArtContestEntities dbc = new CTEFArtContestEntities();
             CheckPicViewModel vm = new CheckPicViewModel();
-            vm.User= dbc.Users.SingleOrDefault(u => u.Id == id);
+            vm.User = dbc.Users.SingleOrDefault(u => u.Id == id);
             vm.PictureRates = dbc.PictureRates.Where(p => p.JudgeId == id).ToList();
             vm.Grades = new HashSet<string>();
             //vm.Grades = dbc.Students.Where(s=>s.Grade = )
             var pics = new HashSet<Picture>();
-            foreach (var item in vm.PictureRates)
-            {
-                pics.Add(dbc.Pictures.Where(p=>p.Id==item.PictureId).SingleOrDefault());
+            foreach(var item in vm.PictureRates) {
+                pics.Add(dbc.Pictures.Where(p => p.Id == item.PictureId).SingleOrDefault());
             }
-            foreach (var item in pics)
-            {
-                vm.Grades.Add(dbc.Students.SingleOrDefault(s=>s.Id==item.UserId).Grade);
+            foreach(var item in pics) {
+                vm.Grades.Add(dbc.Students.SingleOrDefault(s => s.Id == item.UserId).Grade);
             }
             return View(vm);
         }
         [HttpPost]
         public ActionResult DividePic(int judgeId,string[] Grade) {
-            if(Grade == null) 
-                { TempData["notice"] = "Please Don't leave the grade blank";
+            if(Grade == null) {
+                TempData["notice"] = "Please Don't leave the grade blank";
                 return RedirectToAction("DividePic");
             }
             foreach(var grade in Grade) {
@@ -82,11 +78,35 @@ namespace ArtContest.Controllers
                     }
                 }
             }
-                  return RedirectToAction("ViewJudge","Admin");
+            return RedirectToAction("ViewJudge","Admin");
+        }
+        public ActionResult CountPic() {
+            CTEFArtContestEntities dbc = new CTEFArtContestEntities();
+            List<Picture> pics = dbc.Pictures.Where(s => s.Public.Equals("Yes")).ToList();
+            return View(pics);
+        }
+        [HttpGet]
+        public ActionResult ChangeP() {
+            return View();
+
+        }
+        [HttpPost]
+        public ActionResult ChangeP(string password1,string password2,User user) {
+            if(password1 != password2) {
+                TempData["notice"] = "The password You just enter was different from the First one you enter";
+                return RedirectToAction("ChangeP");
+            }
+            CTEFArtContestEntities dbc = new CTEFArtContestEntities();
+            var admin = dbc.Users.Where(u => u.UserTypeId == 1).SingleOrDefault();
+            admin.Password = password1;
+            dbc.Entry(admin).State = System.Data.Entity.EntityState.Modified;
+            dbc.SaveChanges();
+            return RedirectToAction("Index");
+
         }
         public ActionResult ViewJudge() {
             CTEFArtContestEntities dbc = new CTEFArtContestEntities();
-            List<User> judge = dbc.Users.Where(u=>u.UserType.Id==2).ToList();
+            List<User> judge = dbc.Users.Where(u => u.UserType.Id == 2).ToList();
             return View(judge);
         }
         [HttpGet]
@@ -99,8 +119,7 @@ namespace ArtContest.Controllers
         [HttpPost]
         public ActionResult CreateJudge(User user) {
             CTEFArtContestEntities dbc = new CTEFArtContestEntities();
-            if (user.UserName == null || user.Password == null || user.UserFirstName == null || user.UserLastName == null)
-            {
+            if(user.UserName == null || user.Password == null || user.UserFirstName == null || user.UserLastName == null) {
                 return View();
             }
             user.UserTypeId = 2;
@@ -134,7 +153,7 @@ namespace ArtContest.Controllers
             List<Picture> pics = dbc.Pictures.Include("Student").Where(p => p.Student.Grade.Equals(grade) && p.Public.Equals("Yes")).ToList();
             return View("Index",pics);
         }
-        public ActionResult SearchBySchoolThenByGrade(string school, string grade) {
+        public ActionResult SearchBySchoolThenByGrade(string school,string grade) {
             CTEFArtContestEntities dbc = new CTEFArtContestEntities();
             List<Picture> pics = dbc.Pictures.Include("Student").Where(p => p.Student.School.Equals(school) && p.Student.Grade.Equals(grade) && p.Public.Equals("Yes")).ToList();
             return View("Index",pics);

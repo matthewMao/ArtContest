@@ -9,33 +9,32 @@
     <link href="~/Common.css" rel="stylesheet" />
 </head>
 <body>
-        @using (Html.BeginForm("DividePic", "Admin", FormMethod.Post))
-        {
-            <span>Please select a Judge</span><br />
+    @using(Html.BeginForm("DividePic","Admin",FormMethod.Post)) {
+        <label>Please select a Judge</label>
         <select name="judgeId">
             @foreach(var j in Model) {
                 <option id="judgeId" value=@j.Id>@j.UserFirstName @j.UserLastName</option>
             }
         </select>
-        <br />
-            <input style="margin-left:15%" type="checkbox" id="grade" name="grade" value="Preschool" /><label >Preschool</label>
-            <input style="margin-left:29.3%" type="checkbox" id="grade" name="grade" value="Grade 1" /><label>Grade 1</label><br />
-            <input style="margin-left:15%" type="checkbox" id="grade" name="grade" value="Grade 2" /><label>Grade 2</label>
-            <input style="margin-left:30%" type="checkbox" id="grade" name="grade" value="Grade 3" /><label>Grade 3</label><br />
-            <input style="margin-left:15%" type="checkbox" id="grade" name="grade" value="Grade 4" /><label>Grade 4</label>
-            <input style="margin-left:30%" type="checkbox" id="grade" name="grade" value="Grade 5" /><label>Grade 5</label><br />
-            <input style="margin-left:15%" type="checkbox" id="grade" name="grade" value="Grade 6" /><label>Grade 6</label>
-            <input style="margin-left:30%" type="checkbox" id="grade" name="grade" value="Grade 7" /><label>Grade 7</label><br />
-            <input style="margin-left:15%" type="checkbox" id="grade" name="grade" value="Grade 8" /><label>Grade 8</label>
-            <input style="margin-left:30%" type="checkbox" id="grade" name="grade" value="Grade 9" /><label>Grade 9</label><br />
-            <input style="margin-left:15%" type="checkbox" id="grade" name="grade" value="Grade 10" /><label>Grade 10</label>
-            <input style="margin-left:29.5%" type="checkbox" id="grade" name="grade" value="Grade 11" /><label>Grade 11</label><br />
-            <input style="margin-left:15%" type="checkbox" id="grade" name="grade" value="Grade 12" /><label>Grade 12</label><br />
-            <input style="margin-left:15%" type="submit" onclick="myFunction()" value="Confirm" />
+            <input type="checkbox" id="grade" name="grade" value="Preschool" /><label>Preschool</label>
+            <input type="checkbox" id="grade" name="grade" value="Grade 1" /><label>Grade 1</label>
+            <input type="checkbox" id="grade" name="grade" value="Grade 2" /><label>Grade 2</label>
+            <input type="checkbox" id="grade" name="grade" value="Grade 3" /><label>Grade 3</label>
+            <input type="checkbox" id="grade" name="grade" value="Grade 4" /><label>Grade 4</label>
+            <input type="checkbox" id="grade" name="grade" value="Grade 5" /><label>Grade 5</label>
+            <input type="checkbox" id="grade" name="grade" value="Grade 6" /><label>Grade 6</label>
+            <input type="checkbox" id="grade" name="grade" value="Grade 7" /><label>Grade 7</label>
+            <input type="checkbox" id="grade" name="grade" value="Grade 8" /><label>Grade 8</label>
+            <input type="checkbox" id="grade" name="grade" value="Grade 9" /><label>Grade 9</label>
+            <input type="checkbox" id="grade" name="grade" value="Grade 10" /><label>Grade 10</label>
+            <input type="checkbox" id="grade" name="grade" value="Grade 11" /><label>Grade 11</label>
+            <input type="checkbox" id="grade" name="grade" value="Grade 12" /><label>Grade 12</label>
+            <input type="submit" onclick="myFunction()" value="Confirm" />
     }
     @if(TempData["notice"] != null) {
         <p>@TempData["notice"]</p>
     }
-    @Html.ActionLink("Back to View Judge","ViewJudge","Admin",null, new { @class = "actionLink" })
+    @Html.ActionLink("Count Pictures","CountPic","Admin")
+    @Html.ActionLink("Back to View Judge","ViewJudge","Admin")
 </body>
 </html>
