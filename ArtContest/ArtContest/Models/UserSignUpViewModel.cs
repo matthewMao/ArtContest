@@ -11,13 +11,14 @@ namespace ArtContest.Models
     public class UserSignUpViewModel
     {
         [Required(ErrorMessage = "Please enter your username")]
-        [StringLength(20, MinimumLength = 4, ErrorMessage = "Must be at least 4 characters long.")]
+        [StringLength(20, MinimumLength = 4, ErrorMessage = "Must between 4 to 20 characters long.")]
         [Remote("CheckForDuplication", "UserSignUp",ErrorMessage = "Username is already exist.")]
+        [RegularExpression(@"^[a-zA-Z0-9]+$", ErrorMessage = "Letters and digits only.")]
         public string UserName { get; set; }
 
         
         [Required(ErrorMessage = "Please enter your password")]
-        [StringLength(20, MinimumLength = 6, ErrorMessage = "Must be at least 6 characters long.")]
+        [StringLength(20, MinimumLength = 6, ErrorMessage = "Must between 6 to 20 characters long.")]
         public string Password { get; set; }
 
         [Required(ErrorMessage = "Please enter your password again")]

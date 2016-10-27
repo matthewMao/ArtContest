@@ -38,10 +38,10 @@ namespace ArtContest.Controllers
             }
             var picIdList = dbc.Pictures.Select(p => p.Id).ToList();
             Random random = new Random();
-            int randomNumber = random.Next(1, 1000);
+            int randomNumber = random.Next(1, 5000);
             while (picIdList.Contains(randomNumber))
             {
-                randomNumber = random.Next(1, 1000);
+                randomNumber = random.Next(1, 5000);
             }
             if (uploadingFile != null && !string.IsNullOrEmpty(uploadingFile.FileName))
             {
@@ -127,25 +127,81 @@ namespace ArtContest.Controllers
             return RedirectToAction("index");
         }
 
-        //[HttpGet]
-        //public ActionResult EditStudentInfo(int id)
-        //{
-        //    EditStudentInfoViewModel vm = new EditStudentInfoViewModel();
-        //    vm.User = dbc.Users.SingleOrDefault(b => b.Id==id);
-        //    vm.Student = dbc.Students.SingleOrDefault(b => b.Id == id);
-        //    return View(vm);
-        //}
+        [HttpGet]
+        public ActionResult ChangePassword()
+        {
+            var id = (int)Session["userid"];
+            EditStudentInfoViewModel vm = new EditStudentInfoViewModel();
+            vm.User = dbc.Users.Where(u => u.Id == id).SingleOrDefault();
+            return View(vm);
+        }
 
-        //[HttpPost]
-        //public ActionResult EditStudentInfo(User user, Student student)
-        //{
-        //    if (pic.Description == null || pic.Public == null || pic.Title == null)
-        //    {
-        //        return View();
-        //    }
-        //    dbc.Entry(pic).State = System.Data.Entity.EntityState.Modified;
-        //    dbc.SaveChanges();
-        //    return RedirectToAction("index");
-        //}
+        [HttpPost]
+        public ActionResult ChangePassword(EditStudentInfoViewModel esi)
+        {
+            esi.User.Password = esi.Password;
+            dbc.Entry(esi.User).State = System.Data.Entity.EntityState.Modified;
+            dbc.SaveChanges();
+            return RedirectToAction("index");
+        }
+
+        [HttpGet]
+        public ActionResult EditStudentInfo()
+        {
+            var id = (int)Session["userid"];
+            EditStudentInfoViewModel vm = new EditStudentInfoViewModel();
+            vm.User = dbc.Users.Where(u => u.Id == id).SingleOrDefault();
+            vm.Student = dbc.Students.Where(u => u.Id == id).SingleOrDefault();
+            vm.UserFirstName = dbc.Users.Where(u => u.Id == id).Select(u => u.UserFirstName).SingleOrDefault();
+            vm.UserLastName = dbc.Users.Where(u => u.Id == id).Select(u => u.UserLastName).SingleOrDefault();
+            vm.UserMiddleName = dbc.Users.Where(u => u.Id == id).Select(u => u.UserMiddleName).SingleOrDefault();
+            vm.Gender = dbc.Students.Where(u => u.Id == id).Select(u => u.Gender).SingleOrDefault();
+            vm.Age = dbc.Students.Where(u => u.Id == id).Select(u => u.Age).SingleOrDefault();
+            vm.School = dbc.Students.Where(u => u.Id == id).Select(u => u.School).SingleOrDefault();
+            vm.Grade = dbc.Students.Where(u => u.Id == id).Select(u => u.Grade).SingleOrDefault();
+            vm.ParentFirstName = dbc.Students.Where(u => u.Id == id).Select(u => u.ParentFirstName).SingleOrDefault();
+            vm.ParentMiddleName = dbc.Students.Where(u => u.Id == id).Select(u => u.ParentMiddleName).SingleOrDefault();
+            vm.ParentLastName = dbc.Students.Where(u => u.Id == id).Select(u => u.ParentLastName).SingleOrDefault();
+            vm.ParentEmail = dbc.Students.Where(u => u.Id == id).Select(u => u.ParentEmail).SingleOrDefault();
+            vm.ParentPhoneNumber = dbc.Students.Where(u => u.Id == id).Select(u => u.ParentPhoneNumber).SingleOrDefault();
+            vm.Street = dbc.Students.Where(u => u.Id == id).Select(u => u.Street).SingleOrDefault();
+            vm.City = dbc.Students.Where(u => u.Id == id).Select(u => u.City).SingleOrDefault();
+            vm.State = dbc.Students.Where(u => u.Id == id).Select(u => u.State).SingleOrDefault();
+            vm.Zip = dbc.Students.Where(u => u.Id == id).Select(u => u.Zip).SingleOrDefault();
+            vm.TeacherTitle = dbc.Students.Where(u => u.Id == id).Select(u => u.TeacherTitle).SingleOrDefault();
+            vm.TeacherFirstName = dbc.Students.Where(u => u.Id == id).Select(u => u.TeacherFirstName).SingleOrDefault();
+            vm.TeacherMiddleName = dbc.Students.Where(u => u.Id == id).Select(u => u.TeacherMiddleName).SingleOrDefault();
+            vm.TeacherLastName = dbc.Students.Where(u => u.Id == id).Select(u => u.TeacherLastName).SingleOrDefault();
+            return View(vm);
+        }
+
+        [HttpPost]
+        public ActionResult EditStudentInfo(EditStudentInfoViewModel esi)
+        {
+            esi.User.UserFirstName = esi.UserFirstName;
+            esi.User.UserLastName = esi.UserLastName;
+            esi.User.UserMiddleName = esi.UserMiddleName;
+            esi.Student.Gender = esi.Gender;
+            esi.Student.Age = esi.Age;
+            esi.Student.School = esi.School;
+            esi.Student.Grade = esi.Grade;
+            esi.Student.ParentFirstName = esi.ParentFirstName;
+            esi.Student.ParentMiddleName = esi.ParentMiddleName;
+            esi.Student.ParentLastName = esi.ParentLastName;
+            esi.Student.ParentEmail = esi.ParentEmail;
+            esi.Student.ParentPhoneNumber = esi.ParentPhoneNumber;
+            esi.Student.Street = esi.Street;
+            esi.Student.City = esi.City;
+            esi.Student.State = esi.State;
+            esi.Student.Zip = esi.Zip;
+            esi.Student.TeacherTitle = esi.TeacherTitle;
+            esi.Student.TeacherFirstName = esi.TeacherFirstName;
+            esi.Student.TeacherMiddleName = esi.TeacherMiddleName;
+            esi.Student.TeacherLastName = esi.TeacherLastName;
+            dbc.Entry(esi.User).State = System.Data.Entity.EntityState.Modified;
+            dbc.Entry(esi.Student).State = System.Data.Entity.EntityState.Modified;
+            dbc.SaveChanges();
+            return RedirectToAction("index");
+        }
     }
 }
