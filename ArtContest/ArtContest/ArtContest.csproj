@@ -217,6 +217,7 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="Models\AdminIndexViewModel.cs" />
     <Compile Include="Models\CheckPicViewModel.cs" />
     <Compile Include="Models\CreateJudgeModel.cs" />
     <Compile Include="Models\CreateWorkModel.cs" />
@@ -290,6 +291,7 @@
     <Content Include="Views\Judge\Larger.cshtml" />
     <Content Include="Views\Admin\CountPic.cshtml" />
     <Content Include="Views\Admin\ChangeP.cshtml" />
+    <Content Include="Views\Admin\ViewAll.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

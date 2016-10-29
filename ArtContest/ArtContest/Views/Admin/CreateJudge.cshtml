@@ -10,15 +10,15 @@
 <body>
     <div> 
         @using(Html.BeginForm("CreateJudge","Admin",FormMethod.Post,new { enctype = "multipart/form-data" })) {
-            <span>UserName:</span>
+            <span>Username:</span>
             @Html.TextBoxFor(j=>j.User.UserName)<br />
-            <span>PassWord:</span>
+            <span>Password:</span>
             @Html.TextBoxFor(j=>j.User.Password)<br />
-            <span>User Firstname</span>
+            <span>User Firstname:</span>
             @Html.TextBoxFor(j=>j.User.UserFirstName)<br />
-            <span>User Middle Name</span>
+            <span>User Middle Name:</span>
             @Html.TextBoxFor(j=>j.User.UserMiddleName)<br />
-            <span>User Lastname</span>
+            <span>User Lastname:</span>
             @Html.TextBoxFor(j=>j.User.UserLastName)<br />
             @*<span>User Type</span>
             @Html.DropDownListFor(j=>j.User.UserTypeId,

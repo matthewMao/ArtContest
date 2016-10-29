@@ -15,8 +15,13 @@ namespace ArtContest.Controllers {
             CTEFArtContestEntities dbc = new CTEFArtContestEntities();
             if(Session["userid"] == null || !dbc.Users.Where(u => u.UserTypeId == 1).Select(u => u.Id).ToList().Contains((int)Session["userid"])) return RedirectToAction("Index","Home");
             var userid = (int)Session["userid"];
-
-
+            AdminIndexViewModel vm = new AdminIndexViewModel();
+            vm.School = new SelectList(dbc.Pictures.Where(s=>s.Public.Equals("Yes")).Select(s=>s.Student.School),"School");
+            vm.Pictures = dbc.Pictures.Include("Student").Where(p => p.Public.Equals("Yes")).ToList();
+            return View(vm);
+        }
+        public ActionResult ViewAll() {
+            CTEFArtContestEntities dbc = new CTEFArtContestEntities();
             List<Picture> pics = dbc.Pictures.Include("Student").Where(p => p.Public.Equals("Yes")).ToList();
             return View(pics);
         }
@@ -143,20 +148,22 @@ namespace ArtContest.Controllers {
             Picture pic = dbc.Pictures.Include("Student").SingleOrDefault(p => p.Id == id);
             return View("Details",pic);
         }
-        public ActionResult SearchBySchool(string school) {
+        public ActionResult SearchBySchool(FormCollection form) {
             CTEFArtContestEntities dbc = new CTEFArtContestEntities();
+            string school = form["schools"].ToString();
             List<Picture> pics = dbc.Pictures.Include("Student").Where(p => p.Student.School.Equals(school) && p.Public.Equals("Yes")).ToList();
-            return View("Index",pics);
+            return View("ViewAll",pics);
         }
         public ActionResult SearchByGrade(string grade) {
             CTEFArtContestEntities dbc = new CTEFArtContestEntities();
             List<Picture> pics = dbc.Pictures.Include("Student").Where(p => p.Student.Grade.Equals(grade) && p.Public.Equals("Yes")).ToList();
-            return View("Index",pics);
+            return View("ViewAll",pics);
         }
-        public ActionResult SearchBySchoolThenByGrade(string school,string grade) {
+        public ActionResult SearchBySchoolThenByGrade(FormCollection form,string grade) {
             CTEFArtContestEntities dbc = new CTEFArtContestEntities();
+            string school = form["schools"].ToString();
             List<Picture> pics = dbc.Pictures.Include("Student").Where(p => p.Student.School.Equals(school) && p.Student.Grade.Equals(grade) && p.Public.Equals("Yes")).ToList();
-            return View("Index",pics);
+            return View("ViewAll",pics);
         }
     }
 }
