@@ -16,7 +16,7 @@
         @Html.HiddenFor(m=>m.PictureRate.JudgeId)
         @Html.HiddenFor(m => m.PictureRate.PictureId)
             <h2>@Html.DisplayFor(p => p.Picture.Title)</h2>
-            <p>@Html.DisplayFor(p => p.Picture.Description)</p>
+            <p>Description: @Html.DisplayFor(p => p.Picture.Description)</p>
             <span>Score: @Html.DisplayFor(r=>r.PictureRate.Rate)</span><br />
         <span>Enter New Score Between 0~100</span>
         @Html.TextBoxFor(m => m.Score);

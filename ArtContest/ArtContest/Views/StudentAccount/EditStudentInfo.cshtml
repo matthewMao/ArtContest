@@ -7,57 +7,106 @@
     <meta name="viewport" content="width=device-width" />
     <title>EditStudentInfo</title>
     <link href="~/Common.css" rel="stylesheet" />
+    <script src="~/CommonJS.js"></script>
+    <script src="~/Scripts/jquery-3.1.1.js"></script>
+    <script src="~/Scripts/jquery.validate.js"></script>
+    <script src="~/Scripts/jquery.validate.unobtrusive.js"></script>
 </head>
 <body>
     <h1>Edit Your Information</h1>
     @using (Html.BeginForm("EditStudentInfo", "StudentAccount", FormMethod.Post))
     {
-        @Html.HiddenFor(m => m.User.Id)
-        @Html.HiddenFor(m => m.Student.Id)
-        @Html.HiddenFor(m => m.User.UserName)
-        @Html.HiddenFor(m => m.User.Password)
-        @Html.HiddenFor(m => m.User.UserType)
-        @Html.HiddenFor(m => m.Student.StudentSignature)
-        @Html.HiddenFor(m => m.Student.ParentSignature)
+        @Html.HiddenFor(u => u.User.Id)
+        @Html.HiddenFor(u => u.User.UserName)
+        @Html.HiddenFor(u => u.User.Password)
+        @Html.HiddenFor(u => u.User.UserTypeId)
+        @Html.HiddenFor(u => u.Student.Id)
+        @Html.HiddenFor(u => u.Student.StudentSignature)
+        @Html.HiddenFor(u => u.Student.ParentSignature)
 
-        <span>First Name</span>
-        @Html.TextBoxFor(m => m.User.UserFirstName)<br />
+        <span>First Name</span><br />
+        @Html.TextBoxFor(u => u.UserFirstName)
+        @Html.ValidationMessageFor(u => u.UserFirstName)<br />
 
-        <span>Middle Name</span>
-        @Html.TextBoxFor(m => m.User.UserMiddleName)<br />
+        <span>Middle Name (Optional)</span><br />
+        @Html.TextBoxFor(u => u.UserMiddleName)<br />
+        @Html.ValidationMessageFor(u => u.UserMiddleName)<br />
 
-        <span>Last Name</span>
-        @Html.TextBoxFor(m => m.User.UserLastName)<br />
-
-        <span>First Name</span>
-        @Html.TextBoxFor(m => m.User.UserFirstName)<br />
-
-        <span>Age</span>
-        @Html.TextBoxFor(m => m.Student.Age)<br />
+        <span>Last Name</span><br />
+        @Html.TextBoxFor(u => u.UserLastName)
+        @Html.ValidationMessageFor(u => u.UserLastName)<br />
 
         <span>Gender</span>
-        <span>Male</span> @Html.RadioButtonFor(m => m.Student.Gender, "Male")
-        <span>Female</span> @Html.RadioButtonFor(m => m.Student.Gender, "Female") <br style="line-height:200%" />
+        <span>Male</span>
+        @Html.RadioButtonFor(u => u.Gender, "Male")
+        <span>Female</span>
+        @Html.RadioButtonFor(u => u.Gender, "Female")
+        @Html.ValidationMessageFor(u => u.Gender)
+        <br style="line-height:300%" />
 
-        <span>Age</span>
-        @Html.TextBoxFor(m => m.Student.Age)<br />
+        <span>Age</span><br />
+        @Html.TextBoxFor(u => u.Age)
+        @Html.ValidationMessageFor(u => u.Age)<br />
 
-        <span>School</span>
-        @Html.TextBoxFor(m => m.Student.School)<br />
+        <span>Student's school name</span><br />
+        @Html.TextBoxFor(u => u.School)
+        @Html.ValidationMessageFor(u => u.School)<br />
 
-        <span>Grade</span>
-        @Html.TextBoxFor(m => m.Student.Grade)<br />
+        <span>Grade</span><br />
+        @Html.DropDownListFor(u => u.Grade, new SelectList(new List<string> { "Preschool", "Grade 1", "Grade 2",
+        "Grade 3", "Grade 4", "Grade 5", "Grade 6", "Grade 7", "Grade 8", "Grade 9", "Grade 10", "Grade 11","Grade 12"}), "select", new { @class = "dropDown" })
+        @Html.ValidationMessageFor(u => u.Grade)<br />
 
-        <span>Parent First Name</span>
-        @Html.TextBoxFor(m => m.Student.ParentFirstName)<br />
+        <span>Parent/Guardian First Name</span><br />
+        @Html.TextBoxFor(u => u.ParentFirstName)
+        @Html.ValidationMessageFor(u => u.ParentFirstName)<br />
 
-        <span>Parent Middle Name</span>
-        @Html.TextBoxFor(m => m.Student.ParentMiddleName)<br />
+        <span>Parent/Guardian Middle Name (Optional)</span><br />
+        @Html.TextBoxFor(u => u.ParentMiddleName)<br />
+        @Html.ValidationMessageFor(u => u.ParentMiddleName)<br />
 
-        <span>Parent Last Name</span>
-        @Html.TextBoxFor(m => m.Student.ParentLastName)<br />
+        <span>Parent/Guardian Last Name</span><br />
+        @Html.TextBoxFor(u => u.ParentLastName)
+        @Html.ValidationMessageFor(u => u.ParentLastName)<br />
 
+        <span>Parent/Guardian email</span><br />
+        @Html.TextBoxFor(u => u.ParentEmail)
+        @Html.ValidationMessageFor(u => u.ParentEmail)<br />
 
+        <span>Parent/Guardian Contact Phone Number (Digits only)</span><br />
+        @Html.TextBoxFor(u => u.ParentPhoneNumber)
+        @Html.ValidationMessageFor(u => u.ParentPhoneNumber)<br />
+
+        <span>Street</span><br />
+        @Html.TextBoxFor(u => u.Street)
+        @Html.ValidationMessageFor(u => u.Street)<br />
+
+        <span>City</span><br />
+        @Html.TextBoxFor(u => u.City)
+        @Html.ValidationMessageFor(u => u.City)<br />
+
+        <span>State</span><br />
+        @Html.TextBoxFor(u => u.State)
+        @Html.ValidationMessageFor(u => u.State)<br />
+
+        <span>Zip Code</span><br />
+        @Html.TextBoxFor(u => u.Zip)
+        @Html.ValidationMessageFor(u => u.Zip)<br />
+
+        <span>Art Teacher's Title (if applicable)</span><br />
+        @Html.DropDownListFor(u => u.TeacherTitle, new SelectList(new List<string> { "Mrs.", "Ms.", "Mr." }), "select")<br />
+
+        <span>Teacher First Name</span><br />
+        @Html.TextBoxFor(u => u.TeacherFirstName)
+        @Html.ValidationMessageFor(u => u.TeacherFirstName)<br />
+
+        <span>Teacher Middle Name(Optional)</span><br />
+        @Html.TextBoxFor(u => u.TeacherMiddleName)<br />
+        @Html.ValidationMessageFor(u => u.TeacherMiddleName)<br />
+
+        <span>Teacher Last Name</span><br />
+        @Html.TextBoxFor(u => u.TeacherLastName)
+        @Html.ValidationMessageFor(u => u.TeacherLastName)<br />
 
         <input type="submit" value="Update" />
     }
