@@ -173,14 +173,15 @@
     <Content Include="Content\themes\base\theme.css" />
     <Content Include="Content\themes\base\tooltip.css" />
     <Content Include="Global.asax" />
+    <Content Include="JudgeLarger.js" />
     <EntityDeploy Include="Models\CTEFArtContestModel.edmx">
       <Generator>EntityModelCodeGenerator</Generator>
       <LastGenOutput>CTEFArtContestModel.Designer.cs</LastGenOutput>
     </EntityDeploy>
-    <Content Include="JudgeLarger.js" />
     <Content Include="Models\CTEFArtContestModel.edmx.diagram">
       <DependentUpon>CTEFArtContestModel.edmx</DependentUpon>
     </Content>
+    <None Include="Properties\PublishProfiles\artcontest1.pubxml" />
     <None Include="Scripts\jquery-3.1.1.intellisense.js" />
     <Content Include="Models\CTEFArtContestModel.Context.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
@@ -205,7 +206,9 @@
     <Content Include="Scripts\jquery.validate.min.js" />
     <Content Include="Scripts\jquery.validate.unobtrusive.js" />
     <Content Include="Scripts\jquery.validate.unobtrusive.min.js" />
-    <Content Include="Web.config" />
+    <Content Include="Web.config">
+      <SubType>Designer</SubType>
+    </Content>
   </ItemGroup>
   <ItemGroup>
     <Compile Include="App_Start\RouteConfig.cs" />
@@ -257,9 +260,6 @@
       <DependentUpon>CTEFArtContestModel.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\VerifyUserEmail.cs" />
-    <Compile Include="obj\Debug\TemporaryGeneratedFile_036C0B5B-1481-4323-8D20-8F5ADCB23D92.cs" />
-    <Compile Include="obj\Debug\TemporaryGeneratedFile_5937a670-0e60-4077-877b-f7221da3dda1.cs" />
-    <Compile Include="obj\Debug\TemporaryGeneratedFile_E7A71F73-0F8D-4B9B-B56E-8E70B10BC5D3.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -290,6 +290,7 @@
     <Content Include="Views\Judge\Larger.cshtml" />
     <Content Include="Views\Admin\CountPic.cshtml" />
     <Content Include="Views\Admin\ChangeP.cshtml" />
+    <Content Include="Views\StudentAccount\ChangePassword.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
@@ -299,6 +300,7 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
+    <Folder Include="obj\Debug\" />
   </ItemGroup>
   <ItemGroup>
     <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
