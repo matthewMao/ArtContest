@@ -1,5 +1,4 @@
-﻿@using ArtContest.Models
-@model List<Picture>
+﻿@model ArtContest.Models.AdminIndexViewModel
 <!DOCTYPE html>
 
 <html>
@@ -13,14 +12,14 @@
         <h1>All Works</h1>
         <ul>
             <li>@Html.ActionLink("View Judge","ViewJudge","Admin")</li>
-            <li>@Html.ActionLink("View All","Index","Admin")</li>
+            <li>@Html.ActionLink("View All","ViewAll","Admin")</li>
             <li>@Html.ActionLink("Change Password","ChangeP","Admin")</li>           
         </ul>
         <fieldset style="width:68.5%">
             <legend>Search By School</legend>
             @using(Html.BeginForm("SearchBySchool","Admin",FormMethod.Post)) {
                 <span>School Name:</span>
-                @Html.TextBox("school");
+                @Html.DropDownList("schools",Model.School,"Select School");
                 <input value="Search" type="submit" />
             }
         </fieldset>
@@ -51,7 +50,7 @@
             <legend>Search By School Then By Grade</legend>
             @using(Html.BeginForm("SearchBySchoolThenByGrade","Admin",FormMethod.Post)) {
                 <span>School</span>
-                @Html.TextBox("school");
+                @Html.DropDownList("schools",Model.School,"Select School");
                 <span>Grade:</span>
                 <select name="grade">
                     <option value="">>-Please Select A Value-<</option>
@@ -71,47 +70,6 @@
                 </select>
                 <input value="Search" type="submit" />
             }
-        </fieldset>
-        <div id="SearchResult">
-        <span style="font-size:20px; margin-left:auto">Result:@Model.Count()</span>
-        <span style="margin-left:58%"><button id="DownLoadBtn" onclick="donwloadAll()" style="margin-left:15%"> Download All </button></span><br />
-        </div>
-        
-    
-        <table border="1" id="allImages">
-            <tr>
-                <th>ID</th>
-                <th>Title</th>
-                <th>Art</th>
-                <th>Student FirstName</th>
-                <th>Student LastName</th>
-                <th>Student Grade</th>
-                <th>Details</th>
-                <th>Score</th>
-            </tr>
-            @foreach(var p in Model) {
-                
-                    int count = 0;
-                    double result = 0;
-                    foreach(var item in p.PictureRates) {
-                        if(item.PictureId == p.Id) {
-                            count++;
-                            result += item.Rate;
-                        }
-                    }
-                    result /= count;
-                
-                <tr>
-                    <td class="id">@p.Id</td>
-                    <td class="title">@p.Title</td>
-                    <td><img width="500" height="300" src="~/@p.PicturePath" /></td>
-                    <td class="firstname">@p.Student.User.UserFirstName</td>
-                    <td class="lastname">@p.Student.User.UserLastName</td>
-                    <td class="grade">@p.Student.Grade</td>
-                    <td>@Html.ActionLink("Details","Details",new { id = p.Id })</td>
-                    <td>@result</td>
-                </tr>
-            }
-        </table>
+        </fieldset>       
 </body>
 </html>
