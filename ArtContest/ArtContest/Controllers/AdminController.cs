@@ -74,7 +74,7 @@ namespace ArtContest.Controllers {
                     PictureRate pr = new PictureRate();
                     pr.PictureId = pic.Id;
                     pr.JudgeId = judgeId;
-                    pr.Rate = 0;
+                    pr.Rate = -1;
                     if(!dbc.PictureRates.Any(r => r.JudgeId == judgeId && r.PictureId == pr.PictureId)) {
                         dbc.PictureRates.Add(pr);
                         dbc.SaveChanges();

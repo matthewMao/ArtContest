@@ -36,7 +36,7 @@
                 int count = 0;
                 double result = 0;
                 foreach(var item in p.PictureRates) {
-                    if(item.PictureId == p.Id) {
+                    if(item.PictureId == p.Id &&item.Rate>-1) {
                         count++;
                         result += item.Rate;
                     }
