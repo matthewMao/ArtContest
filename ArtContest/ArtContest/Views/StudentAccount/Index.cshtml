@@ -30,9 +30,7 @@
         {
             <tr>
                 <td>@p.Title</td>
-                <td>
-                    <img src="@p.PicturePath" />
-                </td>
+                <td><img width="500" height="300" src="~/@p.PicturePath" /></td>
                 <td>@p.Public</td>
                 <td><button onclick="window.location.href='StudentAccount/ShowDetail/@p.Id'">Detail</button></td>
                 <td><button onclick="window.location.href='StudentAccount/Edit/@p.Id'">Edit</button></td>

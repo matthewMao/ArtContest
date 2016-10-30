@@ -4,7 +4,7 @@
   <edmx:Runtime>
     <!-- SSDL content -->
     <edmx:StorageModels>
-    <Schema Namespace="CTEFArtContestModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+      <Schema Namespace="CTEFArtContestModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012.Azure" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
         <EntityType Name="Picture">
           <Key>
             <PropertyRef Name="Id" />
@@ -157,10 +157,25 @@
             <End Role="User" EntitySet="User" />
           </AssociationSet>
         </EntityContainer>
-      </Schema></edmx:StorageModels>
+      </Schema>
+    </edmx:StorageModels>
     <!-- CSDL content -->
     <edmx:ConceptualModels>
       <Schema Namespace="CTEFArtContestModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="Picture">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" />
+          <Property Name="UserId" Type="Int32" Nullable="false" />
+          <Property Name="PicturePath" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Public" Type="String" MaxLength="20" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Title" Type="String" MaxLength="100" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Description" Type="String" MaxLength="2000" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="UploadDate" Type="String" MaxLength="200" FixedLength="false" Unicode="true" Nullable="false" />
+          <NavigationProperty Name="Student" Relationship="Self.FK_Picture_Student" FromRole="Picture" ToRole="Student" />
+          <NavigationProperty Name="PictureRates" Relationship="Self.FK_PictureRate_Picture" FromRole="Picture" ToRole="PictureRate" />
+        </EntityType>
         <EntityType Name="PictureRate">
           <Key>
             <PropertyRef Name="PictureId" />
@@ -169,8 +184,8 @@
           <Property Name="PictureId" Type="Int32" Nullable="false" />
           <Property Name="JudgeId" Type="Int32" Nullable="false" />
           <Property Name="Rate" Type="Double" Nullable="false" />
+          <NavigationProperty Name="Picture" Relationship="Self.FK_PictureRate_Picture" FromRole="PictureRate" ToRole="Picture" />
           <NavigationProperty Name="User" Relationship="Self.FK_PictureRate_User" FromRole="PictureRate" ToRole="User" />
-          <NavigationProperty Name="Picture" Relationship="CTEFArtContestModel.FK_PictureRate_Picture" FromRole="PictureRate" ToRole="Picture" />
         </EntityType>
         <EntityType Name="Student">
           <Key>
@@ -196,8 +211,8 @@
           <Property Name="TeacherLastName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
           <Property Name="StudentSignature" Type="String" MaxLength="200" FixedLength="false" Unicode="true" Nullable="false" />
           <Property Name="ParentSignature" Type="String" MaxLength="200" FixedLength="false" Unicode="true" Nullable="false" />
+          <NavigationProperty Name="Pictures" Relationship="Self.FK_Picture_Student" FromRole="Student" ToRole="Picture" />
           <NavigationProperty Name="User" Relationship="Self.FK_Student_User" FromRole="Student" ToRole="User" />
-          <NavigationProperty Name="Pictures" Relationship="CTEFArtContestModel.FK_Picture_Student" FromRole="Student" ToRole="Picture" />
         </EntityType>
         <EntityType Name="User">
           <Key>
@@ -222,6 +237,30 @@
           <Property Name="Name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
           <NavigationProperty Name="Users" Relationship="Self.FK_User_UserType" FromRole="UserType" ToRole="User" />
         </EntityType>
+        <Association Name="FK_Picture_Student">
+          <End Role="Student" Type="Self.Student" Multiplicity="1" />
+          <End Role="Picture" Type="Self.Picture" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Student">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Picture">
+              <PropertyRef Name="UserId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_PictureRate_Picture">
+          <End Role="Picture" Type="Self.Picture" Multiplicity="1" />
+          <End Role="PictureRate" Type="Self.PictureRate" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Picture">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="PictureRate">
+              <PropertyRef Name="PictureId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <Association Name="FK_PictureRate_User">
           <End Role="User" Type="Self.User" Multiplicity="1" />
           <End Role="PictureRate" Type="Self.PictureRate" Multiplicity="*" />
@@ -259,10 +298,19 @@
           </ReferentialConstraint>
         </Association>
         <EntityContainer Name="CTEFArtContestEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="Pictures" EntityType="Self.Picture" />
           <EntitySet Name="PictureRates" EntityType="Self.PictureRate" />
           <EntitySet Name="Students" EntityType="Self.Student" />
           <EntitySet Name="Users" EntityType="Self.User" />
           <EntitySet Name="UserTypes" EntityType="Self.UserType" />
+          <AssociationSet Name="FK_Picture_Student" Association="Self.FK_Picture_Student">
+            <End Role="Student" EntitySet="Students" />
+            <End Role="Picture" EntitySet="Pictures" />
+          </AssociationSet>
+          <AssociationSet Name="FK_PictureRate_Picture" Association="Self.FK_PictureRate_Picture">
+            <End Role="Picture" EntitySet="Pictures" />
+            <End Role="PictureRate" EntitySet="PictureRates" />
+          </AssociationSet>
           <AssociationSet Name="FK_PictureRate_User" Association="Self.FK_PictureRate_User">
             <End Role="User" EntitySet="Users" />
             <End Role="PictureRate" EntitySet="PictureRates" />
@@ -275,60 +323,26 @@
             <End Role="UserType" EntitySet="UserTypes" />
             <End Role="User" EntitySet="Users" />
           </AssociationSet>
-          <EntitySet Name="Pictures" EntityType="CTEFArtContestModel.Picture" />
-          <AssociationSet Name="FK_Picture_Student" Association="CTEFArtContestModel.FK_Picture_Student">
-            <End Role="Student" EntitySet="Students" />
-            <End Role="Picture" EntitySet="Pictures" />
-          </AssociationSet>
-          <AssociationSet Name="FK_PictureRate_Picture" Association="CTEFArtContestModel.FK_PictureRate_Picture">
-            <End Role="Picture" EntitySet="Pictures" />
-            <End Role="PictureRate" EntitySet="PictureRates" />
-          </AssociationSet>
         </EntityContainer>
-        <EntityType Name="Picture">
-          <Key>
-            <PropertyRef Name="Id" />
-          </Key>
-          <Property Name="Id" Type="Int32" Nullable="false" />
-          <Property Name="UserId" Type="Int32" Nullable="false" />
-          <Property Name="PicturePath" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="false" />
-          <Property Name="Public" Type="String" Nullable="false" MaxLength="20" FixedLength="false" Unicode="true" />
-          <Property Name="Title" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="true" />
-          <Property Name="Description" Type="String" Nullable="false" MaxLength="2000" FixedLength="false" Unicode="true" />
-          <Property Name="UploadDate" Type="String" Nullable="false" MaxLength="200" FixedLength="false" Unicode="true" />
-          <NavigationProperty Name="Student" Relationship="CTEFArtContestModel.FK_Picture_Student" FromRole="Picture" ToRole="Student" />
-          <NavigationProperty Name="PictureRates" Relationship="CTEFArtContestModel.FK_PictureRate_Picture" FromRole="Picture" ToRole="PictureRate" />
-        </EntityType>
-        <Association Name="FK_Picture_Student">
-          <End Type="CTEFArtContestModel.Student" Role="Student" Multiplicity="1" />
-          <End Type="CTEFArtContestModel.Picture" Role="Picture" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Student">
-              <PropertyRef Name="Id" />
-            </Principal>
-            <Dependent Role="Picture">
-              <PropertyRef Name="UserId" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_PictureRate_Picture">
-          <End Type="CTEFArtContestModel.Picture" Role="Picture" Multiplicity="1" />
-          <End Type="CTEFArtContestModel.PictureRate" Role="PictureRate" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Picture">
-              <PropertyRef Name="Id" />
-            </Principal>
-            <Dependent Role="PictureRate">
-              <PropertyRef Name="PictureId" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
       </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
     <edmx:Mappings>
       <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
         <EntityContainerMapping StorageEntityContainer="CTEFArtContestModelStoreContainer" CdmEntityContainer="CTEFArtContestEntities">
+          <EntitySetMapping Name="Pictures">
+            <EntityTypeMapping TypeName="CTEFArtContestModel.Picture">
+              <MappingFragment StoreEntitySet="Picture">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="UserId" ColumnName="UserId" />
+                <ScalarProperty Name="PicturePath" ColumnName="PicturePath" />
+                <ScalarProperty Name="Public" ColumnName="Public" />
+                <ScalarProperty Name="Title" ColumnName="Title" />
+                <ScalarProperty Name="Description" ColumnName="Description" />
+                <ScalarProperty Name="UploadDate" ColumnName="UploadDate" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
           <EntitySetMapping Name="PictureRates">
             <EntityTypeMapping TypeName="CTEFArtContestModel.PictureRate">
               <MappingFragment StoreEntitySet="PictureRate">
@@ -382,19 +396,6 @@
               <MappingFragment StoreEntitySet="UserType">
                 <ScalarProperty Name="Id" ColumnName="Id" />
                 <ScalarProperty Name="Name" ColumnName="Name" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="Pictures">
-            <EntityTypeMapping TypeName="CTEFArtContestModel.Picture">
-              <MappingFragment StoreEntitySet="Picture">
-                <ScalarProperty Name="UploadDate" ColumnName="UploadDate" />
-                <ScalarProperty Name="Description" ColumnName="Description" />
-                <ScalarProperty Name="Title" ColumnName="Title" />
-                <ScalarProperty Name="Public" ColumnName="Public" />
-                <ScalarProperty Name="PicturePath" ColumnName="PicturePath" />
-                <ScalarProperty Name="UserId" ColumnName="UserId" />
-                <ScalarProperty Name="Id" ColumnName="Id" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
