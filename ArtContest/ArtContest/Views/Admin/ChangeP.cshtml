@@ -5,15 +5,14 @@
 <head>
     <meta name="viewport" content="width=device-width" />
     <title>ChangeP</title>
+    <link href="~/Common.css" rel="stylesheet" />
 </head>
 <body>
-    <div>
         @using(Html.BeginForm("ChangeP","Admin",FormMethod.Post)) {
             <input value="Enter New Password:" name="password1" type="text"/>
             <input value="Enter Agian please:" name="password2" type="text"/>
             <input value="Submit" onclick="myFunction" type="submit" />
         }
-    </div>
     @if(TempData["notice"] != null) {
         <p>@TempData["notice"]</p>
     }
