@@ -8,6 +8,10 @@
     <link href="~/Common.css" rel="stylesheet" />
 </head>
 <body>
+    <ul>
+        <li>@Html.ActionLink("Assign Mission Wrong, Delete", "DeleteMission", new { id = Model.User.Id })</li>
+        <li style="float:right">@Html.ActionLink("All Look Good,Return", "ViewJudge", "Admin")</li>
+    </ul>
     <table border="1">
         <tr>
             <th>JudgeID</th>
@@ -27,7 +31,5 @@
             </td>
         </tr>
     </table>
-    @Html.ActionLink("Assign Mission Wrong, Delete", "DeleteMission", new { id = Model.User.Id })
-    @Html.ActionLink("All Look Good,Return", "ViewJudge", "Admin")
 </body>
 </html>
