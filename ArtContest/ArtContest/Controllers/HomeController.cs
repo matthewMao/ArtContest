@@ -39,11 +39,18 @@ namespace ArtContest.Controllers
                 }
                 if (dbc.Users.Where(u => u.UserName == model.userName).Select(u => u.UserTypeId).SingleOrDefault() == 3)
                 {
-                    model.PicPath = dbc.Pictures
-                    .Where(p => p.UserId == dbc.Users.Where(u => model.userName == u.UserName)
-                    .Select(u => u.Id).FirstOrDefault()).Select(p => p.PicturePath).ToList();
-                    Session["userid"] = dbc.Users.Where(s => s.UserName == model.userName).Select(u => u.Id).SingleOrDefault();
-                    return RedirectToAction("Index", "StudentAccount");
+                    if(dbc.DisableStudents.Where(d => d.Id==1).Select(d => d.Disable).SingleOrDefault().Equals("yes"))
+                    {
+                        return View();
+                    }
+                    else
+                    {
+                        model.PicPath = dbc.Pictures
+                        .Where(p => p.UserId == dbc.Users.Where(u => model.userName == u.UserName)
+                        .Select(u => u.Id).FirstOrDefault()).Select(p => p.PicturePath).ToList();
+                        Session["userid"] = dbc.Users.Where(s => s.UserName == model.userName).Select(u => u.Id).SingleOrDefault();
+                        return RedirectToAction("Index", "StudentAccount");
+                    } 
                 }
             }
             return View();

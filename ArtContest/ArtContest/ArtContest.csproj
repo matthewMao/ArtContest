@@ -173,11 +173,11 @@
     <Content Include="Content\themes\base\theme.css" />
     <Content Include="Content\themes\base\tooltip.css" />
     <Content Include="Global.asax" />
+    <Content Include="JudgeLarger.js" />
     <EntityDeploy Include="Models\CTEFArtContestModel.edmx">
       <Generator>EntityModelCodeGenerator</Generator>
       <LastGenOutput>CTEFArtContestModel.Designer.cs</LastGenOutput>
     </EntityDeploy>
-    <Content Include="JudgeLarger.js" />
     <Content Include="Models\CTEFArtContestModel.edmx.diagram">
       <DependentUpon>CTEFArtContestModel.edmx</DependentUpon>
     </Content>
@@ -236,6 +236,10 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>CTEFArtContestModel.edmx</DependentUpon>
     </Compile>
+    <Compile Include="Models\DisableStudent.cs">
+      <DependentUpon>CTEFArtContestModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\DisableStudentModel.cs" />
     <Compile Include="Models\DisplayScoreViewModel.cs" />
     <Compile Include="Models\EditPictureViewModel.cs" />
     <Compile Include="Models\EditStudentInfoViewModel.cs" />
@@ -248,6 +252,9 @@
     </Compile>
     <Compile Include="Models\ScoreViewModel.cs" />
     <Compile Include="Models\Student.cs">
+      <DependentUpon>CTEFArtContestModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\sysdiagram.cs">
       <DependentUpon>CTEFArtContestModel.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\User.cs">
@@ -293,6 +300,7 @@
     <Content Include="Views\Admin\ChangeP.cshtml" />
     <Content Include="Views\Admin\ViewAll.cshtml" />
     <Content Include="Views\StudentAccount\ChangePassword.cshtml" />
+    <Content Include="Views\Admin\DisableStu.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
