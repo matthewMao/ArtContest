@@ -9,6 +9,7 @@
     <link href="~/Common.css" rel="stylesheet" />
 </head>
 <body>
+    @Html.ActionLink("Change Password","ChangeP","Judge")
     <div>       
         <table border="1">
             <h1>Count Total: @Model.Count()</h1>
@@ -29,7 +30,7 @@
                     <td>@p.Title</td>
                     @{ 
                         if(result == -1) {
-                        <td bgcolor="red" id="score">@result</td>
+                        <td bgcolor="red" id="score">Have not Graded</td>
                         } else {
                         <td id="score">@result</td>
                     }

@@ -47,5 +47,29 @@ namespace ArtContest.Controllers
             dbc.SaveChanges();
             return RedirectToAction("Index","Judge");
         }
+        [HttpGet]
+        public ActionResult ChangeP() {
+            return View();
+
+        }
+        [HttpPost]
+        public ActionResult ChangeP(string password1,string password2,User user) {
+            if(password1 != password2) {
+                TempData["notice"] = "The password You just enter was different from the First one you enter";
+                return RedirectToAction("ChangeP");
+            }
+            CTEFArtContestEntities dbc = new CTEFArtContestEntities();
+            var judges = dbc.Users.Where(u => u.UserTypeId == 2).ToList();
+            
+            foreach(var judge in judges) {
+                if(judge.Id== (int)Session["userid"]) {
+                    judge.Password = password1;
+                    dbc.Entry(judge).State = System.Data.Entity.EntityState.Modified;
+                }
+            }          
+            dbc.SaveChanges();
+            return RedirectToAction("Index");
+
+        }
     }
 }
