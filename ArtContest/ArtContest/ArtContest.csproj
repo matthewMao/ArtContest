@@ -292,6 +292,7 @@
     <Content Include="Views\Admin\CountPic.cshtml" />
     <Content Include="Views\Admin\ChangeP.cshtml" />
     <Content Include="Views\Admin\ViewAll.cshtml" />
+    <Content Include="Views\Judge\ChangeP.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
