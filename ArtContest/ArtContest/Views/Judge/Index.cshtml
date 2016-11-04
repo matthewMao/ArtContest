@@ -9,10 +9,12 @@
     <link href="~/Common.css" rel="stylesheet" />
 </head>
 <body>
-    @Html.ActionLink("Change Password","ChangeP","Judge")
-    <div>       
+    <ul>
+        <li>@Html.ActionLink("Change Password","ChangeP","Judge")</li>
+    </ul>
+    <h1>Count Total: @Model.Count()</h1>     
         <table border="1">
-            <h1>Count Total: @Model.Count()</h1>
+            
             <tr>
                 <th>Title</th>
                 <th>Score</th>
@@ -40,7 +42,5 @@
                  </tr>                           
                         }
         </table>
-        
-    </div>
 </body>
 </html>

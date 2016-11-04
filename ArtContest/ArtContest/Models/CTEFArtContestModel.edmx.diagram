@@ -4,11 +4,11 @@
   <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
-      <Diagram DiagramId="cd0dbcd8f35a44a79dd541b6270d8af8" Name="Diagram1">
+      <Diagram DiagramId="0de94476445940fa960adf6e9ad49eab" Name="Diagram1">
+        <EntityTypeShape EntityType="CTEFArtContestModel.DisableStudent" Width="1.5" PointX="0.75" PointY="0.75" IsExpanded="true" />
         <EntityTypeShape EntityType="CTEFArtContestModel.Picture" Width="1.5" PointX="7.5" PointY="6.625" IsExpanded="true" />
         <EntityTypeShape EntityType="CTEFArtContestModel.PictureRate" Width="1.5" PointX="9.75" PointY="5.5" IsExpanded="true" />
         <EntityTypeShape EntityType="CTEFArtContestModel.Student" Width="1.5" PointX="5.25" PointY="5.375" IsExpanded="true" />
-        <EntityTypeShape EntityType="CTEFArtContestModel.sysdiagram" Width="1.5" PointX="0.75" PointY="0.75" IsExpanded="true" />
         <EntityTypeShape EntityType="CTEFArtContestModel.User" Width="1.5" PointX="3" PointY="3.75" IsExpanded="true" />
         <EntityTypeShape EntityType="CTEFArtContestModel.UserType" Width="1.5" PointX="0.75" PointY="4.375" IsExpanded="true" />
         <AssociationConnector Association="CTEFArtContestModel.FK_Picture_Student" ManuallyRouted="false" />
@@ -16,7 +16,6 @@
         <AssociationConnector Association="CTEFArtContestModel.FK_PictureRate_User" ManuallyRouted="false" />
         <AssociationConnector Association="CTEFArtContestModel.FK_Student_User" ManuallyRouted="false" />
         <AssociationConnector Association="CTEFArtContestModel.FK_User_UserType" ManuallyRouted="false" />
-        <EntityTypeShape EntityType="CTEFArtContestModel.DisableStudent" Width="1.5" PointX="3.375" PointY="0.75" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>
