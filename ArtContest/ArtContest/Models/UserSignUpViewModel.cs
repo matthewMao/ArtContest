@@ -78,7 +78,6 @@ namespace ArtContest.Models
         public string State { get; set; }
 
         [Required(ErrorMessage = "Please enter your Zip Code")]
-        [RegularExpression(@"^[0-9]{5}$", ErrorMessage = "Please enter a valid Zip Code")]
         public string Zip { get; set; }
         
         public string TeacherTitle { get; set; }
