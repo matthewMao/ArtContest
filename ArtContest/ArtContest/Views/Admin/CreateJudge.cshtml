@@ -7,8 +7,7 @@
     <title>CreateJudge</title>
     <link href="~/Common.css" rel="stylesheet" />
 </head>
-<body>
-    <div> 
+<body> 
         @using(Html.BeginForm("CreateJudge","Admin",FormMethod.Post,new { enctype = "multipart/form-data" })) {
             <span>Username:</span>
             @Html.TextBoxFor(j=>j.User.UserName)<br />
@@ -26,7 +25,6 @@
             @Html.HiddenFor(j=>j.User.UserTypeId)
             <input type="submit" value="Create this Judge" />
         }
-        @Html.ActionLink("Cancel and Return","Index","Admin")
-    </div>
+        @Html.ActionLink("Cancel and Return","Index","Admin",null, new { @class = "actionLink" })
 </body>
 </html>
