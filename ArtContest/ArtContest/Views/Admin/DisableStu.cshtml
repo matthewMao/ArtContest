@@ -1,0 +1,23 @@
+﻿@model ArtContest.Models.DisableStudentModel
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>DisableStu</title>
+    <link href="~/Common.css" rel="stylesheet" />
+</head>
+<body>
+        <h1>Disable Student</h1>
+        @using (Html.BeginForm("DisableStu", "Admin", FormMethod.Post))
+        {
+            @Html.HiddenFor(d => d.DisableStudent.Id)
+            <span>Yes</span>
+            @Html.RadioButtonFor(d => d.DisableStudent.Disable, "yes")
+            <span>No</span>
+            @Html.RadioButtonFor(d => d.DisableStudent.Disable, "no")
+            <input type="submit" value="Update" />
+            @Html.ActionLink("Return", "Index", "Admin", null, new { @class = "actionLink" })<br />
+        }
+</body>
+</html>

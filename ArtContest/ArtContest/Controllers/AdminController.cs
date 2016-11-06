@@ -114,6 +114,25 @@ namespace ArtContest.Controllers {
             List<User> judge = dbc.Users.Where(u => u.UserType.Id == 2).ToList();
             return View(judge);
         }
+
+        [HttpGet]
+        public ActionResult DisableStu()
+        {
+            CTEFArtContestEntities dbc = new CTEFArtContestEntities();
+            DisableStudentModel vm = new DisableStudentModel();
+            vm.DisableStudent = dbc.DisableStudents.Where(d => d.Id == 1).SingleOrDefault();
+            return View(vm);
+        }
+
+        [HttpPost]
+        public ActionResult DisableStu(DisableStudentModel ds)
+        {
+            CTEFArtContestEntities dbc = new CTEFArtContestEntities();
+            dbc.Entry(ds.DisableStudent).State = System.Data.Entity.EntityState.Modified;
+            dbc.SaveChanges();
+            return RedirectToAction("Index", "Admin");
+        }
+
         [HttpGet]
         public ActionResult CreateJudge() {
             CTEFArtContestEntities dbc = new CTEFArtContestEntities();

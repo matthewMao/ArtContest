@@ -5,6 +5,13 @@
     <!-- SSDL content -->
     <edmx:StorageModels>
       <Schema Namespace="CTEFArtContestModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012.Azure" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="DisableStudent">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" Nullable="false" />
+          <Property Name="Disable" Type="varchar" MaxLength="10" Nullable="false" />
+        </EntityType>
         <EntityType Name="Picture">
           <Key>
             <PropertyRef Name="Id" />
@@ -131,6 +138,7 @@
           </ReferentialConstraint>
         </Association>
         <EntityContainer Name="CTEFArtContestModelStoreContainer">
+          <EntitySet Name="DisableStudent" EntityType="Self.DisableStudent" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Picture" EntityType="Self.Picture" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="PictureRate" EntityType="Self.PictureRate" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Student" EntityType="Self.Student" Schema="dbo" store:Type="Tables" />
@@ -162,6 +170,13 @@
     <!-- CSDL content -->
     <edmx:ConceptualModels>
       <Schema Namespace="CTEFArtContestModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="DisableStudent">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" />
+          <Property Name="Disable" Type="String" MaxLength="10" FixedLength="false" Unicode="false" Nullable="false" />
+        </EntityType>
         <EntityType Name="Picture">
           <Key>
             <PropertyRef Name="Id" />
@@ -298,6 +313,7 @@
           </ReferentialConstraint>
         </Association>
         <EntityContainer Name="CTEFArtContestEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="DisableStudents" EntityType="Self.DisableStudent" />
           <EntitySet Name="Pictures" EntityType="Self.Picture" />
           <EntitySet Name="PictureRates" EntityType="Self.PictureRate" />
           <EntitySet Name="Students" EntityType="Self.Student" />
@@ -330,6 +346,14 @@
     <edmx:Mappings>
       <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
         <EntityContainerMapping StorageEntityContainer="CTEFArtContestModelStoreContainer" CdmEntityContainer="CTEFArtContestEntities">
+          <EntitySetMapping Name="DisableStudents">
+            <EntityTypeMapping TypeName="CTEFArtContestModel.DisableStudent">
+              <MappingFragment StoreEntitySet="DisableStudent">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="Disable" ColumnName="Disable" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
           <EntitySetMapping Name="Pictures">
             <EntityTypeMapping TypeName="CTEFArtContestModel.Picture">
               <MappingFragment StoreEntitySet="Picture">
