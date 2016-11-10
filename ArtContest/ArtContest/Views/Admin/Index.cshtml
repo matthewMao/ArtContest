@@ -16,38 +16,53 @@
             <li>@Html.ActionLink("Change Password","ChangeP","Admin")</li>    
             <li>@Html.ActionLink("Disable Student", "DisableStu", "Admin")</li>         
         </ul>
-        <fieldset style="width:68.5%">
+        @*<fieldset style="width:68.5%">
             <legend>Search By School</legend>
             @using(Html.BeginForm("SearchBySchool","Admin",FormMethod.Post)) {
                 <span>School Name:</span>
                 @Html.DropDownList("schools",Model.School,"Select School");
                 <input value="Search" type="submit" />
             }
-        </fieldset>
+        </fieldset>*@
         <fieldset style="width:68.5%">
             <legend>Search By Grade</legend>
-            @using(Html.BeginForm("SearchByGrade","Admin",FormMethod.Post)) {
-                <span>Grade:</span>
-                <select name="grade">
-                    <option value="">>-Please Select A Value-<</option>
-                    <option value="Preschool">Preschool</option>
-                    <option value="Grade 1">Grade 1</option>
-                    <option value="Grade 2">Grade 2</option>
-                    <option value="Grade 3">Grade 3</option>
-                    <option value="Grade 4">Grade 4</option>
-                    <option value="Grade 5">Grade 5</option>
-                    <option value="Grade 6">Grade 6</option>
-                    <option value="Grade 7">Grade 7</option>
-                    <option value="Grade 8">Grade 8</option>
-                    <option value="Grade 9">Grade 9</option>
-                    <option value="Grade 10">Grade 10</option>
-                    <option value="Grade 11">Grade 11</option>
-                    <option value="Grade 12">Grade 12</option>
-                </select>
-                <input value="Search" type="submit" />
+            @using(Html.BeginForm("SearchByGrade","Admin",FormMethod.Post)) {                    <input style="margin-left:15%" type="checkbox" id="grade" name="grade" value="Preschool" />
+                    <label>Preschool</label>
+                    <input style="margin-left:29.4%" type="checkbox" id="grade" name="grade" value="Grade 1" />
+                    <label>Grade 1</label>
+                    <br />
+                    <input style="margin-left:15%" type="checkbox" id="grade" name="grade" value="Grade 2" />
+                    <label>Grade 2</label>
+                    <input style="margin-left:30%" type="checkbox" id="grade" name="grade" value="Grade 3" />
+                    <label>Grade 3</label>
+                    <br />
+                    <input style="margin-left:15%" type="checkbox" id="grade" name="grade" value="Grade 4" />
+                    <label>Grade 4</label>
+                    <input style="margin-left:30%" type="checkbox" id="grade" name="grade" value="Grade 5" />
+                    <label>Grade 5</label>
+                    <br />
+                    <input style="margin-left:15%" type="checkbox" id="grade" name="grade" value="Grade 6" />
+                    <label>Grade 6</label>
+                    <input style="margin-left:30%" type="checkbox" id="grade" name="grade" value="Grade 7" />
+                    <label>Grade 7</label>
+                    <br />
+                    <input style="margin-left:15%" type="checkbox" id="grade" name="grade" value="Grade 8" />
+                    <label>Grade 8</label>
+                    <input style="margin-left:30%" type="checkbox" id="grade" name="grade" value="Grade 9" />
+                    <label>Grade 9</label>
+                    <br />
+                    <input style="margin-left:15%" type="checkbox" id="grade" name="grade" value="Grade 10" />
+                    <label>Grade 10</label>
+                    <input style="margin-left:29.6%" type="checkbox" id="grade" name="grade" value="Grade 11" />
+                    <label>Grade 11</label>
+                    <br />
+                    <input style="margin-left:15%" type="checkbox" id="grade" name="grade" value="Grade 12" />
+                    <label>Grade 12</label>
+                    <br />
+               <input value="Search" type="submit" />
             }
         </fieldset>
-        <fieldset style="width:68.5%">
+        @*<fieldset style="width:68.5%">
             <legend>Search By School Then By Grade</legend>
             @using(Html.BeginForm("SearchBySchoolThenByGrade","Admin",FormMethod.Post)) {
                 <span>School</span>
@@ -71,6 +86,6 @@
                 </select>
                 <input value="Search" type="submit" />
             }
-        </fieldset>       
+        </fieldset>*@       
 </body>
 </html>

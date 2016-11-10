@@ -5,8 +5,11 @@ using System.Web;
 using System.Web.Mvc;
 using ArtContest.Models;
 using System.IO;
-
-
+using Excel = Microsoft.Office.Interop.Excel;
+using System.Threading.Tasks;
+using System.Reflection;
+using System.Web.UI.WebControls;
+using System.Web.UI;
 
 namespace ArtContest.Controllers {
     public class AdminController:Controller {
@@ -16,7 +19,7 @@ namespace ArtContest.Controllers {
             if(Session["userid"] == null || !dbc.Users.Where(u => u.UserTypeId == 1).Select(u => u.Id).ToList().Contains((int)Session["userid"])) return RedirectToAction("Index","Home");
             var userid = (int)Session["userid"];
             AdminIndexViewModel vm = new AdminIndexViewModel();
-            vm.School = new SelectList(dbc.Pictures.Where(s=>s.Public.Equals("Yes")).Select(s=>s.Student.School),"School");
+            vm.School = new SelectList(dbc.Pictures.Where(s => s.Public.Equals("Yes")).Select(s => s.Student.School),"School");
             vm.Pictures = dbc.Pictures.Include("Student").Where(p => p.Public.Equals("Yes")).ToList();
             return View(vm);
         }
@@ -116,8 +119,7 @@ namespace ArtContest.Controllers {
         }
 
         [HttpGet]
-        public ActionResult DisableStu()
-        {
+        public ActionResult DisableStu() {
             CTEFArtContestEntities dbc = new CTEFArtContestEntities();
             DisableStudentModel vm = new DisableStudentModel();
             vm.DisableStudent = dbc.DisableStudents.Where(d => d.Id == 1).SingleOrDefault();
@@ -125,12 +127,11 @@ namespace ArtContest.Controllers {
         }
 
         [HttpPost]
-        public ActionResult DisableStu(DisableStudentModel ds)
-        {
+        public ActionResult DisableStu(DisableStudentModel ds) {
             CTEFArtContestEntities dbc = new CTEFArtContestEntities();
             dbc.Entry(ds.DisableStudent).State = System.Data.Entity.EntityState.Modified;
             dbc.SaveChanges();
-            return RedirectToAction("Index", "Admin");
+            return RedirectToAction("Index","Admin");
         }
 
         [HttpGet]
@@ -167,22 +168,51 @@ namespace ArtContest.Controllers {
             Picture pic = dbc.Pictures.Include("Student").SingleOrDefault(p => p.Id == id);
             return View("Details",pic);
         }
-        public ActionResult SearchBySchool(FormCollection form) {
+        //public ActionResult SearchBySchool(FormCollection form) {
+        //    CTEFArtContestEntities dbc = new CTEFArtContestEntities();
+        //    string school = form["schools"].ToString();
+        //    List<Picture> pics = dbc.Pictures.Include("Student").Where(p => p.Student.School.Equals(school) && p.Public.Equals("Yes")).ToList();
+        //    return View("ViewAll",pics);
+        //}
+        public ActionResult SearchByGrade(string[] grade) {
             CTEFArtContestEntities dbc = new CTEFArtContestEntities();
-            string school = form["schools"].ToString();
-            List<Picture> pics = dbc.Pictures.Include("Student").Where(p => p.Student.School.Equals(school) && p.Public.Equals("Yes")).ToList();
+            List<Picture> pics = dbc.Pictures.Include("Student").Where(p => grade.Contains(p.Student.Grade) && p.Public.Equals("Yes")).ToList();
             return View("ViewAll",pics);
         }
-        public ActionResult SearchByGrade(string grade) {
+        //public ActionResult SearchBySchoolThenByGrade(FormCollection form,string grade) {
+        //    CTEFArtContestEntities dbc = new CTEFArtContestEntities();
+        //    string school = form["schools"].ToString();
+        //    List<Picture> pics = dbc.Pictures.Include("Student").Where(p => p.Student.School.Equals(school) && p.Student.Grade.Equals(grade) && p.Public.Equals("Yes")).ToList();
+        //    return View("ViewAll",pics);
+        //}
+        public void DSI() {
             CTEFArtContestEntities dbc = new CTEFArtContestEntities();
-            List<Picture> pics = dbc.Pictures.Include("Student").Where(p => p.Student.Grade.Equals(grade) && p.Public.Equals("Yes")).ToList();
-            return View("ViewAll",pics);
+            StringWriter sw = new StringWriter();
+            sw.WriteLine("\"Picture ID\"|\"Picture Title\"|\"Picture Upload Date\"|\"User ID\"|\"User FirstName\"|\"User MiddleName\"|\"User LastName\"|\"Grade\"|\"Age\"|\"Gender\"|\"School\"|\"Street\"|\"City\"|\"State\"|\"Zip Code\"|\"Teacher Title\"|\"Teacher FirstName\"|\"Teacher MiddleName\"|\"Teacher LastName\"|\"Parent LastName\"|\"Parent MiddleName\"|\"Parent FirstName\"|\"Parent Email\"|\"Parent Phone Number\"|\"UserName\"|\"Password\"|\"Picture Description\"");
+            Response.ClearContent();
+            Response.AddHeader("content-disposition","attachment;filename=ArtContestUserInfo.csv");
+            Response.ContentType = "text/csv";
+            foreach(var p in dbc.Pictures.Where(p => p.Public.Equals("Yes"))) {
+                var stu = dbc.Students.SingleOrDefault(s => s.Id == p.UserId);
+                sw.WriteLine(string.Format("\"{0}\"|\"{1}\"|\"{2}\"|\"{3}\"|\"{4}\"|\"{5}\"|\"{6}\"|\"{7}\"|\"{8}\"|\"{9}\"|\"{10}\"|\"{11}\"|\"{12}\"|\"{13}\"|\"{14}\"|\"{15}\"|\"{16}\"|\"{17}\"|\"{18}\"|\"{19}\"|\"{20}\"|\"{21}\"|\"{22}\"|\"{23}\"|\"{24}\"|\"{25}\"|\"{26}\"|",p.Id,p.Title,p.UploadDate,p.UserId,stu.User.UserFirstName,stu.User.UserMiddleName,stu.User.UserLastName,stu.Grade,stu.Age,stu.Gender,stu.School,stu.Street,stu.City,stu.State,stu.Zip,stu.TeacherTitle,stu.TeacherFirstName,stu.TeacherMiddleName,stu.TeacherLastName,stu.ParentLastName,stu.ParentMiddleName,stu.ParentFirstName,stu.ParentEmail,stu.ParentPhoneNumber,stu.User.UserName,stu.User.Password,p.Description));
+            }
+            Response.Write(sw.ToString());
+            Response.End();
         }
-        public ActionResult SearchBySchoolThenByGrade(FormCollection form,string grade) {
+        public void DGI() {
             CTEFArtContestEntities dbc = new CTEFArtContestEntities();
-            string school = form["schools"].ToString();
-            List<Picture> pics = dbc.Pictures.Include("Student").Where(p => p.Student.School.Equals(school) && p.Student.Grade.Equals(grade) && p.Public.Equals("Yes")).ToList();
-            return View("ViewAll",pics);
+            StringWriter sw = new StringWriter();
+            sw.WriteLine("\"Picture ID\"|\"Judge ID\"|\"Score\"");
+            Response.ClearContent();
+            Response.AddHeader("content-disposition","attachment;filename=ArtContestScoreInfo.csv");
+            Response.ContentType = "text/csv";
+            foreach(var prs in dbc.PictureRates.GroupBy(prs => prs.PictureId)) {
+                foreach(var pr in prs) {
+                    sw.WriteLine(string.Format("\"{0}\"|\"{1}\"|\"{2}\"",pr.PictureId,pr.JudgeId,pr.Rate));
+                }
+            }
+            Response.Write(sw.ToString());
+            Response.End();
         }
     }
 }
