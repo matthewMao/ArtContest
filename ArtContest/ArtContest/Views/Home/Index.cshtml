@@ -18,6 +18,10 @@
             <span>Password:</span><br />
             @Html.PasswordFor(m => m.password)<br />
             <input type="submit" value="Login" /><br />
+            if (TempData["notice"] != null)
+            {
+                <p style="color:red">@TempData["notice"]</p>
+            }
             @Html.ActionLink("Don't have an account?", "Index", "UserSignUp", null, new { @class = "actionLink" })<br />
         }
 </body>

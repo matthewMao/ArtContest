@@ -41,6 +41,7 @@ namespace ArtContest.Controllers
                 {
                     if(dbc.DisableStudents.Where(d => d.Id==1).Select(d => d.Disable).SingleOrDefault().Equals("yes"))
                     {
+                        TempData["notice"] = "Sorry the due date past, you can't login.";
                         return View();
                     }
                     else

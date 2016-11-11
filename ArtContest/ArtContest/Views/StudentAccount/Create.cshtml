@@ -20,7 +20,7 @@
         @Html.ValidationMessageFor(m => m.Title)<br /><br />
         <span>Description</span><br />
         @Html.TextAreaFor(m => m.Description, new { @class = "textArea" })<br />
-        <span>Public</span>
+        <span>Public : "yes" work for competition(only one), "no" for other works</span><br />
         <span>Yes</span> @Html.RadioButtonFor(m => m.Public, "Yes")
         <span>No</span> @Html.RadioButtonFor(m => m.Public, "No")<br style="line-height:300%" />
         <span>Work</span>
