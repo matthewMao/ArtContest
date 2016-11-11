@@ -182,6 +182,7 @@
     <Content Include="Models\CTEFArtContestModel.edmx.diagram">
       <DependentUpon>CTEFArtContestModel.edmx</DependentUpon>
     </Content>
+    <None Include="Properties\PublishProfiles\artcontest1.pubxml" />
     <None Include="Scripts\jquery-3.1.1.intellisense.js" />
     <Content Include="Models\CTEFArtContestModel.Context.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
