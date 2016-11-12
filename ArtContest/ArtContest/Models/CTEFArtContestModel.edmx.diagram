@@ -4,12 +4,11 @@
   <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
-      <Diagram DiagramId="68dd71c212d648f191df2e738d21df30" Name="Diagram1">
+      <Diagram DiagramId="70b415213a4e455bb89a4a7c629f1c26" Name="Diagram1">
         <EntityTypeShape EntityType="CTEFArtContestModel.DisableStudent" Width="1.5" PointX="0.75" PointY="0.75" IsExpanded="true" />
         <EntityTypeShape EntityType="CTEFArtContestModel.Picture" Width="1.5" PointX="7.5" PointY="6.625" IsExpanded="true" />
         <EntityTypeShape EntityType="CTEFArtContestModel.PictureRate" Width="1.5" PointX="9.75" PointY="5.5" IsExpanded="true" />
         <EntityTypeShape EntityType="CTEFArtContestModel.Student" Width="1.5" PointX="5.25" PointY="5.375" IsExpanded="true" />
-        <EntityTypeShape EntityType="CTEFArtContestModel.sysdiagram" Width="1.5" PointX="2.75" PointY="0.75" IsExpanded="true" />
         <EntityTypeShape EntityType="CTEFArtContestModel.User" Width="1.5" PointX="3" PointY="3.75" IsExpanded="true" />
         <EntityTypeShape EntityType="CTEFArtContestModel.UserType" Width="1.5" PointX="0.75" PointY="4.375" IsExpanded="true" />
         <AssociationConnector Association="CTEFArtContestModel.FK_Picture_Student" ManuallyRouted="false" />

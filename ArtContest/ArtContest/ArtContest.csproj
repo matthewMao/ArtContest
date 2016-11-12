@@ -256,9 +256,6 @@
     <Compile Include="Models\Student.cs">
       <DependentUpon>CTEFArtContestModel.tt</DependentUpon>
     </Compile>
-    <Compile Include="Models\sysdiagram.cs">
-      <DependentUpon>CTEFArtContestModel.tt</DependentUpon>
-    </Compile>
     <Compile Include="Models\User.cs">
       <DependentUpon>CTEFArtContestModel.tt</DependentUpon>
     </Compile>
